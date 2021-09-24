@@ -1,0 +1,113 @@
+import React, { Fragment } from "react";
+// import { GalleryData } from '../../../database/features/breadcrumb/database';
+// import Slider from "react-slick";
+import { Container, Row } from "reactstrap";
+var settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  autoplay: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: { slidesToShow: 1 },
+    },
+    {
+      breakpoint: 1024,
+      settings: { slidesToShow: 1 },
+    },
+  ],
+};
+
+// const GalleryWrapper = () => (
+//     <Slider className="owl-carousel owl-theme img-slider" {...settings}>
+//         {
+//             GalleryData.map((data, i) => (
+//                 <div className="item" key={i}>
+//                     <div className={`${data.img}`}></div>
+//                 </div>
+//             ))
+//         }
+//     </Slider>
+// )
+
+const VideoWrapper = () => (
+  <div
+    className="blocks"
+    id="block"
+    style={{ width: "100%;", height: "100vh;" }}
+  >
+    <video id="bgvid" autoPlay muted loop="" style={{ width: "100%" }}>
+      <source src="/assets/video/tsb.mp4" type="video/mp4" />
+    </video>
+  </div>
+);
+
+const DefaultWrapper = () => <Fragment></Fragment>;
+
+const BreadcrumbSection = ({
+  showcaseType,
+  className,
+  setOver,
+  textRight,
+  justifyContent,
+  bgDark,
+  classDiv,
+  path,
+  title,
+  style,
+}) => {
+  const Showcase = () => {
+    switch (showcaseType) {
+      case "Video":
+        return <VideoWrapper />;
+      case "Gallery":
+        return <GalleryWrapper />;
+      default:
+        return <DefaultWrapper />;
+    }
+  };
+  return (
+    <section className={`agency breadcrumb-section ${bgDark}`}>
+      {Showcase()}
+      <Container className={`${setOver} `}>
+        <Row>
+          <div className={className}>
+            <h2 className={`breadcrumb-text ${textRight}`}>{style}</h2>
+          </div>
+          <div className={classDiv}>
+            <ul className={`breadcrumb ${justifyContent}`}>
+              <li>
+                <a href="#">{path}</a>
+              </li>
+              <li>{title}</li>
+            </ul>
+          </div>
+        </Row>
+      </Container>
+      <Row>
+        <div
+          className="center-content set-abs bottom-content"
+          style={{ overflow: "visible" }}
+        >
+          <div className="bottom" style={{ overflow: "visible" }}>
+            <a className="down" onClick={() => scrollToRef("feature")}>
+              <img
+                alt=""
+                className="img-fluid"
+                src="/assets/images/saas2/header-icon/down.png"
+                // width={"50%"}
+                // style={{ animation: "btndown 3s linear infinite" }}
+              />
+            </a>
+            <div></div>
+          </div>
+        </div>
+      </Row>
+    </section>
+  );
+};
+
+export default BreadcrumbSection;

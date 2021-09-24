@@ -865,7 +865,13 @@ section {
             border-radius: 50%;
             margin-bottom: 10px;
             transition: all 500ms;
-            background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, $primary 50%, $primary 100%);
+            background-image: linear-gradient(
+              to bottom,
+              transparent 0%,
+              transparent 50%,
+              $primary 50%,
+              $primary 100%
+            );
             background-repeat: no-repeat;
             background-position: 0 0;
             background-size: 90px 180px;
@@ -1061,7 +1067,13 @@ section {
           color: $white;
           transition: all 800ms;
           border: 2px solid $white;
-          background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, $white 50%, $white 100%);
+          background-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            transparent 50%,
+            $white 50%,
+            $white 100%
+          );
           background-repeat: no-repeat;
           background-position: 0 0;
           background-size: 90px 180px;
@@ -3310,7 +3322,8 @@ footer {
   }
   &.footer2 {
     &.bg {
-      background: url("/assets/images/app_landing2/l-2-footer.png") no-repeat top;
+      background: url("/assets/images/app_landing2/l-2-footer.png") no-repeat
+        top;
       background-size: cover;
     }
     &.saas2 {
@@ -3359,7 +3372,8 @@ footer {
   }
   &.dark {
     &.app2 {
-      background: url("/assets/images/app_landing2/l-2-footer-dark.png") no-repeat top !important;
+      background: url("/assets/images/app_landing2/l-2-footer-dark.png")
+        no-repeat top !important;
     }
     background-image: linear-gradient($dark, $light) !important;
     h1,
@@ -3866,13 +3880,17 @@ booking section end
           }
           .time {
             font-weight: 700;
-            font-size: calc(30px + (45 - 30) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              30px + (45 - 30) * ((100vw - 300px) / (1920 - 300))
+            );
           }
           .title {
             font-family: "Satisfy", cursive;
             line-height: normal;
             font-weight: 400;
-            font-size: calc(30px + (42 - 30) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              30px + (42 - 30) * ((100vw - 300px) / (1920 - 300))
+            );
             margin-bottom: 0;
             padding-bottom: 15px;
             text-transform: initial;
@@ -4005,7 +4023,11 @@ booking section end
     margin-top: -120px;
     .play-bg {
       border-radius: 32px;
-      background-image: linear-gradient(90deg, $music-dark 0%, $music-light 100%);
+      background-image: linear-gradient(
+        90deg,
+        $music-dark 0%,
+        $music-light 100%
+      );
       height: 67px;
       margin: 0 auto;
       width: 276px;
@@ -4013,7 +4035,11 @@ booking section end
       z-index: 1;
       .song-text-container {
         border-radius: 32px;
-        background-image: linear-gradient(90deg, $music-dark 0%, $music-light 100%);
+        background-image: linear-gradient(
+          90deg,
+          $music-dark 0%,
+          $music-light 100%
+        );
         display: inline-block;
 
         .center-img {
@@ -4059,7 +4085,11 @@ booking section end
         left: 50%;
         transform: translate(-50%, 0);
         /* right: 210%; */
-        background-image: linear-gradient(90deg, $music-dark 0%, $music-light 100%);
+        background-image: linear-gradient(
+          90deg,
+          $music-dark 0%,
+          $music-light 100%
+        );
         height: 100%;
         width: 180%;
         z-index: -1;
@@ -4796,19 +4826,39 @@ music css end
     width: 94px;
     height: 94px;
     &.radial-bar-primary {
-      background-image: linear-gradient(432deg, $primary 50%, transparent 50%, transparent),
+      background-image: linear-gradient(
+          432deg,
+          $primary 50%,
+          transparent 50%,
+          transparent
+        ),
         linear-gradient(270deg, $primary 50%, $gray13 50%, $gray13);
     }
     &.radial-90 {
-      background-image: linear-gradient(399deg, $primary 50%, transparent 50%, transparent),
+      background-image: linear-gradient(
+          399deg,
+          $primary 50%,
+          transparent 50%,
+          transparent
+        ),
         linear-gradient(270deg, $primary 50%, $gray13 50%, $gray13);
     }
     &.radial-80 {
-      background-image: linear-gradient(350deg, $primary 50%, transparent 50%, transparent),
+      background-image: linear-gradient(
+          350deg,
+          $primary 50%,
+          transparent 50%,
+          transparent
+        ),
         linear-gradient(270deg, $primary 50%, $gray13 50%, $gray13);
     }
     &.radial-70 {
-      background-image: linear-gradient(310deg, $primary 50%, transparent 50%, transparent),
+      background-image: linear-gradient(
+          310deg,
+          $primary 50%,
+          transparent 50%,
+          transparent
+        ),
         linear-gradient(270deg, $primary 50%, $gray13 50%, $gray13);
     }
     &:after {
@@ -5004,7 +5054,9 @@ resume-theme css end
           margin-top: 0;
           line-height: normal;
           &.small {
-            font-size: calc(18px + (65 - 18) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              18px + (65 - 18) * ((100vw - 300px) / (1920 - 300))
+            );
           }
         }
       }
@@ -5523,7 +5575,11 @@ wedding-theme css end
     }
   }
   .yoga-gradiant {
-    background-image: linear-gradient(96deg, #ba38d2 0%, #6851df 100%) !important;
+    background-image: linear-gradient(
+      96deg,
+      #ba38d2 0%,
+      #6851df 100%
+    ) !important;
   }
   .navbar-nav {
     padding-bottom: 0;
@@ -6553,7 +6609,7 @@ counter css end
       margin-top: 0 !important;
     }
   }
-  &.agency { 
+  &.agency {
     .pricing-slider {
       margin-bottom: -5px;
     }
@@ -7487,10 +7543,12 @@ tap to top css end
         color: $white;
       }
     }
-    .switcher__button:nth-child(1).switcher__button--enabled ~ .switcher__border {
+    .switcher__button:nth-child(1).switcher__button--enabled
+      ~ .switcher__border {
       left: 0;
     }
-    .switcher__button:nth-child(2).switcher__button--enabled ~ .switcher__border {
+    .switcher__button:nth-child(2).switcher__button--enabled
+      ~ .switcher__border {
       left: 50%;
     }
     .plan-box {
@@ -7557,7 +7615,9 @@ tap to top css end
           margin-top: 40px;
           margin-bottom: 40px;
           li {
-            font-size: calc(14px + (16 - 14) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              14px + (16 - 14) * ((100vw - 300px) / (1920 - 300))
+            );
             margin-bottom: 11px;
             img {
               margin-right: 15px;
@@ -7810,7 +7870,9 @@ tap to top css end
             margin-bottom: 0;
             border-bottom: 1px solid rgba($black, 0.125);
             background-color: transparent;
-            font-size: calc(15px + (18 - 15) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              15px + (18 - 15) * ((100vw - 300px) / (1920 - 300))
+            );
             font-weight: 500;
             position: relative;
             color: #071828;
@@ -8594,14 +8656,18 @@ wedding css start
           }
           .time {
             font-weight: 600;
-            font-size: calc(20px + (35 - 20) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              20px + (35 - 20) * ((100vw - 300px) / (1920 - 300))
+            );
           }
           .title {
             font-family: "Alex Brush", cursive;
             line-height: normal;
             font-weight: 600;
             margin-top: 20px;
-            font-size: calc(20px + (35 - 20) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              20px + (35 - 20) * ((100vw - 300px) / (1920 - 300))
+            );
             margin-bottom: -4px;
             text-transform: capitalize;
           }
@@ -9936,7 +10002,7 @@ breadcrumb-section css start
   &.video-sec {
     background: unset;
     background-color: unset !important;
-    height: 70vh;
+    height: 100vh;
     .blocks {
       &:before {
         content: "";
@@ -10011,7 +10077,9 @@ breadcrumb-section css end
       ul {
         li {
           a {
-            font-size: calc(14px + (20 - 14) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              14px + (20 - 14) * ((100vw - 300px) / (1920 - 300))
+            );
           }
         }
       }
@@ -10031,7 +10099,9 @@ breadcrumb-section css end
       ul {
         li {
           a {
-            font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              16px + (20 - 16) * ((100vw - 300px) / (1920 - 300))
+            );
           }
         }
       }
@@ -10047,7 +10117,9 @@ breadcrumb-section css end
       ul {
         li {
           a {
-            font-size: calc(14px + (20 - 14) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              14px + (20 - 14) * ((100vw - 300px) / (1920 - 300))
+            );
           }
         }
       }
@@ -10062,7 +10134,9 @@ breadcrumb-section css end
       ul {
         li {
           a {
-            font-size: calc(14px + (16 - 14) * ((100vw - 300px) / (1920 - 300)));
+            font-size: calc(
+              14px + (16 - 14) * ((100vw - 300px) / (1920 - 300))
+            );
           }
         }
       }
@@ -12662,7 +12736,8 @@ error css end
           -webkit-appearance: none;
           -moz-appearance: none;
           cursor: pointer;
-          background: url("/assets/images/inner-page/dropdown.png") no-repeat 95%;
+          background: url("/assets/images/inner-page/dropdown.png") no-repeat
+            95%;
           &:focus {
             outline: unset;
           }
@@ -14942,7 +15017,10 @@ error css end
     width: 10px;
   }
   ::-webkit-scrollbar-thumb {
-    background-image: linear-gradient(rgba($music-light, 0.92) 0%, $music-dark 100%);
+    background-image: linear-gradient(
+      rgba($music-light, 0.92) 0%,
+      $music-dark 100%
+    );
     border-radius: 25px;
   }
   &.side-section {
@@ -14960,7 +15038,10 @@ error css end
     .jp-type-playlist {
       .jp-gui {
         .gradient-block {
-          background-image: linear-gradient(rgba($music-light, 0.92) 0%, $music-dark 100%);
+          background-image: linear-gradient(
+            rgba($music-light, 0.92) 0%,
+            $music-dark 100%
+          );
           position: relative;
           overflow: hidden;
           height: 30vh;
@@ -15053,7 +15134,10 @@ error css end
           &.jp-play {
             height: 50px;
             width: 50px;
-            background-image: linear-gradient($music-light 0%, $music-dark 100%);
+            background-image: linear-gradient(
+              $music-light 0%,
+              $music-dark 100%
+            );
             background-color: white;
             box-shadow: 0 3px 15px 3px rgba(46, 97, 220, 0.25);
           }
@@ -16296,7 +16380,13 @@ footer {
   border: transparent !important;
   position: relative !important;
   background-color: #4e56f3 !important;
-  background-image: linear-gradient(to right, #13b8ea, #4e56f3, #4e56f3, #13b8ea) !important;
+  background-image: linear-gradient(
+    to right,
+    #13b8ea,
+    #4e56f3,
+    #4e56f3,
+    #13b8ea
+  ) !important;
   transition: all 0.4s ease-in-out !important;
   background-size: 300% 100% !important;
 }
@@ -16312,7 +16402,13 @@ footer {
   border: transparent !important;
   position: relative !important;
   background-color: #5e57ea !important;
-  background-image: linear-gradient(to right, #9647db, #5e57ea, #5e57ea, #9647db) !important;
+  background-image: linear-gradient(
+    to right,
+    #9647db,
+    #5e57ea,
+    #5e57ea,
+    #9647db
+  ) !important;
   transition: all 0.4s ease-in-out !important;
   background-size: 300% 100% !important;
 }
@@ -16339,8 +16435,10 @@ footer {
     }
   }
 }
+
 .bg-shadow-top-bottom {
-  box-shadow: inset 0 70px 75px -15px rgba(0, 0, 0, 0.8), inset 0 -70px 75px -15px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 70px 75px -15px rgba(0, 0, 0, 0.8),
+    inset 0 -70px 75px -15px rgba(0, 0, 0, 0.8);
 }
 .bg-shadow-top {
   box-shadow: inset 0px -70px 90px -44px $black;
@@ -16854,4 +16952,24 @@ footer {
 .invoice-table {
   margin-top: 16px;
   margin-bottom: 16px;
+}
+
+// Custom Css
+.bottom-content {
+  z-index: 3;
+  bottom: 6%;
+  height: unset;
+  width: 100%;
+  .bottom {
+    height: 86px;
+    width: 66px;
+    background-color: $white;
+    border-radius: 50px;
+    overflow: hidden;
+    .down {
+      img {
+        animation: btndown 3s linear infinite;
+      }
+    }
+  }
 }
