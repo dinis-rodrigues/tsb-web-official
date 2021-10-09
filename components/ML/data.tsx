@@ -64,7 +64,7 @@ export class MnistData {
     const img = new Image();
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
-    const imgRequest = new Promise((resolve, reject) => {
+    const imgRequest = new Promise((resolve) => {
       img.crossOrigin = "";
       img.onload = () => {
         img.width = img.naturalWidth;
@@ -119,10 +119,7 @@ export class MnistData {
     });
 
     const labelsRequest = fetch(MNIST_LABELS_PATH);
-    const [imgResponse, labelsResponse] = await Promise.all([
-      imgRequest,
-      labelsRequest,
-    ]);
+    const [, labelsResponse] = await Promise.all([imgRequest, labelsRequest]);
 
     this.datasetLabels = new Uint8Array(await labelsResponse.arrayBuffer());
 

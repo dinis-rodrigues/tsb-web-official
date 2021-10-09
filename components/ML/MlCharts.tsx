@@ -4,15 +4,12 @@ import {
   Line,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
   Label,
 } from "recharts";
 import { ChartValue } from "../../interfaces";
-// import Chart from "react-apexcharts";
-import { lineTrainOptions, lineValOptions } from "./mlUtils";
 
 type Props = {
   trainLoss: ChartValue | undefined;

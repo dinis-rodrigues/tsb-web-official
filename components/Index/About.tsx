@@ -1,7 +1,7 @@
 import { SiAtom } from "react-icons/si";
 import { IoBulbOutline } from "react-icons/io5";
 import { FaCogs } from "react-icons/fa";
-import { GiAnchor, GiChart } from "react-icons/gi";
+import { GiAnchor } from "react-icons/gi";
 import { HiOutlinePresentationChartBar } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import cx from "classnames";

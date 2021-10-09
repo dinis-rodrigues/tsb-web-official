@@ -260,7 +260,7 @@ const updateValidationSeries = (
   setSeries((state: ChartValue[]) => {
     let auxVals = [];
     let init = 2.5;
-    let xinit = 0;
+    // let xinit = 0;
     if (state.length <= 0) {
       isLoss ? (init = 2.5) : (init = 0);
       auxVals = linearInterpolate(init, newValue, STEPS_PER_EPOCH, 0, key);
@@ -543,7 +543,7 @@ const train = async (
  * @returns
  */
 const load = (url: string): Promise<HTMLImageElement> => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const im = new Image();
     im.crossOrigin = "anonymous";
     im.src = url;
@@ -576,8 +576,6 @@ const predict = async (
     .toInt()
     .expandDims(0)
     .expandDims(-1);
-
-  const arr = Array.from(gray.dataSync());
 
   const pred = myModel.predict(gray) as Tensor<Rank>;
 

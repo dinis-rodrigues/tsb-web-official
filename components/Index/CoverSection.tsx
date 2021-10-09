@@ -1,5 +1,3 @@
-import profilePic from "../../public/assets/images/coverPhoto.jpg";
-
 const CoverSection = () => {
   return (
     <div

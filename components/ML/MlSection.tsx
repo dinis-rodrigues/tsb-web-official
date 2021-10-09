@@ -87,7 +87,7 @@ const MlSection = ({ setToggleMl }: Props) => {
                     // onChange={handleSliderChange}
                     aria-labelledby="input-slider"
                     valueLabelDisplay="on"
-                    valueLabelFormat={(value, idx) => "Batch Size: " + value}
+                    valueLabelFormat={(value) => "Batch Size: " + value}
                   />
                 </Box>
               </span>
@@ -105,7 +105,7 @@ const MlSection = ({ setToggleMl }: Props) => {
                     // value={typeof value === "number" ? value : 0}
                     // onChange={handleSliderChange}
                     valueLabelDisplay="on"
-                    valueLabelFormat={(value, idx) => "Batch: " + value}
+                    valueLabelFormat={(value) => "Batch: " + value}
                   />
                 </Box>
               </span>
@@ -132,7 +132,7 @@ const MlSection = ({ setToggleMl }: Props) => {
                   </div>
                   <div
                     className={"canvas-container"}
-                    onMouseEnter={(e) => {
+                    onMouseEnter={() => {
                       // e.preventDefault();
                       cvx.current?.resetCanvas();
                     }}

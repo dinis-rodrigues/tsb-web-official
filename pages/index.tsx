@@ -1,9 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 
-import ReactFullpage, { fullpageApi } from "@fullpage/react-fullpage";
+import ReactFullpage from "@fullpage/react-fullpage";
 import { useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 
@@ -12,7 +10,6 @@ import About from "../components/Index/About";
 import SolarSection from "../components/Index/SolarSection";
 import HydrogenSection from "../components/Index/HydrogenSection";
 import AutonomousSection from "../components/Index/AutonomousSection";
-import MlSection from "../components/ML/MlSection";
 
 const Home: NextPage = () => {
   const navColors = [
@@ -51,14 +48,13 @@ const Home: NextPage = () => {
         }}
         // scrollHorizontally = {true}
         // sectionsColor={state.sectionsColor}
-        render={(comp) => (
+        render={() => (
           <ReactFullpage.Wrapper>
             <CoverSection />
             <About startZoom={startAboutZoom} initialDepartment={"dc"} />
             <SolarSection startCount={solarCount} />
             <HydrogenSection startCount={solarCount} />
             <AutonomousSection playVideo={playVideo} />
-            <MlSection />
           </ReactFullpage.Wrapper>
         )}
       />
