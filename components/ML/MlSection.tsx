@@ -1,201 +1,166 @@
-import React, { useState } from "react";
-import { trainModel } from "../ML/script";
-import { startTrain, stopTraining } from "./mlUtils";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  Label,
-} from "recharts";
+import React, { Fragment, useRef, useState } from "react";
+import { predict } from "./mlUtils";
+import { predictionsValues, startTrain, stopTraining } from "./mlUtils";
+import { ReactSketchCanvas } from "react-sketch-canvas";
+import cx from "classnames";
 
-import dynamic from "next/dynamic";
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+import { ChartValue, Predictions } from "../../interfaces";
+import { Sequential } from "@tensorflow/tfjs-layers";
+import { Box, Slider } from "@mui/material";
+import MlPredictions from "./MlPredictions";
+import MlCharts from "./MlCharts";
 
-// import Chart from "react-apexcharts";
-import { lineTrainOptions, lineValOptions } from "./mlUtils";
-import { ChartValue } from "../../interfaces";
+type Props = {
+  setToggleMl: Function;
+};
 
-const MlSection = () => {
+const MlSection = ({ setToggleMl }: Props) => {
+  const [myModel, setMyModel] = useState<Sequential | null>(null);
   const [trainLoss, setTrainLoss] = useState<ChartValue>();
+
   const [valLoss, setValLoss] = useState<ChartValue>();
 
   const [trainAcc, setTrainAcc] = useState<ChartValue>();
   const [valAcc, setValAcc] = useState<ChartValue>();
 
-  const [stopTrain, setStopTrain] = useState(false);
-  return (
-    <div
-      className="section"
-      style={{
-        backgroundColor: "black",
-        fontSize: "small",
-      }}
-    >
-      <button
-        onClick={() =>
-          startTrain(
-            setTrainLoss,
-            setValLoss,
-            setTrainAcc,
-            setValAcc,
-            setStopTrain
-          )
-        }
-      >
-        Start train
-      </button>
-      <button onClick={() => stopTraining(setStopTrain)}>Stop train</button>
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            {/* <Chart
-              options={{
-                ...lineTrainOptions,
-                tooltip: {
-                  theme: "dark",
-                  enabled: stopTrain ? true : false,
-                },
-              }}
-              series={[
-                { name: "Train Loss", data: trainLoss },
-                { name: "Validation Loss", data: valLoss },
-              ]}
-              type="line"
-              width="60%"
-              height="350"
-            /> */}
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart
-                width={500}
-                height={300}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                <XAxis
-                  dataKey="x"
-                  domain={[0, 400]}
-                  type="number"
-                  allowDataOverflow
-                  allowDuplicatedCategory={false}
-                >
-                  <Label
-                    value="Steps"
-                    offset={-5}
-                    position="insideBottom"
-                    fill="#FFFFFF"
-                  />
-                </XAxis>
+  const [stopTrain, setStopTrain] = useState(true);
+  const [predictions, setPredictions] =
+    useState<Predictions>(predictionsValues);
 
-                <YAxis>
-                  <Label
-                    value="Loss"
-                    position="left"
-                    offset={0}
-                    angle={-90}
-                    fill="#FFFFFF"
-                  />
-                </YAxis>
-                <Tooltip />
-                <Legend verticalAlign="top" />
-                <Line
-                  dot={false}
-                  dataKey="trainLoss"
-                  data={trainLoss}
-                  isAnimationActive={false}
-                />
-                <Line
-                  dot={false}
-                  dataKey="valLoss"
-                  data={valLoss}
-                  stroke="#FF5733"
-                  isAnimationActive={false}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="col">
-            {/* <Chart
-              options={{
-                ...lineValOptions,
-                tooltip: {
-                  theme: "dark",
-                  enabled: stopTrain ? true : false,
-                },
+  const [advancedOptions, setAdvancedOptions] = useState(false);
+  const [firstTrain, setFirstTrain] = useState(false);
+  const [chartSteps, setChartSteps] = useState(400);
+
+  const cvx = useRef<ReactSketchCanvas>(null);
+  return (
+    <Fragment>
+      <div className="row mt-3">
+        <h5 className="f-700">Explore this interactive example</h5>
+        <p>We will train a model in order to predict handwritten digits</p>
+        <div className="mt-3 mb-3">
+          <span>
+            <button
+              className={cx("btnd btnd-success", { "d-none": !stopTrain })}
+              onClick={() => {
+                setFirstTrain(true);
+                setToggleMl(true);
+                startTrain(
+                  myModel,
+                  setTrainLoss,
+                  setValLoss,
+                  setTrainAcc,
+                  setValAcc,
+                  setStopTrain,
+                  setMyModel,
+                  setChartSteps
+                );
               }}
-              series={[
-                { name: "Train Accuracy", data: trainAcc },
-                { name: "Validation Accuracy", data: valAcc },
-              ]}
-              type="line"
-              width="60%"
-              height="350"
-            /> */}
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart
-                width={500}
-                height={400}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
+            >
+              Train
+            </button>
+          </span>
+          <span>
+            <button
+              className={cx("btnd btnd-warning", { "d-none": stopTrain })}
+              onClick={() => stopTraining(setStopTrain)}
+            >
+              Stop train
+            </button>
+          </span>
+          <span>
+            <button
+              className={cx("btnd btnd-outline-secundary")}
+              onClick={() => setAdvancedOptions(!advancedOptions)}
+            >
+              {!advancedOptions ? "Advanced Options" : "Hide Options"}
+            </button>
+          </span>
+          {advancedOptions && (
+            <Fragment>
+              <span
+                style={{ display: "inline-block", verticalAlign: "bottom" }}
               >
-                {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                <XAxis
-                  dataKey="x"
-                  domain={[0, 400]}
-                  type="number"
-                  allowDataOverflow
-                  allowDuplicatedCategory={false}
-                >
-                  <Label
-                    value="Steps"
-                    offset={-5}
-                    position="insideBottom"
-                    fill="#FFFFFF"
+                <Box sx={{ width: "50px" }}>
+                  <Slider
+                    size="small"
+                    // value={typeof value === "number" ? value : 0}
+                    // onChange={handleSliderChange}
+                    aria-labelledby="input-slider"
+                    valueLabelDisplay="on"
+                    valueLabelFormat={(value, idx) => "Batch Size: " + value}
                   />
-                </XAxis>
-                <YAxis>
-                  <Label
-                    value="Accuracy"
-                    position="left"
-                    offset={0}
-                    angle={-90}
-                    fill="#FFFFFF"
+                </Box>
+              </span>
+              <span
+                style={{
+                  display: "inline-block",
+                  verticalAlign: "bottom",
+                  marginLeft: "2rem",
+                }}
+                className=""
+              >
+                <Box sx={{ width: "50px" }}>
+                  <Slider
+                    size="small"
+                    // value={typeof value === "number" ? value : 0}
+                    // onChange={handleSliderChange}
+                    valueLabelDisplay="on"
+                    valueLabelFormat={(value, idx) => "Batch: " + value}
                   />
-                </YAxis>
-                <Tooltip />
-                <Legend verticalAlign="top" />
-                <Line
-                  dot={false}
-                  dataKey="trainAcc"
-                  data={trainAcc}
-                  isAnimationActive={false}
-                />
-                <Line
-                  dot={false}
-                  dataKey="valAcc"
-                  data={valAcc}
-                  stroke="#FF5733"
-                  isAnimationActive={false}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+                </Box>
+              </span>
+            </Fragment>
+          )}
         </div>
       </div>
-    </div>
+
+      {firstTrain && (
+        <Fragment>
+          <MlCharts
+            trainLoss={trainLoss}
+            trainAcc={trainAcc}
+            valLoss={valLoss}
+            valAcc={valAcc}
+            chartSteps={chartSteps}
+          />
+          <div className="row mt-2">
+            <div className="col-md">
+              <div className="input-column">
+                <div className="input-container">
+                  <div className="input-label">
+                    Draw (0-9) here <span className="arrow">⤸</span>
+                  </div>
+                  <div
+                    className={"canvas-container"}
+                    onMouseEnter={(e) => {
+                      // e.preventDefault();
+                      cvx.current?.resetCanvas();
+                    }}
+                    onMouseUp={() =>
+                      predict(cvx.current, myModel, setPredictions)
+                    }
+                    style={{ height: "100px", width: "100px" }}
+                  >
+                    <ReactSketchCanvas
+                      className="canvas-board"
+                      width="100px"
+                      height="100px"
+                      strokeWidth={10}
+                      strokeColor="white"
+                      canvasColor={"rgba(0,0,0,0)"}
+                      ref={cvx}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md">
+              <MlPredictions predictions={predictions} />
+            </div>
+          </div>
+        </Fragment>
+      )}
+    </Fragment>
   );
 };
 
