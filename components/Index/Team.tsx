@@ -2,10 +2,8 @@ import cx from "classnames";
 import { useEffect, useState } from "react";
 import { DepartmentTab, PublicTeam } from "../../interfaces";
 
-import TeamImage from "../Images/TeamImage";
 import {
   getTeamToDisplay,
-  getUserImgUrl,
   returnSortedByPositionTeam,
   toggleActiveDepartment,
 } from "../utils/generalFunctions";

@@ -1,5 +1,3 @@
-import { string } from "@tensorflow/tfjs-core";
-
 // Public Information
 export interface PublicTeam {
   [key: string]: PublicUser;

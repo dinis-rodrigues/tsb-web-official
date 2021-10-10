@@ -1,17 +1,17 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { getUserImgUrl } from "../utils/generalFunctions";
 import placeholder from "/public/assets/images/index/placeholder.png";
 
 type Props = {
   src: string;
   name: string;
   position: string;
-  department: string;
+  department?: string;
 };
-const TeamImage = ({ src, name, position, department }: Props) => {
+const TeamImage = ({ src, name, position, department = "" }: Props) => {
   const [srcUrl, setSrcUrl] = useState<string>(src);
+  department;
   return srcUrl ? (
     <div
       className="team-image-container shadow"
