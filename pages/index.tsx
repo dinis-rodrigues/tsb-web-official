@@ -10,6 +10,7 @@ import About from "../components/Index/About";
 import SolarSection from "../components/Index/SolarSection";
 import HydrogenSection from "../components/Index/HydrogenSection";
 import AutonomousSection from "../components/Index/AutonomousSection";
+import Team from "../components/Index/Team";
 
 const Home: NextPage = () => {
   const navColors = [
@@ -48,6 +49,7 @@ const Home: NextPage = () => {
         }}
         // scrollHorizontally = {true}
         // sectionsColor={state.sectionsColor}
+        normalScrollElements={".scrollable-team"}
         render={() => (
           <ReactFullpage.Wrapper>
             <CoverSection />
@@ -55,6 +57,7 @@ const Home: NextPage = () => {
             <SolarSection startCount={solarCount} />
             <HydrogenSection startCount={solarCount} />
             <AutonomousSection playVideo={playVideo} />
+            <Team />
           </ReactFullpage.Wrapper>
         )}
       />
