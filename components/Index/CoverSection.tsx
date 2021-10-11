@@ -1,7 +1,7 @@
 const CoverSection = () => {
   return (
     <div
-      className="section"
+      className="section fp-noscroll"
       style={{
         backgroundImage: `url("assets/images/coverPhoto.jpg")`,
         backgroundSize: "cover",

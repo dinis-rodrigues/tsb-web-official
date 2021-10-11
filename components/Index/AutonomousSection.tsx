@@ -24,7 +24,7 @@ const AutonomousSection = ({ playVideo = false }: Props) => {
 
   return (
     <div
-      className="section"
+      className="section fp-noscroll"
       style={{
         backgroundColor: "black",
         fontSize: "small",

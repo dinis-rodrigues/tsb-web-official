@@ -24,7 +24,7 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
   }, [startZoom, initialDepartment]);
   return (
     <div
-      className="section"
+      className="section fp-noscroll"
       style={{
         backgroundColor: "black",
         fontSize: "small",

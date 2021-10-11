@@ -22,7 +22,7 @@ const Team = () => {
   }, []);
   return (
     <div
-      className="section"
+      className="section fp-noscroll"
       style={{
         backgroundColor: "black",
         fontSize: "small",
