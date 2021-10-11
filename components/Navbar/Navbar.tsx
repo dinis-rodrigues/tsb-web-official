@@ -36,14 +36,30 @@ const Navbar = ({ theme }: Props) => {
                 "active-img": theme === "white",
               })}
             >
-              <Image src={logoWhite} alt="" width="100px" height="50px" />
+              {
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={"assets/images/tsb/TSB_oficial_white.png"}
+                  alt=""
+                  width="100px"
+                  height="50px"
+                />
+              }
             </div>
             <div
               className={cx("logo-img", {
                 "active-img": theme === "black",
               })}
             >
-              <Image src={logoBlack} alt="" width="100px" height="50px" />
+              {
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={"assets/images/tsb/TSB_oficial.png"}
+                  alt=""
+                  width="100px"
+                  height="50px"
+                />
+              }
             </div>
 
             {/* <div className="logo-container"></div> */}
