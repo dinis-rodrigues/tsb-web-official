@@ -17,30 +17,25 @@ const TeamImage = ({ src, name, position, department = "" }: Props) => {
       className="team-image-container shadow"
       style={{ position: "relative", display: "flex", flexDirection: "column" }}
     >
-      <Image
-        className="team-image"
-        objectPosition={"center"}
-        alt=""
-        src={srcUrl}
-        onError={() => setSrcUrl(placeholder.src)}
-        layout="fill"
-        objectFit="cover"
-        placeholder="blur"
-        priority
-        blurDataURL={
-          "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO0qgcAAPkAu0/RaYsAAAAASUVORK5CYII="
+      <div className="team-image">
+        {
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={srcUrl}
+            alt=""
+            onError={() => setSrcUrl(placeholder.src)}
+            width="100%"
+          />
         }
-      />
+      </div>
 
       <div className="team-description z-inf text-shadow">
         <p className="f-medium f-700">{name}</p>
-        {/* <p>{department}</p> */}
         <p>{position}</p>
       </div>
-      {/* <img src={src} alt="" width={100} /> */}
     </div>
   ) : (
-    <span>Nope</span>
+    <span>Error</span>
   );
 };
 
