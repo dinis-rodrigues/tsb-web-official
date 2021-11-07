@@ -1,5 +1,4 @@
 import { Sequential } from "@tensorflow/tfjs-layers";
-import { ApexOptions } from "apexcharts";
 import { Rank, Tensor } from "@tensorflow/tfjs";
 import { ChartValue, Predictions } from "../../interfaces";
 import { MnistData } from "./data";
@@ -56,117 +55,6 @@ const predictionsValues: Predictions = {
     value: "0",
     opacity: "0",
     predicted: false,
-  },
-};
-
-const lineTrainOptions: ApexOptions = {
-  chart: {
-    height: 350,
-    type: "line",
-    dropShadow: {
-      enabled: true,
-      color: "#000",
-      top: 18,
-      left: 7,
-      blur: 10,
-      opacity: 0.2,
-    },
-    toolbar: {
-      show: false,
-    },
-    zoom: {
-      enabled: false,
-    },
-    foreColor: "#fff",
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  colors: ["#16aaff", "#FF5733"],
-  stroke: {
-    width: 1,
-  },
-  title: {
-    text: "Loss Evolution",
-    align: "left",
-  },
-  yaxis: {
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: true,
-    },
-    labels: {
-      formatter: (value: number) => {
-        return Number(value).toFixed(2).toString();
-      },
-    },
-    tickAmount: 4,
-  },
-  xaxis: {
-    tickAmount: 10,
-    min: 0,
-  },
-  tooltip: {
-    theme: "dark",
-  },
-};
-
-const lineValOptions: ApexOptions = {
-  chart: {
-    height: 350,
-    type: "line",
-    dropShadow: {
-      enabled: true,
-      color: "#000",
-      top: 18,
-      left: 7,
-      blur: 10,
-      opacity: 0.2,
-    },
-    toolbar: {
-      show: false,
-    },
-    zoom: {
-      enabled: false,
-    },
-    foreColor: "#fff",
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  colors: ["#16aaff", "#FF5733"],
-  stroke: {
-    width: 1,
-  },
-  title: {
-    text: "Loss Evolution",
-    align: "left",
-  },
-  yaxis: {
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: true,
-    },
-    min: 0,
-    max: 1,
-    labels: {
-      formatter: (value: number) => {
-        return Number(value).toFixed(2).toString();
-      },
-    },
-    tickAmount: 4,
-  },
-
-  xaxis: {
-    tickAmount: 10,
-    min: 0,
-  },
-  tooltip: {
-    theme: "dark",
   },
 };
 
@@ -601,8 +489,6 @@ const predict = async (
 };
 
 export {
-  lineTrainOptions,
-  lineValOptions,
   startTrain,
   stopTraining,
   predictionsValues,
