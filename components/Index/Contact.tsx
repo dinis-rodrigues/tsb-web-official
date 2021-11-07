@@ -1,8 +1,3 @@
-import dynamic from "next/dynamic";
-
-// @ts-ignore
-// const KUTE = dynamic(() => import("kute.js"));
-// import KUTE from "kute.js";
 import { useEffect } from "react";
 
 const Contact = () => {
@@ -129,40 +124,6 @@ const Contact = () => {
             ></path>
           </g>
         </svg>
-        {/* <div className="spacer-2">
-          <svg
-            id="visual"
-            viewBox="0 0 900 600"
-            preserveAspectRatio="none"
-            width="100%"
-            height="600"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            version="1.1"
-          >
-            <rect x="0" y="0" width="900" height="600" fill="#000000"></rect>
-            <path
-              d="M0 405L129 399L257 374L386 428L514 434L643 435L771 405L900 441L900 601L771 601L643 601L514 601L386 601L257 601L129 601L0 601Z"
-              fill="#00a2ff"
-            ></path>
-            <path
-              d="M0 414L129 450L257 437L386 445L514 431L643 441L771 439L900 422L900 601L771 601L643 601L514 601L386 601L257 601L129 601L0 601Z"
-              fill="#0088e6"
-            ></path>
-            <path
-              d="M0 480L129 438L257 470L386 481L514 495L643 457L771 505L900 507L900 601L771 601L643 601L514 601L386 601L257 601L129 601L0 601Z"
-              fill="#006ecd"
-            ></path>
-            <path
-              d="M0 518L129 534L257 486L386 492L514 508L643 520L771 493L900 529L900 601L771 601L643 601L514 601L386 601L257 601L129 601L0 601Z"
-              fill="#0055b3"
-            ></path>
-            <path
-              d="M0 563L129 568L257 558L386 559L514 557L643 572L771 551L900 555L900 601L771 601L643 601L514 601L386 601L257 601L129 601L0 601Z"
-              fill="#003d99"
-            ></path>
-          </svg>
-        </div> */}
       </div>
     </div>
   );
