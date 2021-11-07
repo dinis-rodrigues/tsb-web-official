@@ -38,3 +38,44 @@ export interface Predictions {
     opacity: string;
   };
 }
+
+export interface SponsorsOrder {
+  [key: string]: Sponsor;
+}
+
+export interface Sponsor {
+  order: number;
+  level: string;
+  name: string;
+  svgString: string;
+  url: string;
+}
+
+export interface ColorPickerValue {
+  hex?: string;
+  rgba?: Array<number>;
+  hsv?: Array<number>;
+}
+
+export interface SponsorBracketsPublic {
+  [key: string]: SponsorBracketPublic;
+}
+export interface SponsorBracketPublic {
+  sponsorsBoardList: string[];
+  bracketSponsors: SponsorsOrderPublic;
+  name: string;
+  bottomMargin: number;
+  topMargin: number;
+  numColumns: number;
+  color?: ColorPickerValue;
+}
+
+export interface SponsorsOrderPublic {
+  [key: string]: SponsorPublic;
+}
+
+export interface SponsorPublic {
+  name: string;
+  svgPath: string;
+  url: string;
+}
