@@ -3,6 +3,7 @@ import { ref, get } from "@firebase/database";
 import { DepartmentTab, PublicTeam } from "../../interfaces";
 import { Dispatch, SetStateAction } from "react";
 import TeamImage from "../Images/TeamImage";
+import { v4 as uuid } from "uuid";
 
 /** Transforms the date string into Date Object
  * @param  {string} date dd/mm/yyy or dd-mm-yyyy
@@ -178,7 +179,6 @@ const sortTeaMembers = (teamToDisplay: PublicTeam) => {
     "Technical Director",
   ];
   const usersList = Object.entries(teamToDisplay).map((userObj) => userObj);
-  console.log(usersList);
   return usersList.sort((a, b) => {
     let userA = a[1].info;
     let userB = b[1].info;
@@ -223,10 +223,93 @@ const returnSortedByPositionTeam = (teamToDisplay: PublicTeam) => {
   });
 };
 
+/**
+ * Replaces the values of width or height of the svg string with 100%
+ * @param s
+ * @param toReplace
+ * @returns
+ */
+const replaceSVGWidthAndHeight = (s: string, toReplace: string) => {
+  let wIdx = s.indexOf(toReplace) + toReplace.length;
+  // split the string into two substrings, to replace the width
+  let wSubString = s.substring(0, wIdx);
+  let wRest = s.substring(wIdx);
+  // find the closing " of the width="..."
+  let wClosingIdx = wRest.indexOf(`"`);
+  let finalWSub = wRest.substring(wClosingIdx);
+  // add the width 100%
+  wSubString += `100%` + finalWSub;
+  // find the next "
+  return wSubString;
+};
+
+/**
+ * Returns all indexes of linear gradients in svg string
+ * @param s
+ * @returns
+ */
+const getStringMatches = (s: string, expr: string) => {
+  // Find all linear gradients indexes in svg string
+
+  let regexp = /<linearGradient id=/g;
+  if (expr === "image") regexp = /<image id=/g;
+  if (expr === "pattern") regexp = /<pattern id=/g;
+  let match,
+    matches = [];
+
+  while ((match = regexp.exec(s)) != null) {
+    matches.push(match.index);
+  }
+  return matches;
+};
+
+/**
+ * Replaces all linear gradients id, with a unique identifier, so that all id's among
+ * all svgs are unique and different, otherwise the colors will get mixed
+ * @param s
+ * @returns
+ */
+const replaceLinearGradients = (s: string, toFind: string, expr = "linear") => {
+  let matches = getStringMatches(s, expr);
+  // console.log(matches);
+  // For each linear gradient, replace the id with a unique identifier
+  matches.forEach((_, idx) => {
+    // We need to do this for every occurrence, because each time we change the id, the
+    // next indexes change
+    let moreMatches = getStringMatches(s, expr);
+    let matchIdx = moreMatches[idx];
+    let subStr = s.substring(matchIdx + toFind.length);
+
+    // Get the linear gradient Id
+    let closureIdx = subStr.indexOf(`"`);
+    let linearid = subStr.substring(0, closureIdx);
+    // replace all linearId occurrences in svg, with a unique identifier
+    s = s.replaceAll(linearid, uuid());
+  });
+  return s;
+};
+
+/**
+ * Adds https to url if it's not present
+ * @param url
+ * @returns
+ */
+const buildSafeUrl = (url: string) => {
+  if (url.indexOf("http://") !== -1) {
+    return url.replace("http://", "https://");
+  } else if (url.indexOf("https://") === -1) {
+    return "https://" + url;
+  }
+  return url;
+};
+
 export {
   getUserImgUrl,
   getTeamToDisplay,
   toggleActiveDepartment,
   returnSortedByPositionTeam,
   inputToDate,
+  replaceSVGWidthAndHeight,
+  replaceLinearGradients,
+  buildSafeUrl,
 };
