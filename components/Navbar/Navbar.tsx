@@ -1,5 +1,5 @@
-import { Fragment, useEffect, useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
+import Link from "next/link";
 import cx from "classnames";
 import {
   IoClose,
@@ -7,19 +7,17 @@ import {
   IoLogoTwitter,
   IoLogoLinkedin,
 } from "react-icons/io5";
-import logoWhite from "../../public/assets/images/tsb/TSB_oficial_white.png";
-import logoBlack from "../../public/assets/images/tsb/TSB_oficial.png";
+import { fullpageApi } from "@fullpage/react-fullpage";
+import NavItem from "./NavItem";
+import NavLogo from "./NavLogo";
 
 type Props = {
-  theme: string;
+  theme: "white" | "black";
+  fullPageApi?: fullpageApi | undefined;
 };
-const Navbar = ({ theme }: Props) => {
+const Navbar = ({ theme, fullPageApi }: Props) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [navLogo, setNavLogo] = useState(logoWhite);
 
-  useEffect(() => {
-    theme === "white" ? setNavLogo(logoWhite) : setNavLogo(logoBlack);
-  }, [theme]);
   return (
     <div
       className={cx("navigation", {
@@ -30,47 +28,48 @@ const Navbar = ({ theme }: Props) => {
     >
       <nav className={cx("navbar navbar-desktop")}>
         <div className="w-100">
-          <a className={cx("navbar-brand")} href="#">
-            <div
-              className={cx("logo-img", {
-                "active-img": theme === "white",
-              })}
-            >
-              {
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={"assets/images/tsb/TSB_oficial_white.png"}
-                  alt=""
-                  width="100px"
-                  height="50px"
-                />
-              }
-            </div>
-            <div
-              className={cx("logo-img", {
-                "active-img": theme === "black",
-              })}
-            >
-              {
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={"assets/images/tsb/TSB_oficial.png"}
-                  alt=""
-                  width="100px"
-                  height="50px"
-                />
-              }
-            </div>
+          <NavLogo theme={theme} fullPageApi={fullPageApi} />
 
-            {/* <div className="logo-container"></div> */}
-          </a>
           <div className="navbar-right">
-            <span className="menu-item">About</span>
-            <span className="menu-item">Team</span>
-            <span className="menu-item">Sponsors</span>
-            <span className="menu-item">Open Source</span>
-            <span className="menu-item">Recruitment</span>
-            <span className="menu-item">Contact</span>
+            <NavItem
+              name={"About"}
+              fullPageApi={fullPageApi}
+              link={"/#about"}
+              anchorName={"about"}
+            />
+            <NavItem
+              name={"Team"}
+              fullPageApi={fullPageApi}
+              link={"/#team"}
+              anchorName={"team"}
+            />
+            <NavItem
+              name={"Sponsors"}
+              fullPageApi={fullPageApi}
+              link={"/#sponsors"}
+              anchorName={"sponsors"}
+            />
+            <NavItem
+              name={"Gallery"}
+              fullPageApi={fullPageApi}
+              link={"/gallery"}
+            />
+            <NavItem
+              name={"Open Source"}
+              fullPageApi={fullPageApi}
+              link={"/opensource"}
+            />
+            <NavItem
+              name={"recruitment"}
+              fullPageApi={fullPageApi}
+              link={"/recruitment"}
+            />
+            <NavItem
+              name={"Contact"}
+              fullPageApi={fullPageApi}
+              link={"/#contact"}
+              anchorName={"contact"}
+            />
           </div>
 
           <button
@@ -105,7 +104,7 @@ const Navbar = ({ theme }: Props) => {
         </div>
 
         <div className={"copy d-none d-sm-block footer-text"}>
-          © Técnico Solar Boat 2020.
+          © Técnico Solar Boat {new Date().getFullYear()}
         </div>
       </nav>
       <nav className="navbar navbar-mobile">
