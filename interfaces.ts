@@ -79,3 +79,42 @@ export interface SponsorPublic {
   svgPath: string;
   url: string;
 }
+
+// Gallery
+export interface PublicGallery {
+  [key: string]: GalleryItem;
+}
+export interface GalleryItem {
+  name: string;
+  description?: string;
+  timestamp: number;
+}
+
+export interface AllAlbumPhotos {
+  [key: string]: GalleryAlbum;
+}
+export interface GalleryAlbum {
+  [key: string]: GalleryPhoto;
+}
+
+export interface GalleryPhoto {
+  imagePath: string;
+  rzImgPath: string;
+  description?: string;
+  createdAt: number;
+}
+
+// Open source interfaces
+export interface SR01Count {
+  esDownloadCount: number;
+  msDownloadCount: number;
+  dcDownloadCount: number;
+  likeCount: number;
+}
+
+export interface SR02Count {
+  esDownloadCount: number;
+  msDownloadCount: number;
+  dcDownloadCount: number;
+  likeCount: number;
+}
