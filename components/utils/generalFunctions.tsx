@@ -303,6 +303,39 @@ const buildSafeUrl = (url: string) => {
   return url;
 };
 
+/** Transforms the date object into a dd/mm/yyyy string
+ * @param  {string} d DateObject
+ * @return {string} dd/mm/yyyy
+ */
+const dateToString = (d: Date | number, withHours = false) => {
+  if (d instanceof Date) {
+    let day = ("0" + d.getDate()).slice(-2);
+    let month = ("0" + String(d.getMonth() + 1)).slice(-2);
+    let year = d.getFullYear().toString();
+    let dateString = `${day}/${month}/${year}`;
+    if (withHours) {
+      dateString += " ";
+      dateString += ("0" + d.getHours()).slice(-2);
+      dateString += "h";
+      dateString += ("0" + d.getMinutes()).slice(-2);
+    }
+    return dateString;
+  } else {
+    let newD = new Date(d);
+    let day = ("0" + newD.getDate()).slice(-2);
+    let month = ("0" + String(newD.getMonth() + 1)).slice(-2);
+    let year = newD.getFullYear().toString();
+    let dateString = `${day}/${month}/${year}`;
+    if (withHours) {
+      dateString += " ";
+      dateString += ("0" + newD.getHours()).slice(-2);
+      dateString += "h";
+      dateString += ("0" + newD.getMinutes()).slice(-2);
+    }
+    return dateString;
+  }
+};
+
 export {
   getUserImgUrl,
   getTeamToDisplay,
@@ -312,4 +345,5 @@ export {
   replaceSVGWidthAndHeight,
   replaceLinearGradients,
   buildSafeUrl,
+  dateToString,
 };
