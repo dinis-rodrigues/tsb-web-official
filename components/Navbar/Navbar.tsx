@@ -1,21 +1,17 @@
 import { useState } from "react";
-import Link from "next/link";
 import cx from "classnames";
-import {
-  IoClose,
-  IoLogoFacebook,
-  IoLogoTwitter,
-  IoLogoLinkedin,
-} from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import { fullpageApi } from "@fullpage/react-fullpage";
 import NavItem from "./NavItem";
 import NavLogo from "./NavLogo";
+import Footer from "./Footer";
 
 type Props = {
   theme: "white" | "black";
   fullPageApi?: fullpageApi | undefined;
+  changeAll?: boolean;
 };
-const Navbar = ({ theme, fullPageApi }: Props) => {
+const Navbar = ({ theme, fullPageApi, changeAll = true }: Props) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   return (
@@ -26,7 +22,10 @@ const Navbar = ({ theme, fullPageApi }: Props) => {
         "nav-black": theme === "black",
       })}
     >
-      <nav className={cx("navbar navbar-desktop")}>
+      <nav
+        className={cx("navbar navbar-desktop")}
+        style={{ position: "fixed" }}
+      >
         <div className="w-100">
           <NavLogo theme={theme} fullPageApi={fullPageApi} />
 
@@ -82,31 +81,9 @@ const Navbar = ({ theme, fullPageApi }: Props) => {
           </button>
         </div>
       </nav>
-      <nav className="navbar-bottom">
-        <div className="social">
-          <ul className="social-icons mr-auto mr-lg-0 d-none d-sm-block list-none">
-            <li>
-              <a href="#" className="ion-icon">
-                <IoLogoFacebook />
-              </a>
-            </li>
-            <li>
-              <a href="#" className="ion-icon">
-                <IoLogoTwitter />
-              </a>
-            </li>
-            <li>
-              <a href="#" className="ion-icon">
-                <IoLogoLinkedin />
-              </a>
-            </li>
-          </ul>
-        </div>
 
-        <div className={"copy d-none d-sm-block footer-text"}>
-          © Técnico Solar Boat {new Date().getFullYear()}
-        </div>
-      </nav>
+      <Footer />
+
       <nav className="navbar navbar-mobile">
         <span className="close" onClick={() => setMenuIsOpen(false)}>
           <IoClose />
