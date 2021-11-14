@@ -49,6 +49,7 @@ const Home: NextPage = () => {
       </Head>
       <Navbar theme={navTheme} fullPageApi={fullPageApi} />
       <ReactFullpage
+        lockAnchors={true}
         scrollOverflow
         navigation
         responsiveWidth={1250}
