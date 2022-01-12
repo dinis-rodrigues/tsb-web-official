@@ -12,10 +12,10 @@ import {
   removeButtonDBListeners,
   startButtonDBListeners,
 } from "../openSourceUtils";
-import { SR01Count } from "../../../interfaces";
+import { SR02Count } from "../../../interfaces";
 
-const SR01 = () => {
-  const [countButtons, setCountButtons] = useState<SR01Count>({
+const SR03 = () => {
+  const [countButtons, setCountButtons] = useState<SR02Count>({
     esDownloadCount: 0,
     msDownloadCount: 0,
     dcDownloadCount: 0,
@@ -23,9 +23,9 @@ const SR01 = () => {
   });
 
   useEffect(() => {
-    startButtonDBListeners("sr01", setCountButtons);
+    startButtonDBListeners("sr03", setCountButtons);
     return () => {
-      removeButtonDBListeners("sr01");
+      removeButtonDBListeners("sr03");
     };
   }, []);
   return (
@@ -40,23 +40,24 @@ const SR01 = () => {
         <div
           className={cx("section-bg active")}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/opensource/sr01_opensource_v2.jpg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/opensource/sr03_opensource.jpeg")`,
           }}
         ></div>
       </div>
       <div className="container">
         <div className="mt-2 text-center justify-content-center row">
           <div className="col-lg-10 z-inf">
-            <h4 className="index-header f-700 text-white">SÃO RAFAEL 01</h4>
+            <h4 className="index-header f-700 text-white">SÃO RAFAEL 03</h4>
             <hr className="divider" />
             <p className="f-medium text-white">
-              Our very first prototype. Built in 2017 and improved in 2018.
+              High quality hull, hydrofoils, in-house solar panels and much more
+              in this incredibly done Portuguese solar powered boat.
             </p>
 
             <ClapButton
               count={countButtons.likeCount}
               onClick={() =>
-                addCountToButton(countButtons.likeCount, "likeCount", "sr01")
+                addCountToButton(countButtons.likeCount, "likeCount", "sr03")
               }
             />
           </div>
@@ -68,19 +69,19 @@ const SR01 = () => {
                 <IoBulbOutline className="icon-lg" />
                 {/* <SiAtom className="icon-lg" /> */}
               </div>
-              <h5 className="text-white index-subheader mt-2 text-shadow">
+              <h5 className="text-white mt-2 text-shadow">
                 Electrical Systems
               </h5>
 
               <ul className="opensource-list">
-                <li className="onsource-list-item">Dual Motor Control</li>
                 <li className="onsource-list-item">
-                  Electrical Scheme Documentation
+                  Battery Management System
                 </li>
+                <li className="onsource-list-item">Electrical Schematic</li>
+                <li className="onsource-list-item">Documentation</li>
                 <li className="onsource-list-item">
                   Printed Circuit Boards (PCBs)
                 </li>
-                <li className="onsource-list-item">List of Materials</li>
                 <li className="onsource-list-item">Source Code</li>
               </ul>
               <button
@@ -89,8 +90,8 @@ const SR01 = () => {
                   downloadMaterial(
                     countButtons.esDownloadCount,
                     "esDownloadCount",
-                    "sr01",
-                    "https://gitlab.com/tecnico.solar.boat/2018"
+                    "sr03",
+                    "https://gitlab.com/tecnico.solar.boat/2021/SR03"
                   )
                 }
               >
@@ -109,15 +110,17 @@ const SR01 = () => {
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info ">
                 <FaCogs className="icon-lg" />
               </div>
-              <h5 className="text-white index-subheader mt-2 text-shadow">
+              <h5 className="text-white mt-2 text-shadow">
                 Mechanical Systems
               </h5>
               <ul className="opensource-list">
-                <li className="onsource-list-item">Dual Motor</li>
-                <li className="onsource-list-item">Propulsion Column</li>
+                <li className="onsource-list-item">Hydrofoil Design</li>
+                <li className="onsource-list-item">Propeller Design</li>
                 <li className="onsource-list-item">Transmission System</li>
-                <li className="onsource-list-item">Hydrofoils</li>
-                <li className="onsource-list-item">Propeller</li>
+                <li className="onsource-list-item">CAD Models</li>
+                <li className="onsource-list-item">
+                  Propulsion Column (coming soon)
+                </li>
               </ul>
               <button
                 className="btnd btnd-info mt-2"
@@ -125,8 +128,8 @@ const SR01 = () => {
                   downloadMaterial(
                     countButtons.msDownloadCount,
                     "msDownloadCount",
-                    "sr01",
-                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/MS/SR01.zip"
+                    "sr03",
+                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SR03/SM/SM-SR03.zip"
                   )
                 }
               >
@@ -145,17 +148,17 @@ const SR01 = () => {
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                 <GiAnchor className="icon-lg" />
               </div>
-              <h5 className="text-white index-subheader mt-2 text-shadow">
+              <h5 className="text-white mt-2 text-shadow">
                 Design and Composites
               </h5>
               <ul className="opensource-list">
-                <li className="onsource-list-item">Female Mold</li>
-                <li className="onsource-list-item">Machined Male Mold</li>
+                <li className="onsource-list-item">Male Mold</li>
+                <li className="onsource-list-item">Hull Design</li>
+                <li className="onsource-list-item">Hull Female Mold</li>
                 <li className="onsource-list-item">
-                  Side Floater Mold and Stock
+                  {"Structure & Composite Assembly"}
                 </li>
-                <li className="onsource-list-item">Water Shield</li>
-                <li className="onsource-list-item">Cooling Pipes</li>
+                <li className="onsource-list-item">{"List of Materials"}</li>
               </ul>
               <button
                 className="btnd btnd-info mt-2"
@@ -163,8 +166,8 @@ const SR01 = () => {
                   downloadMaterial(
                     countButtons.dcDownloadCount,
                     "dcDownloadCount",
-                    "sr01",
-                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/CA/HullFiles.zip"
+                    "sr03",
+                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SR03/DC/DC-SR03.zip"
                   )
                 }
               >
@@ -178,10 +181,13 @@ const SR01 = () => {
               </div>
             </div>
           </div>
+          {/* <div className="col-lg-2"></div>
+
+          <div className="col-lg-2"></div> */}
         </div>
       </div>
     </div>
   );
 };
 
-export default SR01;
+export default SR03;

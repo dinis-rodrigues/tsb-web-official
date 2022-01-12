@@ -36,28 +36,25 @@ const SR02 = () => {
         fontSize: "small",
       }}
     >
-      <div className="bg-changer z-minus">
+      <div className="bg-changer">
         <div
           className={cx("section-bg active")}
           style={{
-            backgroundImage: `url("assets/images/opensource/sr02_opensource.jpeg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/opensource/sr02_opensource.jpeg")`,
           }}
         ></div>
       </div>
       <div className="container">
         <div className="mt-2 text-center justify-content-center row">
-          <div className="col-lg-10">
-            <h4 className="display-6 f-700 text-white">SÃO RAFAEL 02</h4>
+          <div className="col-lg-10 z-inf">
+            <h4 className="index-header f-700 text-white">SÃO RAFAEL 02</h4>
             <hr className="divider" />
             <p className="f-medium text-white">
-              The master piece of engineering :) that reached the 2nd place in
-              the Monaco Solar & Energy Challenge 2019.
+              {
+                "The master piece of engineering :) that reached the 2nd place in the Monaco Solar & Energy Challenge 2019."
+              }
             </p>
-            <p className="f-medium text-white">
-              Here you will find every piece of information, source code, 3D
-              models and much more of SR 02. If you have any questions or
-              comments, send us a message! We will gladly reply!
-            </p>
+
             <ClapButton
               count={countButtons.likeCount}
               onClick={() =>
@@ -81,14 +78,12 @@ const SR02 = () => {
                 <li className="onsource-list-item">
                   Battery Management System
                 </li>
-                <li className="onsource-list-item">Dual Motor Control</li>
                 <li className="onsource-list-item">Electrical Schematic</li>
                 <li className="onsource-list-item">Documentation</li>
                 <li className="onsource-list-item">
                   Printed Circuit Boards (PCBs)
                 </li>
-                <li className="onsource-list-item">List of Materials</li>
-                <li className="onsource-list-item">Alot of Source Code</li>
+                <li className="onsource-list-item">Source Code</li>
               </ul>
               <button
                 className="btnd btnd-info mt-2"
@@ -128,7 +123,6 @@ const SR02 = () => {
                   Electrical and Mechanical Hydrofoil Control
                 </li>
                 <li className="onsource-list-item">Hydrofoils</li>
-                <li className="onsource-list-item">Hydrofoil Struts</li>
                 <li className="onsource-list-item">Propeller</li>
               </ul>
               <button

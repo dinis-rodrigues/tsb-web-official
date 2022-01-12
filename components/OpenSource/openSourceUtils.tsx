@@ -1,6 +1,6 @@
 import { ref, set, onValue, off } from "@firebase/database";
 import { Dispatch, SetStateAction } from "react";
-import { SR01Count, SR02Count } from "../../interfaces";
+import { SM01Count, SR01Count, SR02Count, SR03Count } from "../../interfaces";
 import { db } from "../Contexts/Firebase";
 
 /**
@@ -10,12 +10,32 @@ import { db } from "../Contexts/Firebase";
  */
 const startButtonDBListeners = (
   boat: string,
-  setCountButtons: Dispatch<SetStateAction<SR01Count | SR02Count>>
+  setCountButtons: Dispatch<SetStateAction<SR01Count | SR02Count | SR03Count>>
 ) => {
   onValue(
     ref(db, `public/officialWebsite/openSource/${boat}/buttonCount`),
     (snapshot) => {
       const allButtonCounts: SR01Count | SR02Count = snapshot.val();
+      if (!allButtonCounts) return;
+      // get all photos of album
+      setCountButtons(allButtonCounts);
+    }
+  );
+};
+
+/**
+ * Starts listening to changes on the counts stored in the database
+ * @param boat
+ * @param setCountButtons
+ */
+const startSMButtonDBListeners = (
+  boat: string,
+  setCountButtons: Dispatch<SetStateAction<SM01Count>>
+) => {
+  onValue(
+    ref(db, `public/officialWebsite/openSource/${boat}/buttonCount`),
+    (snapshot) => {
+      const allButtonCounts: SM01Count = snapshot.val();
       if (!allButtonCounts) return;
       // get all photos of album
       setCountButtons(allButtonCounts);
@@ -76,4 +96,5 @@ export {
   removeButtonDBListeners,
   addCountToButton,
   downloadMaterial,
+  startSMButtonDBListeners,
 };

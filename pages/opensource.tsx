@@ -1,16 +1,20 @@
 import ReactFullpage, { fullpageApi } from "@fullpage/react-fullpage";
 import Head from "next/head";
 import React, { useState } from "react";
+import FaviconIcons from "../components/Head/FaviconIcons";
 import Navbar from "../components/Navbar/Navbar";
+import SM01 from "../components/OpenSource/SR01/SM01";
 import SR01 from "../components/OpenSource/SR01/SR01";
 import SR02 from "../components/OpenSource/SR01/SR02";
+import SR03 from "../components/OpenSource/SR01/SR03";
 
 const OpenSource = () => {
   const [fullPageApi, setFullPageApi] = useState<fullpageApi>();
   return (
     <div className="App">
       <Head>
-        <title>Técnico Solar Boat</title>
+        <title>Open Source</title>
+        <FaviconIcons />
       </Head>
       <Navbar theme={"white"} />
       <ReactFullpage
@@ -18,21 +22,20 @@ const OpenSource = () => {
         scrollOverflow
         navigation
         responsiveWidth={1250}
-        // onLeave={(origin, destination, direction) => {
-        //   console.log("onLeave", { origin, destination, direction });
-        //   destination.index === 1
-        //     ? setStartAboutZoom(true)
-        //     : setStartAboutZoom(false);
-        //   destination.index === 2 || destination.index === 3
-        //     ? setSolarCount(true)
-        //     : setSolarCount(false);
-        //   destination.index === 4 ? setPlayVideo(true) : setPlayVideo(false);
-        //   setNavTheme(navColors[destination.index]);
-        // }}
+        navigationTooltips={[
+          "2020-present - SM 01",
+          "2021-present - SR 03",
+          "2018-2020 - SR 02",
+          "2016-2018 - SR 01",
+        ]}
+        showActiveTooltip={true}
+        fitToSectionDelay={1000}
         render={({ fullpageApi }) => {
           if (!fullPageApi) setFullPageApi(fullpageApi);
           return (
             <ReactFullpage.Wrapper>
+              <SM01 />
+              <SR03 />
               <SR02 />
               <SR01 />
             </ReactFullpage.Wrapper>
