@@ -19,6 +19,7 @@ export interface PublicUserInfo {
   description?: string;
   email?: string;
   inTeam: boolean;
+  userName: string;
 }
 
 export interface DepartmentTab {
@@ -117,4 +118,48 @@ export interface SR02Count {
   msDownloadCount: number;
   dcDownloadCount: number;
   likeCount: number;
+}
+
+export interface SR03Count {
+  esDownloadCount: number;
+  msDownloadCount: number;
+  dcDownloadCount: number;
+  likeCount: number;
+}
+
+export interface SM01Count {
+  esDownloadCount: number;
+  hpDownloadCount: number;
+  dcDownloadCount: number;
+  likeCount: number;
+}
+
+export interface RecruitmentFormInfo {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string | null;
+  email: string;
+  confirmEmail: string;
+  degree: string;
+  curricularYear: number;
+  country: string;
+  socialLink: string;
+  motivation: string;
+}
+
+export interface RecruitmentDepartmentsForm {
+  [key: string]: boolean;
+}
+
+export interface Departments {
+  [key: string]: Department;
+}
+
+export interface Department {
+  acronym: string;
+  color: string;
+  description: string;
+  gradientColor: string;
+  icon: string;
+  positions: string[];
 }
