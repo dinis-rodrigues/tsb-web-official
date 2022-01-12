@@ -13,6 +13,7 @@ import AutonomousSection from "../components/Index/AutonomousSection";
 import Team from "../components/Index/Team";
 import DynamicSponsors from "../components/Index/DynamicSponsors";
 import Contact from "../components/Index/Contact";
+import FaviconIcons from "../components/Head/FaviconIcons";
 
 const Home: NextPage = () => {
   const navColors: ("white" | "black")[] = [
@@ -39,6 +40,7 @@ const Home: NextPage = () => {
   const [navTheme, setNavTheme] = useState<"white" | "black">("white");
   const [startAboutZoom, setStartAboutZoom] = useState(false);
   const [solarCount, setSolarCount] = useState(false);
+  const [hydrogenCount, setHydrogenCount] = useState(false);
   const [playVideo, setPlayVideo] = useState(false);
   const [fullPageApi, setFullPageApi] = useState<fullpageApi>();
 
@@ -46,6 +48,7 @@ const Home: NextPage = () => {
     <div className="App">
       <Head>
         <title>Técnico Solar Boat</title>
+        <FaviconIcons />
       </Head>
       <Navbar theme={navTheme} fullPageApi={fullPageApi} />
       <ReactFullpage
@@ -54,21 +57,32 @@ const Home: NextPage = () => {
         navigation
         responsiveWidth={1250}
         onLeave={(origin, destination, direction) => {
-          console.log("onLeave", { origin, destination, direction });
           destination.index === 1
             ? setStartAboutZoom(true)
             : setStartAboutZoom(false);
-          destination.index === 2 || destination.index === 3
-            ? setSolarCount(true)
-            : setSolarCount(false);
+          destination.index === 2 ? setSolarCount(true) : setSolarCount(false);
+          destination.index === 3
+            ? setHydrogenCount(true)
+            : setHydrogenCount(false);
           destination.index === 4 ? setPlayVideo(true) : setPlayVideo(false);
-          setNavTheme(navColors[destination.index]);
+          setNavTheme(navColors[destination.index]); // This throws a warning, don't care
         }}
         afterReBuild={() => {
           console.log("Rebuilted....");
         }}
         normalScrollElements={".scrollable-team"}
         anchors={anchors}
+        showActiveTooltip
+        navigationTooltips={[
+          "",
+          "Intro",
+          "Solar",
+          "Hydrogen",
+          "AI",
+          "Team",
+          "Sponsors",
+          "Contact",
+        ]}
         render={({ fullpageApi }) => {
           if (!fullPageApi) setFullPageApi(fullpageApi);
           return (
@@ -76,7 +90,7 @@ const Home: NextPage = () => {
               <CoverSection />
               <About startZoom={startAboutZoom} initialDepartment={"dc"} />
               <SolarSection startCount={solarCount} />
-              <HydrogenSection startCount={solarCount} />
+              <HydrogenSection startCount={hydrogenCount} />
               <AutonomousSection playVideo={playVideo} />
               <Team />
               <DynamicSponsors fullPageApi={fullPageApi} />
