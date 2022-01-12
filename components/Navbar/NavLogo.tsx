@@ -4,24 +4,24 @@ import cx from "classnames";
 import { fullpageApi } from "@fullpage/react-fullpage";
 
 type Props = {
-  theme: "white" | "black";
+  theme: 0 | 1 | "white" | "black";
   fullPageApi: fullpageApi | undefined;
 };
 const NavLogo = ({ theme, fullPageApi }: Props) => {
   return fullPageApi ? (
     <span
-      className={cx("navbar-brand cursor-pointer")}
+      className={cx("navbar-brand cursor-pointer h-100")}
       onClick={() => fullPageApi.moveTo("home", 0)}
     >
       <div
         className={cx("logo-img", {
-          "active-img": theme === "white",
+          "active-img": theme === "white" || theme === 0,
         })}
       >
         {
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={"assets/images/tsb/TSB_oficial_white.png"}
+            src={`${process.env.BASE_PATH}/assets/images/tsb/TSB_oficial_white.png`}
             alt=""
             width="100px"
             height="50px"
@@ -30,13 +30,13 @@ const NavLogo = ({ theme, fullPageApi }: Props) => {
       </div>
       <div
         className={cx("logo-img", {
-          "active-img": theme === "black",
+          "active-img": theme === "black" || theme === 1,
         })}
       >
         {
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={"assets/images/tsb/TSB_oficial.png"}
+            src={`${process.env.BASE_PATH}/assets/images/tsb/TSB_oficial.png`}
             alt=""
             width="100px"
             height="50px"
@@ -46,16 +46,16 @@ const NavLogo = ({ theme, fullPageApi }: Props) => {
     </span>
   ) : (
     <Link href="/">
-      <a className={cx("navbar-brand")}>
+      <a className={cx("navbar-brand h-100")}>
         <div
           className={cx("logo-img", {
-            "active-img": theme === "white",
+            "active-img": theme === "white" || theme === 0,
           })}
         >
           {
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={"assets/images/tsb/TSB_oficial_white.png"}
+              src={`${process.env.BASE_PATH}/assets/images/tsb/TSB_oficial_white.png`}
               alt=""
               width="100px"
               height="50px"
@@ -64,13 +64,13 @@ const NavLogo = ({ theme, fullPageApi }: Props) => {
         </div>
         <div
           className={cx("logo-img", {
-            "active-img": theme === "black",
+            "active-img": theme === "black" || theme === 1,
           })}
         >
           {
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={"assets/images/tsb/TSB_oficial.png"}
+              src={`${process.env.BASE_PATH}/assets/images/tsb/TSB_oficial.png`}
               alt=""
               width="100px"
               height="50px"

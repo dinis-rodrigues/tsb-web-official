@@ -1,31 +1,43 @@
-import { IoLogoFacebook, IoLogoTwitter, IoLogoLinkedin } from "react-icons/io5";
+import Link from "next/link";
+import { IoLogoFacebook, IoLogoYoutube, IoLogoLinkedin } from "react-icons/io5";
+import CopyrightText from "./CopyrightText";
 
 const Footer = () => {
   return (
-    <nav className="navbar-bottom">
+    <nav className="navbar-bottom f-medium">
       <div className="social">
         <ul className="social-icons mr-auto mr-lg-0 d-none d-sm-block list-none">
           <li>
-            <a href="#" className="ion-icon">
-              <IoLogoFacebook />
-            </a>
+            <Link href={"https://www.facebook.com/tecnico.solarboat/"} passHref>
+              <a target={"_blank"} className="ion-icon">
+                <IoLogoFacebook />
+              </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="ion-icon">
-              <IoLogoTwitter />
-            </a>
+            <Link
+              href={"https://www.youtube.com/c/tecnicosolarboat/null"}
+              passHref
+            >
+              <a target={"_blank"} className="ion-icon">
+                <IoLogoYoutube />
+              </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="ion-icon">
-              <IoLogoLinkedin />
-            </a>
+            <Link
+              href={"https://pt.linkedin.com/company/t%C3%A9cnico-solar-boat"}
+              passHref
+            >
+              <a target={"_blank"} className="ion-icon">
+                <IoLogoLinkedin />
+              </a>
+            </Link>
           </li>
         </ul>
       </div>
 
-      <div className={"copy d-none d-sm-block footer-text"}>
-        © Técnico Solar Boat {new Date().getFullYear()}
-      </div>
+      <CopyrightText />
     </nav>
   );
 };

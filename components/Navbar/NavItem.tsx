@@ -7,8 +7,17 @@ type Props = {
   fullPageApi: fullpageApi | undefined;
   anchorName?: string;
   link: string;
+  scrollToTop?: boolean;
+  mobileClickAction?: Function;
 };
-const NavItem = ({ name, fullPageApi, link, anchorName }: Props) => {
+const NavItem = ({
+  name,
+  fullPageApi,
+  link,
+  anchorName,
+  scrollToTop = true,
+  mobileClickAction = undefined,
+}: Props) => {
   // If we are using fullpage API, then we use the api to move inbetween section
   // anchors
   // else, wewe use normal redirect links
@@ -17,18 +26,21 @@ const NavItem = ({ name, fullPageApi, link, anchorName }: Props) => {
       {anchorName ? (
         <span
           className="menu-item"
-          onClick={() => fullPageApi.moveTo(anchorName, 0)}
+          onClick={() => {
+            fullPageApi.moveTo(anchorName, 0);
+            mobileClickAction !== undefined && mobileClickAction();
+          }}
         >
           {name}
         </span>
       ) : (
-        <Link href={link} passHref>
+        <Link href={link} passHref scroll={scrollToTop}>
           <span className="menu-item">{name}</span>
         </Link>
       )}
     </Fragment>
   ) : (
-    <Link href={link} passHref>
+    <Link href={link} passHref scroll={scrollToTop}>
       <span className="menu-item">{name}</span>
     </Link>
   );

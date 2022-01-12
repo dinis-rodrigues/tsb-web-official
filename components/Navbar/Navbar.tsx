@@ -5,9 +5,10 @@ import { fullpageApi } from "@fullpage/react-fullpage";
 import NavItem from "./NavItem";
 import NavLogo from "./NavLogo";
 import Footer from "./Footer";
+import CopyrightText from "./CopyrightText";
 
 type Props = {
-  theme: "white" | "black";
+  theme: 0 | 1 | "white" | "black";
   fullPageApi?: fullpageApi | undefined;
   changeAll?: boolean;
 };
@@ -16,17 +17,18 @@ const Navbar = ({ theme, fullPageApi, changeAll = true }: Props) => {
 
   return (
     <div
+      id={"navigation"}
       className={cx("navigation", {
         "menu-is-open": menuIsOpen,
-        "nav-white": theme === "white",
-        "nav-black": theme === "black",
+        "nav-white": theme === "white" || theme === 0,
+        "nav-black": theme === "black" || theme === 1,
       })}
     >
       <nav
         className={cx("navbar navbar-desktop")}
         style={{ position: "fixed" }}
       >
-        <div className="w-100">
+        <div className="w-100 h-100 d-flex align-items-center">
           <NavLogo theme={theme} fullPageApi={fullPageApi} />
 
           <div className="navbar-right">
@@ -90,66 +92,80 @@ const Navbar = ({ theme, fullPageApi, changeAll = true }: Props) => {
         </span>
 
         <ul className="navbar-nav navbar-nav-mobile">
-          <li className="active">
-            <a className="nav-link active" data-menuanchor="home" href="#home">
-              Home
-            </a>
-          </li>
           <li>
-            <a className="nav-link" data-menuanchor="about" href="#about">
-              About
-            </a>
+            <NavItem
+              name={"About"}
+              fullPageApi={fullPageApi}
+              link={"/#about"}
+              anchorName={"about"}
+              mobileClickAction={() => setMenuIsOpen(false)}
+            />
           </li>
+          <hr />
           <li>
-            <a
-              className="nav-link"
-              data-menuanchor="experience"
-              href="#experience"
-            >
-              Experience
-            </a>
+            <NavItem
+              name={"Team"}
+              fullPageApi={fullPageApi}
+              link={"/#team"}
+              anchorName={"team"}
+              mobileClickAction={() => setMenuIsOpen(false)}
+            />
           </li>
+          <hr />
           <li>
-            <a className="nav-link" data-menuanchor="skills" href="#skills">
-              Skills
-            </a>
+            <NavItem
+              name={"Sponsors"}
+              fullPageApi={fullPageApi}
+              link={`${process.env.BASE_PATH}/#sponsors`}
+              anchorName={"sponsors"}
+              mobileClickAction={() => setMenuIsOpen(false)}
+            />
           </li>
+          <hr />
           <li>
-            <a className="nav-link" data-menuanchor="projects" href="#projects">
-              Projects
-            </a>
+            <NavItem
+              name={"Gallery"}
+              fullPageApi={fullPageApi}
+              link={"/gallery"}
+              mobileClickAction={() => setMenuIsOpen(false)}
+            />
           </li>
+          <hr />
           <li>
-            <a className="nav-link" data-menuanchor="partners" href="#partners">
-              Partners
-            </a>
+            <NavItem
+              name={"Open Source"}
+              fullPageApi={fullPageApi}
+              link={"/opensource"}
+              mobileClickAction={() => setMenuIsOpen(false)}
+            />
           </li>
+          <hr />
           <li>
-            <a
-              className="nav-link"
-              data-menuanchor="testimonials"
-              href="#testimonials"
-            >
-              Testimonials
-            </a>
+            <NavItem
+              name={"recruitment"}
+              fullPageApi={fullPageApi}
+              link={"/recruitment"}
+              mobileClickAction={() => setMenuIsOpen(false)}
+            />
           </li>
+          <hr />
           <li>
-            <a className="nav-link" data-menuanchor="news" href="#news">
-              News
-            </a>
-          </li>
-          <li>
-            <a className="nav-link" data-menuanchor="contact" href="#contact">
-              Contact
-            </a>
+            <NavItem
+              name={"Contact"}
+              fullPageApi={fullPageApi}
+              link={"/#contact"}
+              anchorName={"contact"}
+              mobileClickAction={() => setMenuIsOpen(false)}
+            />
           </li>
         </ul>
         <div
           className={cx("navbar-mobile-footer", {
             "text-white": theme === "black",
+            "text-black": theme === "white",
           })}
         >
-          <p>© Denzel. 2020. All Rights Reserved.</p>
+          <CopyrightText />
         </div>
       </nav>
     </div>
