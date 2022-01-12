@@ -29,7 +29,7 @@ const GallerySidebar = ({
                     setActiveGallery(galleryId);
                   }}
                 >
-                  <span>
+                  <span className="f-medium">
                     <FaAngleRight className="gallery-side-icon" />
                     {galleryInfo.name}
                   </span>

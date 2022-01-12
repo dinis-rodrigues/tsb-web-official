@@ -9,7 +9,7 @@ const GalleryInfo = ({ galleryInfo }: Props) => {
     <div className="gallery-side" style={{ position: "sticky", top: 150 }}>
       <h5 className="side-title">Details</h5>
       <div className="sidebar-container borders">
-        <div className="gallery-info">
+        <div className="gallery-info f-medium">
           {galleryInfo ? galleryInfo.description : ""}
           <hr />
           {galleryInfo?.timestamp && (
