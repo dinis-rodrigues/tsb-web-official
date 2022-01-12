@@ -27,12 +27,13 @@ const MlCharts = ({
 }: Props) => {
   return (
     <Fragment>
-      <div className="row">
-        <div className="col-md">
+      <div className="row d-flex justify-content-center">
+        <div className="col-md-6">
           <ResponsiveContainer width="100%" height={200}>
             <LineChart
+              className=""
               width={500}
-              height={200}
+              height={150}
               margin={{
                 top: 0,
                 right: 0,
@@ -91,11 +92,11 @@ const MlCharts = ({
             </LineChart>
           </ResponsiveContainer>
         </div>
-        <div className="col-md">
+        <div className="col-md-6">
           <ResponsiveContainer width="100%" height={200}>
             <LineChart
               width={500}
-              height={200}
+              height={150}
               margin={{
                 top: 0,
                 right: 0,

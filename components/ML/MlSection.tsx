@@ -34,9 +34,9 @@ const MlSection = ({ setToggleMl }: Props) => {
   const cvx = useRef<ReactSketchCanvas>(null);
   return (
     <Fragment>
-      <div className="row mt-3">
+      <div className="row mt-3 hide-mobile">
         <h5 className="f-700">Explore this interactive example</h5>
-        <p>We will train a model in order to predict handwritten digits</p>
+        <p>We will train a model to predict your handwritten digits !</p>
         <div className="mt-3 mb-3">
           <span>
             <button
@@ -64,7 +64,7 @@ const MlSection = ({ setToggleMl }: Props) => {
               className={cx("btnd btnd-warning", { "d-none": stopTrain })}
               onClick={() => stopTraining(setStopTrain)}
             >
-              Stop train
+              {"Stop train & Draw"}
             </button>
           </span>
           <span>
@@ -72,7 +72,7 @@ const MlSection = ({ setToggleMl }: Props) => {
               className={cx("btnd btnd-outline-secundary")}
               onClick={() => setAdvancedOptions(!advancedOptions)}
             >
-              {!advancedOptions ? "Advanced Options" : "Hide Options"}
+              {/* {!advancedOptions ? "Advanced Options" : "Hide Options"} */}
             </button>
           </span>
           {advancedOptions && (
@@ -116,46 +116,52 @@ const MlSection = ({ setToggleMl }: Props) => {
 
       {firstTrain && (
         <Fragment>
-          <MlCharts
-            trainLoss={trainLoss}
-            trainAcc={trainAcc}
-            valLoss={valLoss}
-            valAcc={valAcc}
-            chartSteps={chartSteps}
-          />
-          <div className="row mt-2">
-            <div className="col-md">
-              <div className="input-column">
-                <div className="input-container">
-                  <div className="input-label">
-                    Draw (0-9) here <span className="arrow">⤸</span>
-                  </div>
-                  <div
-                    className={"canvas-container"}
-                    onMouseEnter={() => {
-                      // e.preventDefault();
-                      cvx.current?.resetCanvas();
-                    }}
-                    onMouseUp={() =>
-                      predict(cvx.current, myModel, setPredictions)
-                    }
-                    style={{ height: "100px", width: "100px" }}
-                  >
-                    <ReactSketchCanvas
-                      className="canvas-board"
-                      width="100px"
-                      height="100px"
-                      strokeWidth={10}
-                      strokeColor="white"
-                      canvasColor={"rgba(0,0,0,0)"}
-                      ref={cvx}
-                    />
+          <div className="row">
+            <div className="col-6">
+              <MlCharts
+                trainLoss={trainLoss}
+                trainAcc={trainAcc}
+                valLoss={valLoss}
+                valAcc={valAcc}
+                chartSteps={chartSteps}
+              />
+            </div>
+            <div className="col-6">
+              <div className="row mt-2">
+                <div className="col-md">
+                  <div className="input-column">
+                    <div className="input-container">
+                      <div className="input-label">
+                        Draw (0-9) here <span className="arrow">⤸</span>
+                      </div>
+                      <div
+                        className={"canvas-container"}
+                        onMouseEnter={() => {
+                          // e.preventDefault();
+                          cvx.current?.resetCanvas();
+                        }}
+                        onMouseUp={() =>
+                          predict(cvx.current, myModel, setPredictions)
+                        }
+                        style={{ height: "100px", width: "100px" }}
+                      >
+                        <ReactSketchCanvas
+                          className="canvas-board"
+                          width="100px"
+                          height="100px"
+                          strokeWidth={10}
+                          strokeColor="white"
+                          canvasColor={"rgba(0,0,0,0)"}
+                          ref={cvx}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <div className="col-md">
+                  <MlPredictions predictions={predictions} />
+                </div>
               </div>
-            </div>
-            <div className="col-md">
-              <MlPredictions predictions={predictions} />
             </div>
           </div>
         </Fragment>

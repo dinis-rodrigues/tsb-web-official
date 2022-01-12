@@ -32,24 +32,25 @@ const Team = () => {
         <div
           className={cx("section-bg active overlay")}
           style={{
-            backgroundImage: `linear-gradient(0deg,rgba(17,12,71,.7),rgba(17,12,71,.7)),url("assets/images/index/teamPhoto.jpg")`,
-            opacity: "0.8",
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/teamPhoto.jpg")`,
+            opacity: "0.2",
           }}
         ></div>
       </div>
-      <div className="container">
+      <div className="container nav-margin">
         <div className="row">
-          <div className="col">
-            <h4 className="display-6 f-700">OUR TEAM</h4>
+          <div className="col-1"></div>
+          <div className="col-10">
+            <h4 className="index-header f-700">OUR TEAM</h4>
             <p className="f-medium">
               Only with strong, inspiring, and creative minds can we keep coming
               up with new and inventive solutions. These are the {teamNumber}{" "}
               incredible people that make all this possible.
             </p>
-            {departmentTabs?.map((dep) => (
+            {departmentTabs?.map((dep, idx) => (
               <span
                 className={cx("department-tab", { active: dep.active })}
-                key={dep.name}
+                key={idx}
                 onClick={() => {
                   toggleActiveDepartment(
                     publicTeam,
@@ -68,7 +69,7 @@ const Team = () => {
               <div className="col-1"></div>
               <div className="col">
                 {/* <PerfectScrollbar style={{ height: "50%" }}> */}
-                <div className="scrollable-team">
+                <div className="scrollable-team disable-scrollbars">
                   <div className="row">
                     {teamToDisplay && returnSortedByPositionTeam(teamToDisplay)}
                   </div>
@@ -80,6 +81,7 @@ const Team = () => {
               <div className="col-1"></div>
             </div>
           </div>
+          <div className="col-1"></div>
         </div>
       </div>
     </div>

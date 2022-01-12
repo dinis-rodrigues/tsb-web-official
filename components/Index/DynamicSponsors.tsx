@@ -26,7 +26,6 @@ const DynamicSponsors = ({ fullPageApi }: Props) => {
     if (sponsorBrackets && fullPageApi)
       setTimeout(function () {
         fullPageApi.reBuild();
-        console.log("Rebuilding");
       }, 500);
   }, [sponsorBrackets, fullPageApi]);
   return (
@@ -40,19 +39,21 @@ const DynamicSponsors = ({ fullPageApi }: Props) => {
       <div className="container nav-margin mb-3">
         <div className="row">
           <div className="col">
-            <h4 className="display-6 f-700 text-black">OUR SPONSORS</h4>
+            <h4 className="index-header f-700 text-black">OUR SPONSORS</h4>
             <hr className="divider" />
-            <p className="f-medium text-black">
-              Great ideas and inspiring words are not sufficient alone to change
-              the world. Trust and credibility are fundamentally key to achieve
-              success. From beginning we have been pushing efforts to build
-              strong relations with companies, entities and organizations from
-              all over the world.
-            </p>
-            <p className="f-medium text-black">
-              Our final word goes to our incredible sponsors, we want to thank
-              each and everyone who understands and believes in what we do.
-            </p>
+            <div className="f-medium">
+              <p className="text-black">
+                Great ideas and inspiring words are not sufficient alone to
+                change the world. Trust and credibility are fundamentally key to
+                achieve success. From beginning we have been pushing efforts to
+                build strong relations with companies, entities and
+                organizations from all over the world.
+              </p>
+              <p className="text-black">
+                Our final word goes to our incredible sponsors, we want to thank
+                each and everyone who understands and believes in what we do.
+              </p>
+            </div>
           </div>
         </div>
         <div className="row">

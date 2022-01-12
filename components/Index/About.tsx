@@ -22,6 +22,7 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
       setActiveDep(initialDepartment);
     }
   }, [startZoom, initialDepartment]);
+  console.log("process env", process.env.BASE_PATH);
   return (
     <div
       className="section fp-noscroll"
@@ -30,17 +31,17 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
         fontSize: "small",
       }}
     >
-      <div className="bg-changer z-minus">
+      <div className="bg-changer">
         <div
           className={cx("section-bg", { active: activeDep === "es" })}
           style={{
-            backgroundImage: `url("assets/images/index/about/es3.jpg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/es3.jpg")`,
           }}
         ></div>
         <div
           className={cx("section-bg", { active: activeDep === "ms" })}
           style={{
-            backgroundImage: `url("assets/images/index/about/ms2.jpg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/ms2.jpg")`,
           }}
         ></div>
         <div
@@ -49,26 +50,28 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
             "zoom-eff": initialZoom === "dc",
           })}
           style={{
-            backgroundImage: `url("assets/images/index/about/dc.jpg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/dc.jpg")`,
           }}
         ></div>
         <div
           className={cx("section-bg", { active: activeDep === "mm" })}
           style={{
-            backgroundImage: `url("assets/images/index/about/mm3.jpg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/mm3.jpg")`,
           }}
         ></div>
         <div
           className={cx("section-bg", { active: activeDep === "hp" })}
-          style={{ backgroundImage: `url("assets/images/index/about/hp.jpg")` }}
+          style={{
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/hp.jpg")`,
+          }}
         ></div>
       </div>
       <div className="container">
         <div className="mt-2 row">
           <div className="text-center justify-content-center row">
-            <div className="col-lg-10">
-              <h4 className="display-6 f-700 text-white">ABOUT US</h4>
-              <p className="f-medium text-white">
+            <div className="col-lg-10 z-inf">
+              <h4 className="index-header f-700 text-white">ABOUT US</h4>
+              <p className="f-medium">
                 Técnico Solar Boat is a project consisting of cross-degree
                 engineering students from Instituto Superior Técnico, Portugal
                 that work together on the development of a solar, hydrogen and
@@ -85,10 +88,10 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
                 <IoBulbOutline className="icon-lg" />
                 {/* <SiAtom className="icon-lg" /> */}
               </div>
-              <h5 className="text-white mt-2 text-shadow">
+              <h5 className="text-white mt-2 text-shadow index-subheader">
                 Electrical Systems
               </h5>
-              <p className="text-white mt-2 text-shadow">
+              <p className="department-description mt-2 text-shadow">
                 Energy management, hydrofoils control system, dual motor system,
                 telemetry, database and autonomous driving with machine learning
                 models.
@@ -103,10 +106,10 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info ">
                 <FaCogs className="icon-lg" />
               </div>
-              <h5 className="text-white mt-2 text-shadow">
+              <h5 className="text-white mt-2 text-shadow index-subheader">
                 Mechanical Systems
               </h5>
-              <p className="text-white mt-2 text-shadow">
+              <p className="department-description mt-2 text-shadow">
                 Design, simulation and production of the hydro-foil struts,
                 transmission system, propulsion column and custom trailer.
               </p>
@@ -120,10 +123,10 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                 <GiAnchor className="icon-lg" />
               </div>
-              <h5 className="text-white mt-2 text-shadow">
+              <h5 className="text-white mt-2 text-shadow index-subheader">
                 Design and Composites
               </h5>
-              <p className="text-white mt-2 text-shadow">
+              <p className="department-description mt-2 text-shadow">
                 Design, simulation and production of every composite made
                 component.
               </p>
@@ -138,10 +141,10 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                 <HiOutlinePresentationChartBar className="icon-lg" />
               </div>
-              <h5 className="text-white mt-2 text-shadow">
+              <h5 className="text-white mt-2 text-shadow index-subheader">
                 Management and Marketing
               </h5>
-              <p className="text-white mt-2 text-shadow">
+              <p className="department-description mt-2 text-shadow">
                 Business endeavors Resource acquisition and allocation. Business
                 contracts.
               </p>
@@ -155,10 +158,10 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                 <SiAtom className="icon-lg" />
               </div>
-              <h5 className="text-white mt-2 text-shadow">
+              <h5 className="text-white mt-2 text-shadow index-subheader">
                 Hydrogen and Fuel Cell
               </h5>
-              <p className="text-white mt-2 text-shadow">
+              <p className="department-description mt-2 text-shadow">
                 Development of a hydrogen powered boat.
               </p>
             </div>
