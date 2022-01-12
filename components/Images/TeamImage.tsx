@@ -1,7 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-
-import placeholder from "/public/assets/images/index/placeholder.png";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 type Props = {
   src: string;
@@ -11,27 +11,36 @@ type Props = {
 };
 const TeamImage = ({ src, name, position, department = "" }: Props) => {
   const [srcUrl, setSrcUrl] = useState<string>(src);
-  department;
   return srcUrl ? (
     <div
-      className="team-image-container shadow"
+      className="team-image-container"
       style={{ position: "relative", display: "flex", flexDirection: "column" }}
     >
+      <div className="team-redirect">
+        <FaExternalLinkAlt />
+      </div>
       <div className="team-image">
         {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={srcUrl}
             alt=""
-            onError={() => setSrcUrl(placeholder.src)}
+            onError={() =>
+              setSrcUrl(
+                `${process.env.BASE_PATH}/assets/images/index/placeholder.png`
+              )
+            }
             width="100%"
           />
         }
       </div>
 
       <div className="team-description z-inf text-shadow">
-        <p className="f-medium f-700">{name}</p>
-        <p>{position}</p>
+        <h4>
+          <p className="index-subheader f-700">{name}</p>
+        </h4>
+        <h6 className="f-medium">{position}</h6>
+        {/* <p>{position}</p> */}
       </div>
     </div>
   ) : (
