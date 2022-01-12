@@ -20,14 +20,14 @@ const getSvgStringFromPath = async (
   if (!svgPath) return "";
 
   var myHeaders = new Headers();
-  myHeaders.append("Cookie", "BACKENDID=backend_38pIL_omega04|YWtMs|YWtMs");
 
   var requestOptions = {
     method: "GET",
+    dataType: "html",
     headers: myHeaders,
   };
 
-  fetch(svgPath.replace("https", "http"), requestOptions)
+  fetch(svgPath.replace("http://", "https://"), requestOptions)
     .then(async (response) => ({ ok: response.ok, txt: await response.text() }))
     .then((result) => {
       if (result.ok) {

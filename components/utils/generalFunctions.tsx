@@ -1,36 +1,53 @@
 import { db } from "../Contexts/Firebase";
 import { ref, get } from "@firebase/database";
-import { DepartmentTab, PublicTeam } from "../../interfaces";
-import { Dispatch, SetStateAction } from "react";
+import {
+  Departments,
+  DepartmentTab,
+  PublicTeam,
+  RecruitmentDepartmentsForm,
+  RecruitmentFormInfo,
+} from "../../interfaces";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import TeamImage from "../Images/TeamImage";
 import { v4 as uuid } from "uuid";
+import { NumberFormatValues } from "react-number-format";
+import { Bounce, toast } from "react-toastify";
+import Link from "next/link";
+import { ImageLoader, ImageLoaderProps } from "next/image";
 
 /** Transforms the date string into Date Object
  * @param  {string} date dd/mm/yyy or dd-mm-yyyy
  * @return {Date Object}
  */
-const inputToDate = (date: string) => {
+const inputToDate = (date: string | number) => {
   if (!date) {
     return new Date();
   }
-  let splitter = "";
-  if (date.includes("/")) {
-    splitter = "/";
-  } else if (date.includes("-")) {
-    splitter = "-";
+  if (typeof date === "string") {
+    let splitter = "";
+    if (date.includes("/")) {
+      splitter = "/";
+    } else if (date.includes("-")) {
+      splitter = "-";
+    } else {
+      // console.log("Incorrect date format");
+      return new Date();
+    }
+    const arr: Array<string> = date.split(splitter);
+    if (arr.length <= 1) {
+      // when the state is initializing, the date doesn't exist yet
+      return new Date();
+    }
+    const year = parseInt(arr[2]);
+    const month = parseInt(arr[1]) - 1;
+    const day = parseInt(arr[0]);
+    return new Date(year, month, day);
+  } else if (typeof date === "number") {
+    // then it is a timestamp
+    return new Date(date);
   } else {
-    // console.log("Incorrect date format");
     return new Date();
   }
-  const arr: Array<string> = date.split(splitter);
-  if (arr.length <= 1) {
-    // when the state is initializing, the date doesn't exist yet
-    return new Date();
-  }
-  const year = parseInt(arr[2]);
-  const month = parseInt(arr[1]) - 1;
-  const day = parseInt(arr[0]);
-  return new Date(year, month, day);
 };
 
 /** Retrieves the profile image path based on the User ID
@@ -211,13 +228,17 @@ const returnSortedByPositionTeam = (teamToDisplay: PublicTeam) => {
   const usersList = sortTeaMembers(teamToDisplay);
   return usersList.map(([userId, user]) => {
     return (
-      <div className="col mb-2" key={userId}>
-        <TeamImage
-          src={getUserImgUrl(userId)}
-          name={user.info.name}
-          department={user.info.department}
-          position={user.info.position}
-        />
+      <div className="col mb-2 d-flex justify-content-center" key={userId}>
+        <Link href={getUserProfileLink(user.info.userName)} passHref>
+          <a style={{ color: "white" }}>
+            <TeamImage
+              src={getUserImgUrl(userId)}
+              name={user.info.name}
+              department={user.info.department}
+              position={user.info.position}
+            />
+          </a>
+        </Link>
       </div>
     );
   });
@@ -336,6 +357,125 @@ const dateToString = (d: Date | number, withHours = false) => {
   }
 };
 
+/**
+ * Select handler
+ * @param option
+ * @param key
+ * @param setInfo
+ */
+const handleSelectInput = (
+  option: any,
+  key: string,
+  setInfo: Dispatch<SetStateAction<RecruitmentFormInfo>>
+) => {
+  setInfo((info: RecruitmentFormInfo) => ({ ...info, [key]: option.value }));
+};
+
+/**
+ * Input text handler
+ * @param e
+ * @param key
+ */
+const handleTextInput = (
+  e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  key: string,
+  setInfo: Dispatch<SetStateAction<RecruitmentFormInfo>>
+) => {
+  const value = e.target.value;
+  setInfo((info: RecruitmentFormInfo) => ({ ...info, [key]: value }));
+};
+
+/**
+ * Handles the input mask on change
+ * @param value
+ * @param key
+ * @param setInfo
+ */
+const handleInputMask = (
+  value: NumberFormatValues,
+  key: string,
+  setInfo: Dispatch<SetStateAction<RecruitmentFormInfo>>
+) => {
+  let str = value.formattedValue.replaceAll("_", "");
+  setInfo((info: RecruitmentFormInfo) => ({ ...info, [key]: str }));
+};
+
+/**
+ * Handles the input checkbox on change
+ * @param value
+ * @param key
+ * @param setInfo
+ */
+const handleCheckbox = (
+  e: ChangeEvent<HTMLInputElement>,
+  key: string,
+  setInfo: Dispatch<SetStateAction<RecruitmentDepartmentsForm>>
+) => {
+  let isChecked = e.target.checked;
+  setInfo((info: RecruitmentDepartmentsForm) => ({
+    ...info,
+    [key]: isChecked,
+  }));
+};
+
+const getRecruitmentInfo = (
+  setDepartments: Dispatch<SetStateAction<Departments>>
+) => {
+  get(ref(db, "public/recruitment/openDepartments")).then((snapshot) => {
+    const departments: Departments = snapshot.val();
+
+    if (!departments) return;
+    setDepartments(departments);
+  });
+};
+
+const getRecruitmentTable = (
+  setActiveTable: Dispatch<SetStateAction<string>>
+) => {
+  get(ref(db, "public/recruitment/activeTable")).then((snapshot) => {
+    const activeTable: string = snapshot.val();
+    if (!activeTable) return;
+    setActiveTable(activeTable);
+  });
+};
+
+const getAge = (dateString: string) => {
+  let today = new Date();
+  let birthDate = inputToDate(dateString);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  let m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+};
+
+const getProfileJoinedInInfo = (
+  joinedIn: string,
+  leftIn: string | undefined
+) => {
+  if (joinedIn && leftIn) {
+    return `I joined Técnico Solar Boat in ${joinedIn} and left with great sorrow in ${leftIn}`;
+  } else if (joinedIn) {
+    return `I joined Técnico Solar Boat in ${joinedIn} and it has been the greatest experience of my life 😁!`;
+  } else {
+    return `I've joined Técnico Solar Boat in a while, but I cannot recall when. This is my life now! 🤩'`;
+  }
+};
+
+/**
+ * Retrieves user profile URL
+ * @param userId
+ * @returns user url
+ */
+const getUserProfileLink = (userName: string) => {
+  return `/team/${userName}`;
+};
+
+const imageLoader: ImageLoader = ({ src }: ImageLoaderProps) => {
+  return src;
+};
+
 export {
   getUserImgUrl,
   getTeamToDisplay,
@@ -346,4 +486,14 @@ export {
   replaceLinearGradients,
   buildSafeUrl,
   dateToString,
+  handleSelectInput,
+  handleTextInput,
+  handleInputMask,
+  getRecruitmentInfo,
+  getRecruitmentTable,
+  handleCheckbox,
+  getAge,
+  getProfileJoinedInInfo,
+  getUserProfileLink,
+  imageLoader,
 };
