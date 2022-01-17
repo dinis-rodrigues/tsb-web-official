@@ -25,6 +25,5 @@ module.exports = {
   basePath: basePathUrl,
   images: {
     domains: ["tsb.tecnico.ulisboa.pt", "tecnicosolarboat.tecnico.ulisboa.pt"],
-    loader: "custom",
   },
 };
