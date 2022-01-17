@@ -7,7 +7,6 @@ import "lightgallery/scss/lg-thumbnail.scss";
 import "lightgallery/scss/lg-autoplay.scss";
 import "lightgallery/scss/lg-fullscreen.scss";
 import "lightgallery/scss/lg-rotate.scss";
-import "lightgallery/scss/lg-share.scss";
 
 // My styles
 import "../styles/globals.scss";

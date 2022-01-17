@@ -72,7 +72,8 @@ a:hover {
 .fp-slidesNav ul li a span {
   background: rgb(255, 255, 255) !important;
 }
-nav-white #fp-nav ul li a span,
+
+.nav-white #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
   background: rgb(184, 52, 52) !important;
 }
@@ -1687,6 +1688,14 @@ textarea.form-control {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.nav-black.opaque .navbar {
+  background-color: white !important;
+}
+
+.nav-white.opaque .navbar {
+  background-color: black !important;
+}
+
 @media (min-width: 992px) {
   .navbar {
     padding: 0 3rem;
@@ -2185,12 +2194,32 @@ textarea.form-control {
   -o-transition: all 0.5s ease-in-out;
 }
 
+.hide-footer {
+  visibility: hidden;
+}
+
+.navbar-bottom {
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+}
+
 .navigation.nav-black .social {
   color: black;
 }
 
 .navigation.nav-white .social {
   color: white;
+}
+
+.navigation .footer-white.social {
+  color: white;
+}
+
+.navigation .footer-black.social {
+  color: black;
 }
 
 /* Icons */
@@ -2451,6 +2480,7 @@ textarea.form-control {
 .scrollable-team {
   overflow-y: scroll;
   overflow-x: hidden;
+  overscroll-behavior: auto;
   width: 100%;
   min-height: 30vh;
   max-height: 50vh;
@@ -2812,6 +2842,9 @@ textarea.form-control {
   border-radius: 0.25rem;
 }
 
+.lg-outer .lg-thumb-item {
+  border: 4px solid transparent !important;
+}
 .lg-outer .lg-thumb-item.active,
 .lg-outer .lg-thumb-item:hover {
   border-color: $color-info-hover !important;
@@ -2821,6 +2854,10 @@ textarea.form-control {
   font-family: "Open Sans";
   color: $color-secondary !important;
   font-size: $font-body !important;
+}
+
+.lg-outer .lg-thumb-outer {
+  background-color: #0d0a0a62;
 }
 
 .lg-backdrop.in {
@@ -3129,7 +3166,7 @@ textarea.form-control {
 
 .perspective-transform {
   transform: perspective(700px) rotateY(-8deg) rotateX(0deg) rotateZ(0deg)
-    translateZ(0) translateX(-0px) scale(0.9);
+    translateZ(50px) translateX(-0px) scale(0.9);
 }
 
 .tiles .wrap {
