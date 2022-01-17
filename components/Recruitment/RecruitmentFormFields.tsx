@@ -1,10 +1,4 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { BsPerson, BsLink45Deg, BsPhone } from "react-icons/bs";
 import { AiOutlineMail, AiOutlineFieldNumber } from "react-icons/ai";
