@@ -38,4 +38,5 @@ jobs:
       
       - name: Zip build
         run: |
+          tar -czvf deploy.tar.gz -C out .
           ls
