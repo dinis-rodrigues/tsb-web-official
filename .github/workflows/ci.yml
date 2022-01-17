@@ -49,4 +49,17 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           source: "deploy.tar.gz"
-          target: "~/web/projects/"
+          target: "~/web/projects/tmp"
+          
+      - name: Remove previous version and unpackage new one
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ~/web/projects
+            rm -rf tsbOfficialDemo/*
+            tar -xf tmp/deploy.tar.gz -C tsbOfficialDemo
+            rm -rf tmp
