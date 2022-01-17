@@ -28,7 +28,7 @@ jobs:
       # Setup NodeJs
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 15
       
       # Install project packages and build project
       - name: Install Packages
