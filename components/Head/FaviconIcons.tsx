@@ -50,6 +50,15 @@ const FaviconIcons = () => {
         name="description"
         content="Técnico Solar Boat is an university project consisting of cross-degree engineering students at Instituto Superior Técnico that work together on the development of a solar powered boat. Its main purpose is to participate in worldwide engineering competitions organized by Solar Sport One and Yatch Club de Monaco."
       />
+
+      <meta
+        property="og:image"
+        content={`${process.env.BASE_PATH}/assets/images/ogimage.png`}
+      ></meta>
+      <meta
+        name="twitter:image"
+        content={`${process.env.BASE_PATH}/assets/images/ogimage.png`}
+      ></meta>
     </Fragment>
   );
 };

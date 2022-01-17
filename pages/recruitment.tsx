@@ -1,23 +1,23 @@
 import ReactFullpage, { fullpageApi } from "@fullpage/react-fullpage";
 import Head from "next/head";
 import React, { Fragment, useEffect, useState } from "react";
-import { Controller, Scene } from "react-scrollmagic";
 import { ToastContainer } from "react-toastify";
-import GalleryHeader from "../components/Gallery/GalleryHeader";
 import FaviconIcons from "../components/Head/FaviconIcons";
 import Navbar from "../components/Navbar/Navbar";
+import RecruitmentClosed from "../components/Recruitment/RecruitmentClosed";
 import RecruitmentDepartments from "../components/Recruitment/RecruitmentDepartments";
 import RecruitmentForm from "../components/Recruitment/RecruitmentForm";
 import RecruitmentHeader from "../components/Recruitment/RecruitmentHeader";
 import RecruitmentIntro from "../components/Recruitment/RecruitmentIntro";
+import { navRecruitmentTheme } from "../components/utils/constants";
 import {
   getRecruitmentInfo,
   getRecruitmentTable,
 } from "../components/utils/generalFunctions";
-import { Departments } from "../interfaces";
+import { Departments, NavTheme } from "../interfaces";
 
 const Recruitment = () => {
-  const [navTheme, setNavTheme] = useState<"white" | "black">("white");
+  const [navTheme, setNavTheme] = useState<NavTheme>(navRecruitmentTheme[0]);
   const [fullPageApi, setFullPageApi] = useState<fullpageApi>();
   const [openDepartments, setOpenDepartments] = useState<Departments>({});
   const [activeTable, setActiveTable] = useState("");
@@ -40,7 +40,12 @@ const Recruitment = () => {
         <FaviconIcons />
       </Head>
 
-      <Navbar theme={navTheme} />
+      <Navbar
+        theme={navTheme.color}
+        hideFooter={navTheme.hideFooter}
+        isOpaque={navTheme.isOpaque}
+        switchFooterTheme={navTheme.switchFooterTheme}
+      />
       <ToastContainer theme="dark" />
 
       {Object.entries(openDepartments).length > 0 && (
@@ -51,17 +56,28 @@ const Recruitment = () => {
           navigation
           responsiveWidth={1250}
           normalScrollElements={".allow-scroll"} // for the select menu otherwise it does not open
+          onLeave={(origin, destination) => {
+            setNavTheme(navRecruitmentTheme[destination.index]); // This throws a warning, don't care
+          }}
           render={({ fullpageApi }) => {
             if (!fullPageApi) setFullPageApi(fullpageApi);
             return (
               <ReactFullpage.Wrapper>
                 <RecruitmentHeader />
                 <RecruitmentIntro />
-                <RecruitmentDepartments />
-                <RecruitmentForm
-                  departments={openDepartments}
-                  activeTable={activeTable}
-                />
+                {activeTable ? (
+                  <Fragment>
+                    <RecruitmentDepartments />
+                    <RecruitmentForm
+                      departments={openDepartments}
+                      activeTable={activeTable}
+                    />
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <RecruitmentClosed />
+                  </Fragment>
+                )}
               </ReactFullpage.Wrapper>
             );
           }}

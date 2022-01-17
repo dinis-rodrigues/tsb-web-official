@@ -6,13 +6,22 @@ import NavItem from "./NavItem";
 import NavLogo from "./NavLogo";
 import Footer from "./Footer";
 import CopyrightText from "./CopyrightText";
+import { getFooterTheme } from "../utils/generalFunctions";
 
 type Props = {
   theme: 0 | 1 | "white" | "black";
   fullPageApi?: fullpageApi | undefined;
-  changeAll?: boolean;
+  hideFooter?: boolean;
+  switchFooterTheme?: boolean;
+  isOpaque?: boolean;
 };
-const Navbar = ({ theme, fullPageApi, changeAll = true }: Props) => {
+const Navbar = ({
+  theme,
+  fullPageApi,
+  hideFooter = false,
+  switchFooterTheme = false,
+  isOpaque = false,
+}: Props) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   return (
@@ -22,6 +31,7 @@ const Navbar = ({ theme, fullPageApi, changeAll = true }: Props) => {
         "menu-is-open": menuIsOpen,
         "nav-white": theme === "white" || theme === 0,
         "nav-black": theme === "black" || theme === 1,
+        opaque: isOpaque,
       })}
     >
       <nav
@@ -84,7 +94,10 @@ const Navbar = ({ theme, fullPageApi, changeAll = true }: Props) => {
         </div>
       </nav>
 
-      <Footer />
+      <Footer
+        hide={hideFooter}
+        theme={getFooterTheme(theme, switchFooterTheme)}
+      />
 
       <nav className="navbar navbar-mobile">
         <span className="close" onClick={() => setMenuIsOpen(false)}>

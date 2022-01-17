@@ -17,7 +17,7 @@ const AutonomousSection = ({ playVideo = false }: Props) => {
   }, [playVideo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { play, style } = useAnimate({
-    start: { transform: "translateX(-5%)", opacity: 0.4 },
+    start: { transform: "translateX(-5%)", opacity: 0 },
     end: { transform: "translateX(0%)", opacity: 1 },
     duration: 1,
   });

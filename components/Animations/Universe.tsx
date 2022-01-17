@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 // import rocket from "/assets/images/textures/rocket.svg";
 
 const Universe = () => {

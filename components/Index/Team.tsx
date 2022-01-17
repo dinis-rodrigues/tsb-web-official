@@ -1,5 +1,5 @@
 import cx from "classnames";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DepartmentTab, PublicTeam } from "../../interfaces";
 
 import {
@@ -7,11 +7,18 @@ import {
   returnSortedByPositionTeam,
   toggleActiveDepartment,
 } from "../utils/generalFunctions";
-const Team = () => {
+
+type Props = {
+  onBottomScroll: Function;
+};
+
+const Team = ({ onBottomScroll }: Props) => {
   const [publicTeam, setPublicTeam] = useState<PublicTeam>();
   const [teamNumber, setTeamNumber] = useState(0);
   const [teamToDisplay, setTeamToDisplay] = useState<PublicTeam>();
   const [departmentTabs, setDepartmentTabs] = useState<DepartmentTab[]>();
+
+  const listInnerRef = useRef(null);
   useEffect(() => {
     getTeamToDisplay(
       setPublicTeam,
@@ -20,6 +27,17 @@ const Team = () => {
       setTeamNumber
     );
   }, []);
+
+  const onScroll = () => {
+    if (listInnerRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
+      if (scrollTop + clientHeight === scrollHeight) {
+        // TO SOMETHING HERE
+        console.log("Reached bottom");
+        onBottomScroll();
+      }
+    }
+  };
   return (
     <div
       className="section fp-noscroll"
@@ -69,7 +87,11 @@ const Team = () => {
               <div className="col-1"></div>
               <div className="col">
                 {/* <PerfectScrollbar style={{ height: "50%" }}> */}
-                <div className="scrollable-team disable-scrollbars">
+                <div
+                  className="scrollable-team disable-scrollbars"
+                  ref={listInnerRef}
+                  onScroll={() => onScroll()}
+                >
                   <div className="row">
                     {teamToDisplay && returnSortedByPositionTeam(teamToDisplay)}
                   </div>

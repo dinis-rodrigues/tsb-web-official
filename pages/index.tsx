@@ -14,19 +14,10 @@ import Team from "../components/Index/Team";
 import DynamicSponsors from "../components/Index/DynamicSponsors";
 import Contact from "../components/Index/Contact";
 import FaviconIcons from "../components/Head/FaviconIcons";
+import { navIndexTheme } from "../components/utils/constants";
+import { NavTheme } from "../interfaces";
 
 const Home: NextPage = () => {
-  const navColors: ("white" | "black")[] = [
-    "white",
-    "white",
-    "white",
-    "white",
-    "white",
-    "white",
-    "black",
-    "white",
-  ];
-
   const anchors = [
     "home",
     "about",
@@ -37,7 +28,7 @@ const Home: NextPage = () => {
     "sponsors",
     "contact",
   ];
-  const [navTheme, setNavTheme] = useState<"white" | "black">("white");
+  const [navTheme, setNavTheme] = useState<NavTheme>(navIndexTheme[0]);
   const [startAboutZoom, setStartAboutZoom] = useState(false);
   const [solarCount, setSolarCount] = useState(false);
   const [hydrogenCount, setHydrogenCount] = useState(false);
@@ -50,13 +41,19 @@ const Home: NextPage = () => {
         <title>Técnico Solar Boat</title>
         <FaviconIcons />
       </Head>
-      <Navbar theme={navTheme} fullPageApi={fullPageApi} />
+      <Navbar
+        theme={navTheme.color}
+        hideFooter={navTheme.hideFooter}
+        isOpaque={navTheme.isOpaque}
+        switchFooterTheme={navTheme.switchFooterTheme}
+        fullPageApi={fullPageApi}
+      />
       <ReactFullpage
         lockAnchors={true}
         scrollOverflow
         navigation
         responsiveWidth={1250}
-        onLeave={(origin, destination, direction) => {
+        onLeave={(origin, destination) => {
           destination.index === 1
             ? setStartAboutZoom(true)
             : setStartAboutZoom(false);
@@ -65,14 +62,10 @@ const Home: NextPage = () => {
             ? setHydrogenCount(true)
             : setHydrogenCount(false);
           destination.index === 4 ? setPlayVideo(true) : setPlayVideo(false);
-          setNavTheme(navColors[destination.index]); // This throws a warning, don't care
-        }}
-        afterReBuild={() => {
-          console.log("Rebuilted....");
+          setNavTheme(navIndexTheme[destination.index]); // This throws a warning, don't care
         }}
         normalScrollElements={".scrollable-team"}
         anchors={anchors}
-        showActiveTooltip
         navigationTooltips={[
           "",
           "Intro",
@@ -92,7 +85,7 @@ const Home: NextPage = () => {
               <SolarSection startCount={solarCount} />
               <HydrogenSection startCount={hydrogenCount} />
               <AutonomousSection playVideo={playVideo} />
-              <Team />
+              <Team onBottomScroll={() => fullPageApi!.moveTo("sponsors", 0)} />
               <DynamicSponsors fullPageApi={fullPageApi} />
               <Contact />
             </ReactFullpage.Wrapper>

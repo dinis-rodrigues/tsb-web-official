@@ -20,7 +20,7 @@ const Custom500 = () => {
         navigation={false}
         responsiveWidth={1250}
         verticalCentered
-        render={({ fullpageApi }) => {
+        render={() => {
           return (
             <ReactFullpage.Wrapper>
               <div className="section bg-black" style={{ fontSize: "small" }}>

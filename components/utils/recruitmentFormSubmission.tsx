@@ -1,4 +1,4 @@
-import { Dispatch, ReactText, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { toast } from "react-toastify";
 import {
   RecruitmentDepartmentsForm,
@@ -48,7 +48,7 @@ const validateDepartments = (
 ) => {
   let errors: string[] = [];
   let atLeastOneChecked = false;
-  Object.entries(checkedDepartments).forEach(([key, value]) => {
+  Object.entries(checkedDepartments).forEach(([value]) => {
     if (value) atLeastOneChecked = true;
   });
 

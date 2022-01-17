@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
@@ -9,7 +7,7 @@ type Props = {
   position: string;
   department?: string;
 };
-const TeamImage = ({ src, name, position, department = "" }: Props) => {
+const TeamImage = ({ src, name, position }: Props) => {
   const [srcUrl, setSrcUrl] = useState<string>(src);
   return srcUrl ? (
     <div

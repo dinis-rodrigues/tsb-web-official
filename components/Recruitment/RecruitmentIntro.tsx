@@ -5,7 +5,7 @@ import { GiPartyPopper, GiMicroscope, GiDna1 } from "react-icons/gi";
 import { IoHammerSharp } from "react-icons/io5";
 import { HiSpeakerphone } from "react-icons/hi";
 import { CgCrown } from "react-icons/cg";
-import cx from "classnames";
+import GlowingStars from "../Animations/GlowingStars";
 
 const RecruitmentIntro = () => {
   return (
@@ -16,7 +16,7 @@ const RecruitmentIntro = () => {
         fontSize: "small",
       }}
     >
-      <div className="bg-changer">
+      {/* <div className="bg-changer">
         <div
           className={cx("section-bg active")}
           style={{
@@ -24,7 +24,7 @@ const RecruitmentIntro = () => {
             opacity: "0.4",
           }}
         ></div>
-      </div>
+      </div> */}
       <div className="container text-white">
         <div className="row">
           <div className="col-sm-12 col-lg-5 mr-auto text-left d-flex align-items-center z-inf">
@@ -184,6 +184,7 @@ const RecruitmentIntro = () => {
           </div>
         </div>
       </div>
+      <GlowingStars />
     </div>
   );
 };

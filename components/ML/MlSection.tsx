@@ -6,7 +6,6 @@ import cx from "classnames";
 
 import { ChartValue, Predictions } from "../../interfaces";
 import { Sequential } from "@tensorflow/tfjs-layers";
-import { Box, Slider } from "@mui/material";
 import MlPredictions from "./MlPredictions";
 import MlCharts from "./MlCharts";
 
@@ -27,7 +26,7 @@ const MlSection = ({ setToggleMl }: Props) => {
   const [predictions, setPredictions] =
     useState<Predictions>(predictionsValues);
 
-  const [advancedOptions, setAdvancedOptions] = useState(false);
+  // const [advancedOptions, setAdvancedOptions] = useState(false);
   const [firstTrain, setFirstTrain] = useState(false);
   const [chartSteps, setChartSteps] = useState(400);
 
@@ -59,23 +58,27 @@ const MlSection = ({ setToggleMl }: Props) => {
               Train
             </button>
           </span>
-          <span>
-            <button
-              className={cx("btnd btnd-warning", { "d-none": stopTrain })}
-              onClick={() => stopTraining(setStopTrain)}
-            >
-              {"Stop train & Draw"}
-            </button>
-          </span>
-          <span>
+          {!stopTrain && (
+            <span>
+              <button
+                className={cx("btnd btnd-warning")}
+                onClick={() => stopTraining(setStopTrain)}
+              >
+                {"Stop train & Draw"}
+              </button>
+            </span>
+          )}
+          {/* <span>
             <button
               className={cx("btnd btnd-outline-secundary")}
               onClick={() => setAdvancedOptions(!advancedOptions)}
             >
-              {/* {!advancedOptions ? "Advanced Options" : "Hide Options"} */}
+              {!advancedOptions ? "Advanced Options" : "Hide Options"}
             </button>
-          </span>
-          {advancedOptions && (
+          </span> */}
+
+          {/* Advanced option -> TO DO */}
+          {/* {advancedOptions && (
             <Fragment>
               <span
                 style={{ display: "inline-block", verticalAlign: "bottom" }}
@@ -110,7 +113,7 @@ const MlSection = ({ setToggleMl }: Props) => {
                 </Box>
               </span>
             </Fragment>
-          )}
+          )} */}
         </div>
       </div>
 

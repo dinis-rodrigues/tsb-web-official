@@ -11,7 +11,7 @@ type Props = {
   svgString: string;
   url: string;
 };
-const SponsorImage = ({ svgString, level, name }: Props) => {
+const SponsorImage = ({ svgString, level }: Props) => {
   svgString = replaceSVGWidthAndHeight(svgString, `width="`);
   svgString = replaceSVGWidthAndHeight(svgString, `height="`);
   svgString = replaceLinearGradients(svgString, `<linearGradient id="`);

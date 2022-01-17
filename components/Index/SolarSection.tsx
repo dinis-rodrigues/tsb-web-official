@@ -7,21 +7,92 @@ import { GiElectric, GiSandsOfTime } from "react-icons/gi";
 
 import CountUp from "react-countup";
 import { UncontrolledTooltip } from "reactstrap";
-import { useAnimate } from "react-simple-animate";
+import { useAnimate, useAnimateGroup } from "react-simple-animate";
+import { TooltipIconItems } from "../../interfaces";
 
 type Props = {
   startCount?: boolean;
 };
 const SolarSection = ({ startCount = false }: Props) => {
+  const GROUP_ANIMATION_DURATION_INTERVAL = 0.6;
+
   const { play, style } = useAnimate({
     start: { transform: "translateX(-5%)", opacity: 0.4 },
     end: { transform: "translateX(0%)", opacity: 1 },
     duration: 1,
   });
 
+  const tooltipItems: TooltipIconItems[] = [
+    {
+      icon: <RiBattery2ChargeLine className="icon-lg" />,
+      tooltip: "Battery Energy",
+      tooltipTarget: "tooltip-1",
+      counter: true,
+      counterStart: 100,
+      counterEnd: 1500,
+      counterDelay: 0,
+      suffix: " Wh",
+      duration: 2.3,
+    },
+    {
+      icon: <GiSpeedometer className="icon-lg" />,
+      tooltip: "Top Speed",
+      tooltipTarget: "tooltip-2",
+      counter: true,
+      counterStart: 10,
+      counterEnd: 30,
+      counterDelay: GROUP_ANIMATION_DURATION_INTERVAL * 1 - 0.2,
+      suffix: " kh/h",
+      duration: 2.1,
+    },
+    {
+      icon: <FaSolarPanel className="icon-lg" />,
+      tooltip: "Solar Panels Energy",
+      tooltipTarget: "tooltip-3",
+      counter: true,
+      counterStart: 200,
+      counterEnd: 1050,
+      counterDelay: GROUP_ANIMATION_DURATION_INTERVAL * 2 - 0.2,
+      suffix: " Wp",
+      duration: 2.6,
+    },
+    {
+      icon: <GiSandsOfTime className="icon-lg" />,
+      tooltip: "Cruise Speed Duration",
+      tooltipTarget: "tooltip-4",
+      counter: true,
+      counterStart: 0,
+      counterEnd: 4,
+      counterDelay: GROUP_ANIMATION_DURATION_INTERVAL * 3 - 0.2,
+      suffix: " h",
+      duration: 1.9,
+    },
+    {
+      icon: <GiElectric className="icon-lg" />,
+      tooltip: "Peak Power Output",
+      tooltipTarget: "tooltip-5",
+      counter: true,
+      counterStart: 1000,
+      counterEnd: 15000,
+      counterDelay: GROUP_ANIMATION_DURATION_INTERVAL * 4 - 0.2,
+      suffix: " W",
+      duration: 3,
+    },
+  ];
+
+  const { play: playGroup, styles: stylesGroup } = useAnimateGroup({
+    sequences: tooltipItems.map(() => ({
+      start: { opacity: 0, transform: "translateY(5%)" },
+      end: { opacity: 1, transform: "translateY(0%)" },
+      duration: GROUP_ANIMATION_DURATION_INTERVAL,
+    })),
+  });
+
   useEffect(() => {
-    startCount ? play(true) : play(false);
-  }, [startCount]);
+    startCount && play(true);
+    startCount && playGroup(true);
+  }, [play, playGroup, startCount]);
+
   return (
     <div
       className="section fp-noscroll"
@@ -71,150 +142,50 @@ const SolarSection = ({ startCount = false }: Props) => {
           </div>
           {/* Space in the middle */}
           <div className="col-lg-4"></div>
-          <div className="col-lg-4 d-flex align-items-center justify-center">
-            <div className="row">
-              <div className="col-md">
-                <div className="item-card p-3" id="tooltip-1">
-                  <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
-                    <RiBattery2ChargeLine className="icon-lg" />
-                  </div>
-
-                  <CountUp
-                    separator={" "}
-                    start={0}
-                    end={1500}
-                    suffix={" Wh"}
-                    delay={0}
-                    duration={2.4}
-                  >
-                    {({ countUpRef, start }) => {
-                      startCount && start();
-                      return (
-                        <h5 className="text-white index-subheader mt-2 text-shadow">
-                          <span ref={countUpRef}></span>
-                        </h5>
-                      );
-                    }}
-                  </CountUp>
-
-                  <UncontrolledTooltip placement={"top"} target={"tooltip-1"}>
-                    Battery Energy
-                  </UncontrolledTooltip>
-                </div>
-              </div>
-              <div className="col-md">
-                <div className="item-card p-3" id="tooltip-2">
-                  <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
-                    <GiSpeedometer className="icon-lg" />
-                  </div>
-                  <CountUp
-                    separator={" "}
-                    start={0}
-                    end={30}
-                    suffix={" km/h"}
-                    delay={0}
-                    duration={2.3}
-                  >
-                    {({ countUpRef, start }) => {
-                      startCount && start();
-                      return (
-                        <h5 className="text-white index-subheader mt-2 text-shadow">
-                          <span ref={countUpRef}></span>
-                        </h5>
-                      );
-                    }}
-                  </CountUp>
-                  <UncontrolledTooltip placement={"top"} target={"tooltip-2"}>
-                    Top Speed
-                  </UncontrolledTooltip>
-                </div>
-              </div>
-              <div className="col-md">
-                <div className="item-card p-3" id="tooltip-3">
-                  <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
-                    <FaSolarPanel className="icon-lg" />
-                  </div>
-                  <CountUp
-                    separator={" "}
-                    start={0}
-                    end={1050}
-                    suffix={" Wh"}
-                    delay={0}
-                    duration={2}
-                  >
-                    {({ countUpRef, start }) => {
-                      startCount && start();
-                      return (
-                        <h5 className="text-white index-subheader mt-2 text-shadow">
-                          <span ref={countUpRef}></span>
-                        </h5>
-                      );
-                    }}
-                  </CountUp>
-                  <UncontrolledTooltip placement={"top"} target={"tooltip-3"}>
-                    Solar Panels Energy
-                  </UncontrolledTooltip>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-2"></div>
-                <div className="col-md-4">
-                  <div className="item-card p-3" id="tooltip-4">
+          <div className="col-lg-4 d-flex align-items-center">
+            <div className="row  justify-content-center">
+              {tooltipItems.map((item, index) => (
+                <div
+                  className="col-md-4"
+                  key={index}
+                  style={stylesGroup[index]!}
+                >
+                  <div className="item-card p-3" id={item.tooltipTarget}>
                     <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
-                      <GiSandsOfTime className="icon-lg" />
+                      {item.icon}
                     </div>
-                    <CountUp
-                      separator={" "}
-                      start={0}
-                      end={4}
-                      suffix={" h"}
-                      delay={0}
-                      duration={2.1}
+                    {item.counter ? (
+                      <CountUp
+                        separator={" "}
+                        start={item.counterStart}
+                        end={item.counterEnd ? item.counterEnd : 0}
+                        suffix={item.suffix}
+                        delay={item.counterDelay}
+                        duration={item.duration}
+                      >
+                        {({ countUpRef, start }) => {
+                          startCount && start();
+                          return (
+                            <h5 className="text-white index-subheader mt-2 text-shadow">
+                              <span ref={countUpRef}></span>
+                            </h5>
+                          );
+                        }}
+                      </CountUp>
+                    ) : (
+                      <h5 className="text-white index-subheader mt-2 text-shadow">
+                        {item.title}
+                      </h5>
+                    )}
+                    <UncontrolledTooltip
+                      placement={"top"}
+                      target={item.tooltipTarget}
                     >
-                      {({ countUpRef, start }) => {
-                        startCount && start();
-                        return (
-                          <h5 className="text-white index-subheader mt-2 text-shadow">
-                            <span ref={countUpRef}></span>
-                          </h5>
-                        );
-                      }}
-                    </CountUp>
+                      {item.tooltip}
+                    </UncontrolledTooltip>
                   </div>
-                  <UncontrolledTooltip placement={"top"} target={"tooltip-4"}>
-                    Cruise Speed Duration
-                  </UncontrolledTooltip>
                 </div>
-
-                <div className="col-md-5">
-                  <div className="item-card p-3" id="tooltip-5">
-                    <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
-                      <GiElectric className="icon-lg" />
-                    </div>
-                    <CountUp
-                      separator={" "}
-                      start={0}
-                      end={15000}
-                      suffix={" W"}
-                      delay={0}
-                      duration={2}
-                    >
-                      {({ countUpRef, start }) => {
-                        startCount && start();
-                        return (
-                          <h5 className="text-white index-subheader mt-2 text-shadow">
-                            <span ref={countUpRef}></span>
-                          </h5>
-                        );
-                      }}
-                    </CountUp>
-                  </div>
-                  <UncontrolledTooltip placement={"top"} target={"tooltip-5"}>
-                    Peak Power Output
-                  </UncontrolledTooltip>
-                </div>
-                <div className="col-2"></div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

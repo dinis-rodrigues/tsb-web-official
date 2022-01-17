@@ -1,4 +1,53 @@
 import { StylesConfig } from "react-select";
+import { NavTheme } from "../../interfaces";
+
+const navIndexTheme: NavTheme[] = [
+  {
+    color: "white",
+  },
+  {
+    color: "white",
+  },
+  {
+    color: "white",
+  },
+  {
+    color: "white",
+  },
+  {
+    color: "white",
+  },
+  {
+    color: "white",
+  },
+  {
+    color: "black",
+    hideFooter: false,
+    switchFooterTheme: false,
+    isOpaque: true,
+  },
+  {
+    color: "white",
+  },
+];
+
+const navRecruitmentTheme: NavTheme[] = [
+  {
+    color: "white",
+  },
+  {
+    color: "white",
+  },
+  {
+    color: "white",
+  },
+  {
+    color: "white",
+    hideFooter: false,
+    switchFooterTheme: false,
+    isOpaque: true,
+  },
+];
 
 const coursesOptions = [
   {
@@ -461,4 +510,6 @@ export {
   formatCoursesLabel,
   selectCustomStyle,
   inputFormStyle,
+  navIndexTheme,
+  navRecruitmentTheme,
 };

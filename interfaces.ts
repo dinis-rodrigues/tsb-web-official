@@ -1,3 +1,13 @@
+import { ReactElement } from "react";
+import { IconType } from "react-icons";
+
+export interface NavTheme {
+  color: 0 | 1 | "white" | "black";
+  hideFooter?: boolean;
+  switchFooterTheme?: boolean;
+  isOpaque?: boolean;
+}
+
 // Public Information
 export interface PublicTeam {
   [key: string]: PublicUser;
@@ -162,4 +172,17 @@ export interface Department {
   gradientColor: string;
   icon: string;
   positions: string[];
+}
+
+export interface TooltipIconItems {
+  icon: ReactElement;
+  tooltip: string;
+  tooltipTarget: string;
+  counter?: boolean;
+  counterStart?: number;
+  counterEnd?: number;
+  counterDelay?: number;
+  suffix?: string;
+  duration?: number;
+  title?: string;
 }

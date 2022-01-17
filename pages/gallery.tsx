@@ -16,7 +16,6 @@ import lgZoom from "lightgallery/plugins/zoom";
 import lgAutoplay from "lightgallery/plugins/autoplay";
 import lgFullscreen from "lightgallery/plugins/fullscreen";
 import lgRotate from "lightgallery/plugins/rotate";
-import lgShare from "lightgallery/plugins/share";
 
 import {
   getGalleryList,
@@ -33,7 +32,7 @@ const Gallery: NextPage = () => {
   const [galleryList, setGalleryList] = useState<[string, GalleryItem][]>([]);
   const [activeGallery, setActiveGallery] = useState("");
   const [galleryPhotos, setGalleryPhotos] = useState<AllAlbumPhotos>({});
-  const [navTheme, setNavTheme] = useState<"white" | "black">("white");
+
   useEffect(() => {
     getGalleryList(setGalleryList, setGalleryInfo, setActiveGallery);
 
@@ -70,9 +69,15 @@ const Gallery: NextPage = () => {
           triggerElement="#triggerEl"
           // indicators={true}
         >
-          {(progress: 0 | 1, event: string) => {
+          {(progress: 0 | 1) => {
             // This throws a forwardRef warning. Don't care
-            return <Navbar theme={progress} />;
+            return (
+              <Navbar
+                theme={progress}
+                hideFooter={progress === 0 ? true : false}
+                isOpaque={progress === 1 ? true : false}
+              />
+            );
           }}
         </Scene>
         <div id="triggerEl">
@@ -97,7 +102,6 @@ const Gallery: NextPage = () => {
                       lgAutoplay,
                       lgFullscreen,
                       lgRotate,
-                      lgShare,
                     ]}
                     elementClassNames="row"
                   >

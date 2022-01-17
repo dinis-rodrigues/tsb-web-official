@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import LightGallery from "lightgallery/react";
 
 // import plugins if you need
@@ -7,7 +8,6 @@ import lgAutoplay from "lightgallery/plugins/autoplay";
 import lgFullscreen from "lightgallery/plugins/fullscreen";
 import lgRotate from "lightgallery/plugins/rotate";
 import lgShare from "lightgallery/plugins/share";
-import { Fragment } from "react";
 
 const RecruitmentFields = () => {
   return (

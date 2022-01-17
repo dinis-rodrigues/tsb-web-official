@@ -7,49 +7,51 @@ import { IoLeaf } from "react-icons/io5";
 import CountUp from "react-countup";
 import { useAnimate, useAnimateGroup } from "react-simple-animate";
 import { useEffect } from "react";
+import { TooltipIconItems } from "../../interfaces";
 
 type Props = {
   startCount?: boolean;
 };
 const HydrogenSection = ({ startCount = false }: Props) => {
+  const GROUP_ANIMATION_DURATION_INTERVAL = 0.6;
   const { play, style } = useAnimate({
-    start: { transform: "translateX(5%)", opacity: 0.4 },
+    start: { transform: "translateX(5%)", opacity: 0 },
     end: { transform: "translateX(0%)", opacity: 1 },
     duration: 1,
   });
 
-  const tooltipItems = [
+  const tooltipItems: TooltipIconItems[] = [
     {
       icon: <BsTrophy className="icon-lg" />,
       title: "1st Place",
       tooltip: "Innovation Prize",
-      tooltipTarget: "tooltip-1",
+      tooltipTarget: "tooltip-6",
     },
     {
       icon: <IoLeaf className="icon-lg" />,
       title: "Green Materials",
       tooltip: "Flax Fibre and eco-friendly resins",
-      tooltipTarget: "tooltip-2",
+      tooltipTarget: "tooltip-7",
     },
     {
       icon: <GiSpeedometer className="icon-lg" />,
       tooltip: "Top Speed",
-      tooltipTarget: "tooltip-4",
+      tooltipTarget: "tooltip-8",
       counter: true,
       counterStart: 0,
       counterEnd: 17,
-      counterDelay: 3,
+      counterDelay: GROUP_ANIMATION_DURATION_INTERVAL * 3 - 0.2,
       suffix: " km/h",
       duration: 2.3,
     },
     {
       icon: <RiBattery2ChargeLine className="icon-lg" />,
       tooltip: "Fuel Cell Energy",
-      tooltipTarget: "tooltip-5",
+      tooltipTarget: "tooltip-9",
       counter: true,
       counterStart: 0,
       counterEnd: 5000,
-      counterDelay: 4,
+      counterDelay: GROUP_ANIMATION_DURATION_INTERVAL * 4 - 0.2,
       suffix: " Wh",
       duration: 2.4,
     },
@@ -59,14 +61,14 @@ const HydrogenSection = ({ startCount = false }: Props) => {
     sequences: tooltipItems.map(() => ({
       start: { opacity: 0, transform: "translateY(5%)" },
       end: { opacity: 1, transform: "translateY(0%)" },
-      duration: 1,
+      duration: GROUP_ANIMATION_DURATION_INTERVAL,
     })),
   });
 
   useEffect(() => {
-    startCount ? play(true) : play(false);
-    startCount ? playGroup(true) : playGroup(false);
-  }, [startCount]);
+    startCount && play(true);
+    startCount && playGroup(true);
+  }, [play, playGroup, startCount]);
   return (
     <div
       className="section fp-noscroll"
@@ -91,7 +93,7 @@ const HydrogenSection = ({ startCount = false }: Props) => {
             <div className="row ">
               {tooltipItems.map((item, index) => (
                 <div className="col-md" key={index} style={stylesGroup[index]!}>
-                  <div className="item-card p-3" id="hp-prize">
+                  <div className="item-card p-3" id={item.tooltipTarget}>
                     <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                       {item.icon}
                     </div>
@@ -99,7 +101,7 @@ const HydrogenSection = ({ startCount = false }: Props) => {
                       <CountUp
                         separator={" "}
                         start={item.counterStart}
-                        end={item.counterEnd}
+                        end={item.counterEnd ? item.counterEnd : 0}
                         suffix={item.suffix}
                         delay={item.counterDelay}
                         duration={item.duration}

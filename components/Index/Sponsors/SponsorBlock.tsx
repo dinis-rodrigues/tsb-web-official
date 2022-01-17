@@ -1,10 +1,6 @@
 import parse from "html-react-parser";
 import cx from "classnames";
-import {
-  buildSafeUrl,
-  replaceLinearGradients,
-  replaceSVGWidthAndHeight,
-} from "../../utils/generalFunctions";
+import { buildSafeUrl } from "../../utils/generalFunctions";
 import { getSvgStringFromPath } from "../../utils/sponsorUtils";
 import { useEffect, useState } from "react";
 
@@ -15,13 +11,7 @@ type Props = {
   numColumns: number;
   currBracketNum: number;
 };
-const SponsorBlock = ({
-  svgPath,
-  name,
-  url,
-  numColumns,
-  currBracketNum,
-}: Props) => {
+const SponsorBlock = ({ svgPath, url, numColumns, currBracketNum }: Props) => {
   const [svgString, setSvgString] = useState("");
 
   useEffect(() => {

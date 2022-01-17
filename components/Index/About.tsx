@@ -22,7 +22,6 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
       setActiveDep(initialDepartment);
     }
   }, [startZoom, initialDepartment]);
-  console.log("process env", process.env.BASE_PATH);
   return (
     <div
       className="section fp-noscroll"

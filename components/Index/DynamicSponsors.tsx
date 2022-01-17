@@ -1,8 +1,7 @@
 import { fullpageApi } from "@fullpage/react-fullpage";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SponsorBracketPublic } from "../../interfaces";
 
-import SponsorImage from "../Images/SponsorImage";
 import { getSponsorsFromDatabase } from "../utils/sponsorUtils";
 import SponsorBracket from "./Sponsors/SponsorBracket";
 // import { sponsorOrder } from "../Images/sponsorObj";
@@ -36,7 +35,7 @@ const DynamicSponsors = ({ fullPageApi }: Props) => {
         fontSize: "small",
       }}
     >
-      <div className="container nav-margin mb-3">
+      <div className="container nav-margin" style={{ marginBottom: "2rem" }}>
         <div className="row">
           <div className="col">
             <h4 className="index-header f-700 text-black">OUR SPONSORS</h4>
@@ -68,16 +67,6 @@ const DynamicSponsors = ({ fullPageApi }: Props) => {
                 />
               );
             })}
-            {/* {Object.entries(sponsorOrder).map(([sponsorId, sponsor]) => {
-                return (
-                  <SponsorImage
-                    key={sponsorId}
-                    name={sponsor.name}
-                    svgString={sponsor.svgString}
-                    level={sponsor.level}
-                  />
-                );
-              })} */}
           </div>
           <div className="col-2"></div>
         </div>

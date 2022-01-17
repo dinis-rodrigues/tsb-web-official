@@ -14,7 +14,6 @@ import NumberFormat from "react-number-format";
 
 import TextareaAutosize from "react-textarea-autosize";
 import ReCAPTCHA from "react-google-recaptcha";
-import { Bounce, toast, ToastContainer } from "react-toastify";
 import cx from "classnames";
 
 import {
@@ -33,8 +32,6 @@ import {
   selectCustomStyle,
   selectStyles,
 } from "../utils/constants";
-import RecruitmentFaq from "./RecruitmentFaq";
-import RecruitmentFields from "./RecruitmentFields";
 import Select from "react-select";
 
 import {
@@ -64,8 +61,6 @@ const RecruitmentFormFields = ({
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
   const [recaptcha, setRecaptcha] = useState<string | null>(null);
-
-  const toastId = useRef(null);
 
   const [_document, set_document] = useState<Document>();
 

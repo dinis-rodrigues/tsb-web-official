@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import cx from "classnames";
+import React from "react";
 import RecruitmentFaq from "./RecruitmentFaq";
 import RecruitmentFields from "./RecruitmentFields";
+import GlowingStars from "../Animations/GlowingStars";
 
 const RecruitmentDepartments = () => {
   return (
@@ -12,16 +12,6 @@ const RecruitmentDepartments = () => {
         fontSize: "small",
       }}
     >
-      <div className="bg-changer">
-        <div
-          className={cx("section-bg active")}
-          style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/textures/black.jpg")`,
-            opacity: "0.4",
-            transform: "rotate(180deg)",
-          }}
-        ></div>
-      </div>
       <div className="container">
         <div className="row ">
           <div className="col d-flex align-items-center justify-content-center z-inf">
@@ -32,6 +22,7 @@ const RecruitmentDepartments = () => {
           </div>
         </div>
       </div>
+      <GlowingStars />
     </div>
   );
 };

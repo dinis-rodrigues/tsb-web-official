@@ -1,11 +1,22 @@
 import Link from "next/link";
 import { IoLogoFacebook, IoLogoYoutube, IoLogoLinkedin } from "react-icons/io5";
 import CopyrightText from "./CopyrightText";
+import cx from "classnames";
 
-const Footer = () => {
+type Props = {
+  hide: boolean;
+  theme: 0 | 1 | "white" | "black";
+};
+const Footer = ({ hide, theme }: Props) => {
   return (
     <nav className="navbar-bottom f-medium">
-      <div className="social">
+      <div
+        className={cx("social", {
+          "footer-white": theme === "white" || theme === 0,
+          "footer-black": theme === "black" || theme === 1,
+          "hide-footer": hide,
+        })}
+      >
         <ul className="social-icons mr-auto mr-lg-0 d-none d-sm-block list-none">
           <li>
             <Link href={"https://www.facebook.com/tecnico.solarboat/"} passHref>
@@ -36,8 +47,9 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-
-      <CopyrightText />
+      <div className={cx({ "hide-footer": hide })}>
+        <CopyrightText />
+      </div>
     </nav>
   );
 };

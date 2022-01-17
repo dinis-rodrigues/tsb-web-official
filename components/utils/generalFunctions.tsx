@@ -11,7 +11,6 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import TeamImage from "../Images/TeamImage";
 import { v4 as uuid } from "uuid";
 import { NumberFormatValues } from "react-number-format";
-import { Bounce, toast } from "react-toastify";
 import Link from "next/link";
 import { ImageLoader, ImageLoaderProps } from "next/image";
 
@@ -436,6 +435,7 @@ const getRecruitmentTable = (
     const activeTable: string = snapshot.val();
     if (!activeTable) return;
     setActiveTable(activeTable);
+    console.log("Active table", activeTable);
   });
 };
 
@@ -476,6 +476,17 @@ const imageLoader: ImageLoader = ({ src }: ImageLoaderProps) => {
   return src;
 };
 
+const getFooterTheme = (
+  theme: 0 | 1 | "white" | "black",
+  switchTheme = false
+) => {
+  if (switchTheme) {
+    return theme === "white" || theme === 0 ? "black" : "white";
+  } else {
+    return theme;
+  }
+};
+
 export {
   getUserImgUrl,
   getTeamToDisplay,
@@ -496,4 +507,5 @@ export {
   getProfileJoinedInInfo,
   getUserProfileLink,
   imageLoader,
+  getFooterTheme,
 };

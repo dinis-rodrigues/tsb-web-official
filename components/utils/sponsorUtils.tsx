@@ -41,7 +41,7 @@ const getSvgStringFromPath = async (
         setSvgString(" ");
       }
     })
-    .catch((error) => setSvgString("Logo to Upload"));
+    .catch(() => setSvgString("Error loading sponsor."));
 };
 
 /**
