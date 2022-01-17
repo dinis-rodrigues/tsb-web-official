@@ -10,6 +10,9 @@ import {
   getProfileJoinedInInfo,
   getUserImgUrl,
 } from "../utils/generalFunctions";
+import { useEffect, useState } from "react";
+import { get, ref } from "firebase/database";
+import { db } from "../Contexts/Firebase";
 
 type Props = {
   userInfo: PublicUserInfo;
@@ -17,6 +20,17 @@ type Props = {
 };
 
 const TeamMember = ({ userInfo, userId }: Props) => {
+  const [userDbInfo, setUserDbInfo] = useState<PublicUserInfo>();
+
+  useEffect(() => {
+    get(ref(db, `/public/officialWebsite/team/${userId}/info`)).then(
+      (snapshot) => {
+        const userData: PublicUserInfo = snapshot.val();
+        if (!userData) return;
+        setUserDbInfo(userData);
+      }
+    );
+  }, [userId]);
   return (
     <div
       className={cx("section", {
@@ -38,44 +52,61 @@ const TeamMember = ({ userInfo, userId }: Props) => {
                 <div className="header-text">
                   <h2>{"Hi, I'm"}</h2>
                   <h1>
-                    <span className="text-info">{userInfo.name} </span>
+                    <span className="text-info">
+                      {userDbInfo && userDbInfo.name}
+                    </span>
                   </h1>
                 </div>
                 <div className="header-sub-text">
                   <h4 className="font-secondary text-secundary">
-                    {userInfo.position}
+                    {userDbInfo && userDbInfo.position}
                     {" · "}
-                    <span className="text-info">{userInfo.department}</span>
+                    <span className="text-info">
+                      {userDbInfo && userDbInfo.department}
+                    </span>
                     {" · "}
-                    {getAge(userInfo.birth)}yo
+                    {getAge(
+                      userDbInfo && userDbInfo.birth ? userDbInfo.birth : ""
+                    )}
+                    yo
                   </h4>
                   <h5>
-                    {getProfileJoinedInInfo(userInfo.joinedIn, userInfo.leftIn)}
+                    {getProfileJoinedInInfo(
+                      userDbInfo && userDbInfo.joinedIn
+                        ? userDbInfo.joinedIn
+                        : "",
+                      userDbInfo && userDbInfo.leftIn
+                    )}
                   </h5>
                 </div>
-                {userInfo.description && (
+                {userDbInfo && userDbInfo.description && (
                   <div className="header-sub-text">
                     <div className="header-sub-text">
-                      <h5 className="text-hash text-uppercase text-dark">
+                      <h5 className="text-hash text-uppercase text-secondary">
                         # Description
                       </h5>
-                      {userInfo.description}
+                      <span style={{ fontSize: "1rem" }}>
+                        {userDbInfo && userDbInfo.description}
+                      </span>
                     </div>
                     <p className="font-secondary font-large"></p>
                   </div>
                 )}
-                {userInfo.linkedin && (
-                  <div className="link-horizontal">
-                    <Link href={userInfo.linkedin} passHref>
-                      <button className="btnd btnd-info">Linkedin</button>
-                    </Link>
-                    <Link href={"/#team"} passHref>
-                      <button className="btnd btnd-dark">
-                        Go back to Team
+                <div className="link-horizontal">
+                  {userDbInfo && userDbInfo.linkedin && (
+                    <Link href={userDbInfo && userDbInfo.linkedin} passHref>
+                      <button
+                        className="btnd btnd-info"
+                        style={{ marginRight: "1rem" }}
+                      >
+                        Linkedin
                       </button>
                     </Link>
-                  </div>
-                )}
+                  )}
+                  <Link href={"/#team"} passHref>
+                    <button className="btnd btnd-dark">Go back to Team</button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -90,19 +121,27 @@ const TeamMember = ({ userInfo, userId }: Props) => {
             <div className="header-text">
               <h2>{"Hi, I'm"}</h2>
               <h1>
-                <span className="text-info">{userInfo.name} </span>
+                <span className="text-info">
+                  {userDbInfo && userDbInfo.name}
+                </span>
               </h1>
             </div>
             <div className="header-sub-text">
               <h4 className="font-secondary text-secundary">
-                {userInfo.position}
+                {userDbInfo && userDbInfo.position}
                 {" · "}
-                <span className="text-info">{userInfo.department}</span>
+                <span className="text-info">
+                  {userDbInfo && userDbInfo.department}
+                </span>
                 {" · "}
-                {getAge(userInfo.birth)}yo
+                {getAge(userDbInfo && userDbInfo.birth ? userDbInfo.birth : "")}
+                yo
               </h4>
               <h5>
-                {getProfileJoinedInInfo(userInfo.joinedIn, userInfo.leftIn)}
+                {getProfileJoinedInInfo(
+                  userDbInfo?.joinedIn ? userDbInfo?.joinedIn : "",
+                  userDbInfo?.leftIn ? userDbInfo?.leftIn : ""
+                )}
               </h5>
             </div>
             {userInfo.description && (
@@ -111,13 +150,25 @@ const TeamMember = ({ userInfo, userId }: Props) => {
                   <h5 className="text-hash text-uppercase text-dark">
                     # Description
                   </h5>
-                  {userInfo.description}
+                  {userDbInfo?.description}
                 </div>
                 <p className="font-secondary font-large"></p>
               </div>
             )}
             <div className="link-horizontal">
-              <button className="btnd btnd-info">Linkedin</button>
+              {userDbInfo && userDbInfo.linkedin && (
+                <Link href={userDbInfo && userDbInfo.linkedin} passHref>
+                  <button
+                    className="btnd btnd-info"
+                    style={{ marginRight: "1rem" }}
+                  >
+                    Linkedin
+                  </button>
+                </Link>
+              )}
+              <Link href={"/#team"} passHref>
+                <button className="btnd btnd-dark">Go back to Team</button>
+              </Link>
             </div>
           </div>
         </div>
