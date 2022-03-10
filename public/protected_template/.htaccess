@@ -1,0 +1,4 @@
+<FilesMatch "\.php$">
+    allow from all
+</FilesMatch>
+deny from all
