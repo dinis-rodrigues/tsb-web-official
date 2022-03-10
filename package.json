@@ -46,6 +46,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/gtag.js": "^0.0.8",
     "@types/react": "17.0.24",
     "@types/react-google-recaptcha": "^2.1.2",
     "@types/styled-components": "^5.1.15",
