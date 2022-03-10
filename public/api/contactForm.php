@@ -1,7 +1,13 @@
 <?php
-// require_once('php\recaptchalib.php');
-require '../api/phpmailer/PHPMailerAutoload.php';
-require '../api/phpmailer/PHPMailerAutoload.php';
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+
 include "../protected/emailVariables.php";
 include "../protected/captcha_variables.php";
 
@@ -19,11 +25,8 @@ if ($_POST) {
     $mailer->Password = $emailPassword;
     $emailer->From = "tecnico.solarboat@gmail.com";
 
-
     $errors = array();
     $errors["success"] = false;
-
-
 
     if (isset($_POST['recaptcha'])) {
         $captcha = $_POST['recaptcha'];
@@ -82,7 +85,7 @@ if ($_POST) {
     $subject = 'Website Contact Form';
     $subject .= " -> ";
     $subject .= $name;
-    $body = "From: $name <br> E-Mail: $email <br> <br> Menssage:<br> $message";
+    $body = "From: $name <br> E-Mail: $email <br> <br> Message:<br> $message";
     $headers = "From: " . $from;
 
     $mailer->addAddress('tecnico.solarboat@gmail.com');
@@ -98,7 +101,7 @@ if ($_POST) {
 
         $mailer->ClearAllRecipients();
         $mailer->addAddress($candidate);
-        $mailer->Subject = 'Técnico Solar Boat - Submissão Efectuada';
+        $mailer->Subject = 'Técnico Solar Boat - Contact Form Submission';
         $mailer->Body = $corpo;
         $mailer->IsHTML(true);
         if ($mailer->send()) {

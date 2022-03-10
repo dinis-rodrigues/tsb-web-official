@@ -1,5 +1,6 @@
 <?php
-require 'firebaseLibs/autoload.php';
+//Load Composer's autoloader
+require 'vendor/autoload.php';
 
 use Kreait\Firebase\Factory;
 

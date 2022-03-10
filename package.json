@@ -7,7 +7,8 @@
     "build": "next build && next export",
     "export": "next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "install-all": "npm ci && cd public/api && composer install"
   },
   "eslintConfig": {
     "extends": [
