@@ -194,7 +194,20 @@ you want, without configuring them again.
 
 All of our API's are located in `public/api`.
 
-There is one folder `protected` which we place at the root location, which contains
+We use PHP's package manager `composer` to install the required packages. You can
+install them by changing directory and running
+
+```sh
+composer install
+```
+
+or by running our custom install script at the root directory level
+
+```sh
+npm run install-all
+```
+
+There is one folder `protected` which we place at the root location of our server, which contains
 protected keys and values for our php api. We provide a template for it, if you need it.
 
 In order to work with the PHP api you need to locally run a php server / have a
