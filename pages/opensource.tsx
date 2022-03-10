@@ -1,7 +1,6 @@
 import ReactFullpage, { fullpageApi } from "@fullpage/react-fullpage";
 import Head from "next/head";
 import React, { useState } from "react";
-import FaviconIcons from "../components/Head/FaviconIcons";
 import Navbar from "../components/Navbar/Navbar";
 import SM01 from "../components/OpenSource/SR01/SM01";
 import SR01 from "../components/OpenSource/SR01/SR01";
@@ -14,7 +13,6 @@ const OpenSource = () => {
     <div className="App">
       <Head>
         <title>Open Source</title>
-        <FaviconIcons />
       </Head>
       <Navbar theme={"white"} />
       <ReactFullpage

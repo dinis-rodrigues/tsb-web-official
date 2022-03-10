@@ -42,7 +42,7 @@ const SolarSection = ({ startCount = false }: Props) => {
       counterStart: 10,
       counterEnd: 30,
       counterDelay: GROUP_ANIMATION_DURATION_INTERVAL * 1 - 0.2,
-      suffix: " kh/h",
+      suffix: " km/h",
       duration: 2.1,
     },
     {
@@ -95,7 +95,7 @@ const SolarSection = ({ startCount = false }: Props) => {
 
   return (
     <div
-      className="section fp-noscroll"
+      className="section fp-noscroll fp-auto-height-responsive"
       style={{
         backgroundColor: "black",
         fontSize: "small",
@@ -110,8 +110,8 @@ const SolarSection = ({ startCount = false }: Props) => {
           }}
         ></div>
       </div>
-      <div className="container">
-        <div className="row mt-2">
+      <div className="container mobile-top-margin">
+        <div className="row">
           <div className="col-lg-4 z-inf">
             <h4 className="index-header f-700" style={style}>
               SOLAR
@@ -128,7 +128,7 @@ const SolarSection = ({ startCount = false }: Props) => {
                 competitions.
               </p>{" "}
               <p>
-                We are currently an unique project in the Iberian Peninsula. In
+                We are currently a unique project in the Iberian Peninsula. In
                 July 2019 we earned the 2nd place of the Solar A class at the
                 Monaco Solar and Energy Boat Challenge.
               </p>
@@ -146,7 +146,7 @@ const SolarSection = ({ startCount = false }: Props) => {
             <div className="row  justify-content-center">
               {tooltipItems.map((item, index) => (
                 <div
-                  className="col-md-4"
+                  className="col-6 col-md-4"
                   key={index}
                   style={stylesGroup[index]!}
                 >

@@ -1,27 +1,49 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAHPrWvVr1El3NkJd3C0gbZbiTl_weCTlE",
-  authDomain: "tsb-aplication.firebaseapp.com",
-  databaseURL: "https://tsb-aplication.firebaseio.com",
-  projectId: "tsb-aplication",
-  storageBucket: "tsb-aplication.appspot.com",
-  messagingSenderId: "124968779478",
-  appId: "1:124968779478:web:0a2c6266560c594a779377",
-  measurementId: "G-0Z77DRSCH6",
+let firebaseConfig = {};
+
+// DATABASE
+const firebaseProductionConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBZm2feIZTi5dTGRQuJKoQUEwdh1axiSgs",
-//   authDomain: "tsb-application-dev.firebaseapp.com",
-//   databaseURL:
-//     "https://tsb-application-dev-default-rtdb.europe-west1.firebasedatabase.app/",
-//   projectId: "tsb-application-dev",
-//   storageBucket: "tsb-application-dev.appspot.com",
-//   messagingSenderId: "403433771845",
-//   appId: "1:403433771845:web:1a4bba7416dc343ef9a42c",
-// };
+const firebaseDevConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY_DEV,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN_DEV,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL_DEV,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID_DEV,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET_DEV,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID_DEV,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID_DEV,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID_DEV,
+};
+
+// Check if we are in development and if DEV api key exists
+if (
+  process.env.NODE_ENV === "development" &&
+  process.env.NEXT_PUBLIC_FIREBASE_API_KEY
+) {
+  if (
+    process.env.NEXT_PUBLIC_OVERRIDE_DEVELOPMENT &&
+    process.env.NEXT_PUBLIC_OVERRIDE_DEVELOPMENT === "TRUE"
+  ) {
+    firebaseConfig = firebaseProductionConfig;
+  } else {
+    firebaseConfig = firebaseDevConfig;
+    console.log("Using development firebase config");
+  }
+} else {
+  // Use production DB if we are going to build
+  firebaseConfig = firebaseProductionConfig;
+}
 
 // Initialize Firebase
 const app: FirebaseApp = initializeApp(firebaseConfig);

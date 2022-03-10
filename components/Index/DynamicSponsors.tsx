@@ -1,5 +1,5 @@
 import { fullpageApi } from "@fullpage/react-fullpage";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SponsorBracketPublic } from "../../interfaces";
 
 import { getSponsorsFromDatabase } from "../utils/sponsorUtils";
@@ -8,28 +8,19 @@ import SponsorBracket from "./Sponsors/SponsorBracket";
 
 type Props = {
   fullPageApi: fullpageApi | undefined;
+  sponsorBrackets: [string, SponsorBracketPublic][];
 };
-const DynamicSponsors = ({ fullPageApi }: Props) => {
-  const [sponsorBrackets, setSponsorBrackets] = useState<
-    [string, SponsorBracketPublic][]
-  >([]);
-
+const DynamicSponsors = ({ sponsorBrackets, fullPageApi }: Props) => {
   useEffect(() => {
-    getSponsorsFromDatabase(setSponsorBrackets);
-  }, []);
+    // Rebuild fullpagejs since this is dynamic scrollable content
+    if (fullPageApi) {
+      fullPageApi.reBuild();
+    }
+  }, [fullPageApi]);
 
-  useEffect(() => {
-    // When we finish retrieving the sponsors, this means we are populating the page
-    // with them, so we need to rebuld the fullPage plugin to take into account the
-    // sponsors height on the page
-    if (sponsorBrackets && fullPageApi)
-      setTimeout(function () {
-        fullPageApi.reBuild();
-      }, 500);
-  }, [sponsorBrackets, fullPageApi]);
   return (
     <div
-      className="section"
+      className="section fp-auto-height-responsive"
       style={{
         backgroundColor: "white",
         fontSize: "small",
@@ -70,6 +61,7 @@ const DynamicSponsors = ({ fullPageApi }: Props) => {
           </div>
           <div className="col-2"></div>
         </div>
+        <div style={{ height: "100px" }}></div>
       </div>
     </div>
   );

@@ -28,8 +28,8 @@ const validateInfo = (info: RecruitmentFormInfo) => {
   console.log(info.phoneNumber);
   if (!info.firstName) errors.push("firstName");
   if (!info.lastName) errors.push("lastName");
-  if (!info.phoneNumber || info.phoneNumber.length < 9)
-    errors.push("phoneNumber");
+  // if (info.phoneNumber || info.phoneNumber.length < 9)
+  //   errors.push("phoneNumber");
   if (!info.email) {
     errors.push("email");
     errors.push("confirmEmail");
@@ -106,7 +106,7 @@ const showValidationError = (errors: string[]) => {
 };
 
 const showSuccessMessage = () => {
-  toast("🦄 Thank you for your submission!", {
+  toast("😀 Thank you for your submission!", {
     position: "top-right",
     hideProgressBar: false,
     autoClose: 10000,
@@ -139,17 +139,45 @@ const senUserToDb = (
   let timestamp = Date.now();
   const selectedDepartments = getSelectedDepartmentsArray(checkedDepartments);
   const data = {
-    name: info.firstName + " " + info.lastName,
-    departments: selectedDepartments,
-    country: info.country,
-    email: info.email,
-    phone: info.phoneNumber,
-    link: info.socialLink,
-    degree: info.degree,
-    year: info.curricularYear,
-    message: info.motivation,
-    timestamp: timestamp,
+    name: info.firstName
+      ? info.firstName.trim() + " " + info.lastName.trim()
+      : "Joe Doe",
+    departments: selectedDepartments ? selectedDepartments : ["MM"],
+    country: info.country ? info.country : "Portugal",
+    email: info.email.trim(),
+    phone: info.phoneNumber ? info.phoneNumber : "",
+    link: info.socialLink ? info.socialLink.trim() : "",
+    degree: info.degree ? info.degree : "",
+    year: info.curricularYear ? info.curricularYear : 1,
+    message: info.motivation ? info.motivation : "",
+    timestamp: timestamp ? timestamp : 1,
   };
+  // console.log("FB data", data);
+  // console.log(activeTable, data);
+  // const datas = {
+  //   name: "dinis",
+  //   departments: { "0": "dc", "1": "es" },
+  //   country: "dinis",
+  //   email: "dinis",
+  //   phone: "dinis",
+  //   link: "dinis",
+  //   degree: "dinis",
+  //   year: "dinis",
+  //   message: "dinis",
+  //   timestamp: 123123,
+  // };
+  // "(!data.exists() && auth.uid != null) ||
+  //             							newData.hasChildren(['name', 'departments', 'country', 'email', 'phone', 'link', 'degree', 'year', 'message', 'timestamp']) &&
+  //             							newData.child('name').isString() &&
+  //                           newData.child('departments').val().length > 0 &&
+  //                           newData.child('country').isString() &&
+  //                           newData.child('email').isString() &&
+  //                           newData.child('phone').isString() &&
+  //                           newData.child('link').isString() &&
+  //                           newData.child('degree').isString() &&
+  //                           newData.child('year').isString() &&
+  //                           newData.child('message').isString() &&
+  //                           newData.child('number').isNumber()"
   return push(ref(db, `/public/recruitment/tables/${activeTable}`), data);
 };
 
@@ -166,6 +194,10 @@ const sendSubmissionToServer = async (
   const selectedDepartments = JSON.stringify(
     getSelectedDepartmentsArray(checkedDepartments)
   );
+  var myHeaders = new Headers();
+  // From postman, probably this isn't needed
+  myHeaders.append("Cookie", "BACKENDID=backend_1OPQ1_omega03|Yg7Jk|Yg7Jh");
+
   data.append("name", info.firstName + " " + info.lastName);
   data.append("email", info.email);
   data.append(
@@ -181,13 +213,17 @@ const sendSubmissionToServer = async (
   data.append("activeTable", activeTable);
   data.append("departments", selectedDepartments);
 
+  console.log("Ative table", activeTable);
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: data,
+  };
+
   try {
     const res = await fetch(
-      "https://tecnicosolarboat.tecnico.ulisboa.pt/php/submitApplication.php",
-      {
-        method: "POST",
-        body: data,
-      }
+      "https://tecnicosolarboat.tecnico.ulisboa.pt/api/submitApplication.php",
+      requestOptions
     );
     const resData = await res.json();
     console.log(resData);
@@ -204,7 +240,7 @@ const sendSubmissionToServer = async (
       showErrorMessage(resData.msg);
     }
   } catch (error) {
-    showErrorMessage(error as string);
+    showErrorMessage("An error as occurred, please reach out to us.");
     console.log(error);
   }
   setIsSubmitting(false);

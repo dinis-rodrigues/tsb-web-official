@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { IoLogoFacebook, IoLogoYoutube, IoLogoLinkedin } from "react-icons/io5";
+import {
+  IoLogoFacebook,
+  IoLogoYoutube,
+  IoLogoLinkedin,
+  IoLogoInstagram,
+} from "react-icons/io5";
 import CopyrightText from "./CopyrightText";
 import cx from "classnames";
 
@@ -37,11 +42,21 @@ const Footer = ({ hide, theme }: Props) => {
           </li>
           <li>
             <Link
-              href={"https://pt.linkedin.com/company/t%C3%A9cnico-solar-boat"}
+              href={"https://linkedin.com/company/t%C3%A9cnico-solar-boat"}
               passHref
             >
               <a target={"_blank"} className="ion-icon">
                 <IoLogoLinkedin />
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={"https://www.instagram.com/tecnico.solar.boat/"}
+              passHref
+            >
+              <a target={"_blank"} className="ion-icon">
+                <IoLogoInstagram />
               </a>
             </Link>
           </li>

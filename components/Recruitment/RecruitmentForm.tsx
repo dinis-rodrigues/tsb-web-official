@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import BottomWaves from "../Animations/BottomWaves";
 import GlowingStars from "../Animations/GlowingStars";
@@ -7,14 +7,28 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Departments, RecruitmentFormInfo } from "../../interfaces";
 import RecruitmentFormFields from "./RecruitmentFormFields";
+import { fullpageApi } from "@fullpage/react-fullpage";
 
 type Props = {
   departments: Departments;
   activeTable?: string;
+  fullPageApi: fullpageApi | undefined;
 };
-const RecruitmentForm = ({ departments, activeTable }: Props) => {
+const RecruitmentForm = ({ departments, activeTable, fullPageApi }: Props) => {
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
 
+  useEffect(() => {
+    // Rebuild fullpagejs since this is dynamic scrollable content
+    if (fullPageApi) {
+      fullPageApi.reBuild();
+    }
+  }, [fullPageApi, submissionSuccess]);
+
+  useEffect(() => {
+    if (submissionSuccess && fullPageApi) {
+      fullPageApi.reBuild();
+    }
+  }, [submissionSuccess]);
   const [info, setInfo] = useState<RecruitmentFormInfo>({
     firstName: "",
     lastName: "",
@@ -30,7 +44,7 @@ const RecruitmentForm = ({ departments, activeTable }: Props) => {
 
   return (
     <div
-      className="section"
+      className="section fp-auto-height-responsive"
       style={{
         backgroundColor: "black",
         fontSize: "small",
@@ -48,7 +62,10 @@ const RecruitmentForm = ({ departments, activeTable }: Props) => {
                   <h1 className="text-info index-header">
                     Application Submitted
                   </h1>
-                  <h2>Good Luck {info.firstName} !</h2>
+                  <h2>
+                    Good Luck{" "}
+                    <span className="text-info">{info.firstName}</span>!
+                  </h2>
                   <p>
                     You will receive a confirmation email at{" "}
                     <span className="contact-addr">{info.email}</span> with
@@ -66,6 +83,7 @@ const RecruitmentForm = ({ departments, activeTable }: Props) => {
                   departments={departments}
                   activeTable={activeTable}
                   setSubmissionSuccess={setSubmissionSuccess}
+                  fullPageApi={fullPageApi}
                 />
               )}
             </div>

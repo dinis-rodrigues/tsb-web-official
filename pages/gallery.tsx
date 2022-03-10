@@ -25,7 +25,6 @@ import {
 import Navbar from "../components/Navbar/Navbar";
 import { AllAlbumPhotos, GalleryItem } from "../interfaces";
 import GalleryHeader from "../components/Gallery/GalleryHeader";
-import FaviconIcons from "../components/Head/FaviconIcons";
 
 const Gallery: NextPage = () => {
   const [galleryInfo, setGalleryInfo] = useState<GalleryItem>();
@@ -58,7 +57,6 @@ const Gallery: NextPage = () => {
     <div className="App">
       <Head>
         <title>Gallery</title>
-        <FaviconIcons />
       </Head>
 
       <Controller>

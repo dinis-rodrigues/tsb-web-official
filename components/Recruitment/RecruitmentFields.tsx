@@ -7,7 +7,6 @@ import lgZoom from "lightgallery/plugins/zoom";
 import lgAutoplay from "lightgallery/plugins/autoplay";
 import lgFullscreen from "lightgallery/plugins/fullscreen";
 import lgRotate from "lightgallery/plugins/rotate";
-import lgShare from "lightgallery/plugins/share";
 
 const RecruitmentFields = () => {
   return (
@@ -16,14 +15,7 @@ const RecruitmentFields = () => {
       <LightGallery
         mode="lg-fade"
         speed={500}
-        plugins={[
-          lgThumbnail,
-          lgZoom,
-          lgAutoplay,
-          lgFullscreen,
-          lgRotate,
-          lgShare,
-        ]}
+        plugins={[lgThumbnail, lgZoom, lgAutoplay, lgFullscreen, lgRotate]}
         elementClassNames="row justify-content-center"
       >
         <a
