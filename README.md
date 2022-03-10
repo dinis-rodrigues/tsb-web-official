@@ -260,7 +260,7 @@ Dinis Rodrigues - [Linkedin](https://www.linkedin.com/in/dinis-rodrigues/) - din
 [issues-shield]: https://img.shields.io/github/issues/dinis-rodrigues/tsb-web-official.svg?style=for-the-badge
 [issues-url]: https://github.com/dinis-rodrigues/tsb-web-official/issues
 [license-shield]: https://img.shields.io/github/license/dinis-rodrigues/tsb-web-official?style=for-the-badge
-[license-url]: https://github.com/dinis-rodrigues/tsb-web-official/blob/master/LICENSE.txt
+[license-url]: https://github.com/dinis-rodrigues/tsb-web-official/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/dinis-rodrigues
 [product-screenshot]: public/assets/images/readMeImages/appScreen.png
