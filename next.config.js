@@ -1,17 +1,13 @@
 /** @type {import('next').NextConfig} */
 
-const DEVELOPMENT = 0;
-const PRODUCTION = 1;
-
-// Choose your environment
-const CURRENT_ENVIRONMENT = PRODUCTION;
-
 // Development and production export paths
 const developmentBasePathUrl = "";
-const productionBasePathUrl = "/~ist179089/projects/tsbOfficialDemo";
+// const productionBasePathUrl = "/~ist179089/projects/tsbOfficialDemo";
+const productionBasePathUrl = "";
 let basePathUrl = "";
 
-if (CURRENT_ENVIRONMENT === DEVELOPMENT) {
+if (process.env.NODE_ENV === "development") {
+  console.log(process.env.NODE_ENV);
   basePathUrl = developmentBasePathUrl;
 } else {
   basePathUrl = productionBasePathUrl;
