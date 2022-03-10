@@ -1,0 +1,112 @@
+name: CD
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events but only for the main branch
+  push:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  scanning:
+    name: GitGuardian scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # fetch all history so multiple commits can be scanned
+      - name: GitGuardian scan
+        uses: GitGuardian/ggshield-action@master
+        env:
+          GITHUB_PUSH_BEFORE_SHA: ${{ github.event.before }}
+          GITHUB_PUSH_BASE_SHA: ${{ github.event.base }}
+          GITHUB_PULL_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
+  # This workflow contains a single job called "build"
+  deploy:
+    name: Build and Deploy Application to Server
+    # Only deploy if security checks out
+    needs: scanning
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Setup NodeJs
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      # Install project packages and build project
+      - name: Install Packages
+        run: npm ci
+      # Add Firebase API keys to environment variables
+      - name: Add environment variables
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          envkey_NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+          envkey_NEXT_PUBLIC_FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
+          envkey_NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          envkey_NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
+          envkey_NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
+          envkey_NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+          envkey_NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
+          envkey_NEXT_PUBLIC_GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
+
+      - name: Build project
+        run: npm run build
+
+      - name: Package build
+        run: |
+          tar -czvf deploy.tar.gz -C out .
+          ls
+
+      - name: Send packaged build to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "deploy.tar.gz"
+          target: ${{ secrets.SERVER_ABSOLUTE_PATH }}
+
+      - name: Replace previous version and deploy new one
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script_stop: true
+          script: |
+            echo "Changing directory to server location"
+            cd ${{ secrets.SERVER_ABSOLUTE_PATH }}
+            echo "Moving old version to a temporary folder"
+            mkdir ../old_version
+            shopt -s dotglob
+            mv * ../old_version/
+            echo "Unzip new version to server location"
+            tar -xf ../old_version/deploy.tar.gz -C .
+            echo "Move exceptions back to server"
+            mv ../old_version/AssinaturaMail-NAO-APAGAR .
+            mv ../old_version/boatdata .
+            mv ../old_version/facebookTab .
+            mv ../old_version/horarios .
+            mv ../old_version/OpenSource .
+            mv ../old_version/protected .
+            mv ../old_version/terms_and_conditions.html .
+            mv ../old_version/privacy_policy.html .
+            echo "Removing old version"
+            rm -rf ../old_version
+            shopt -u dotglob
+            echo "Deployment Complete"

@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { IconType } from "react-icons";
 
 export interface NavTheme {
   color: 0 | 1 | "white" | "black";
@@ -185,4 +184,9 @@ export interface TooltipIconItems {
   suffix?: string;
   duration?: number;
   title?: string;
+}
+
+export interface FormResponse {
+  success: boolean;
+  msg: string;
 }

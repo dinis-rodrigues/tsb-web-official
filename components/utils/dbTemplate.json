@@ -1,0 +1,216 @@
+{
+  "private": {},
+  "public": {
+    "officialWebsite": {
+      "gallery": {
+        "galleryList": {
+          "-MuCzcrZSMFCjLybBrDl": {
+            "description": "",
+            "name": "Odisseia 2021",
+            "timestamp": 1643059767265
+          }
+        },
+        "galleryPhotos": {
+          "-MuCzcrZSMFCjLybBrDl": {
+            "-MuWq4R5v5mjCCmkjYdB": {
+              "createdAt": 1643392817189,
+              "description": "Odisseia 2021",
+              "imagePath": "https://tecnicosolarboat.tecnico.ulisboa.pt/public/../public/gallery/-MuCzcrZSMFCjLybBrDl/61f42f3046528.JPG",
+              "rzImgPath": "https://tecnicosolarboat.tecnico.ulisboa.pt/public/../public/gallery/-MuCzcrZSMFCjLybBrDl/thumb/cropped_61f42f3046528.JPG"
+            }
+          }
+        }
+      },
+      "openSource": {
+        "sm01": {
+          "buttonCount": {
+            "dcDownloadCount": 38,
+            "esDownloadCount": 34,
+            "hpDownloadCount": 28,
+            "likeCount": 767
+          }
+        }
+      },
+      "sponsors": {
+        "brackets": {
+          "Copper": {
+            "bottomMargin": 0,
+            "bracketSponsors": {
+              "-Mm-XeXPENDO6rmcd1m0": {
+                "name": "FormulaG",
+                "svgPath": "https://tecnicosolarboat.tecnico.ulisboa.pt/public/sponsorFiles/-Mm-XeXPENDO6rmcd1m0/-Mm-XeXPENDO6rmcd1m0.svg",
+                "url": "https://www.formulag.pt/"
+              }
+            },
+            "color": {
+              "hex": "#B87333",
+              "hsv": [29, 72, 72],
+              "rgba": [184, 115, 51, 1]
+            },
+            "name": "Copper",
+            "numColumns": 4,
+            "sponsorsBoardList": ["-Mm-XeXPENDO6rmcd1m0"],
+            "topMargin": 1000000000
+          },
+          "Gold": {
+            "bottomMargin": 0,
+            "bracketSponsors": {
+              "-Mm-XeWumKl6gPyS073B": {
+                "name": "TEi",
+                "svgPath": "https://tecnicosolarboat.tecnico.ulisboa.pt/public/sponsorFiles/-Mm-XeWumKl6gPyS073B/-Mm-XeWumKl6gPyS073B.svg",
+                "url": "https://www.teicomposite.com"
+              }
+            },
+            "color": {
+              "hex": "#FFD700",
+              "hsv": [51, 100, 100],
+              "rgba": [255, 215, 0, 1]
+            },
+            "name": "Gold",
+            "numColumns": 3,
+            "sponsorsBoardList": ["-Mm-XeWumKl6gPyS073B"],
+            "topMargin": 1000000000
+          },
+          "Institute": {
+            "bottomMargin": 0,
+            "bracketSponsors": {
+              "-Mm-XeXwHj58Uzv-9UBF": {
+                "name": "Tecnico Lisboa",
+                "svgPath": "https://tecnicosolarboat.tecnico.ulisboa.pt/public/sponsorFiles/-Mm-XeXwHj58Uzv-9UBF/-Mm-XeXwHj58Uzv-9UBF.svg",
+                "url": "https://tecnico.ulisboa.pt/"
+              }
+            },
+            "color": {
+              "hex": "#34c2fa",
+              "hsv": [197, 79, 98],
+              "rgba": [52, 194, 250, 1]
+            },
+            "name": "Institutional",
+            "numColumns": 3,
+            "sponsorsBoardList": ["-Mm-XeXwHj58Uzv-9UBF"],
+            "topMargin": -1
+          },
+          "Prime": {
+            "bottomMargin": 0,
+            "bracketSponsors": {
+              "-Mm-XeWlN4mc-RGaC7eI": {
+                "name": "Trimarine",
+                "svgPath": "https://tecnicosolarboat.tecnico.ulisboa.pt/public/sponsorFiles/-Mm-XeWlN4mc-RGaC7eI/-Mm-XeWlN4mc-RGaC7eI.svg",
+                "url": "https://www.trimarine.com"
+              }
+            },
+            "color": {
+              "hex": "#a82bcf",
+              "hsv": [286, 79, 81],
+              "rgba": [168, 43, 207, 1]
+            },
+            "name": "Prime",
+            "numColumns": 2,
+            "sponsorsBoardList": ["-Mm-XeWlN4mc-RGaC7eI"],
+            "topMargin": 1000000000
+          },
+          "Silver": {
+            "bottomMargin": 0,
+            "bracketSponsors": {
+              "-Mm-XeX-3MgS25dBXOw1": {
+                "name": "Xsens",
+                "svgPath": "https://tecnicosolarboat.tecnico.ulisboa.pt/public/sponsorFiles/-Mm-XeX-3MgS25dBXOw1/-Mm-XeX-3MgS25dBXOw1.svg",
+                "url": "https://www.xsens.com"
+              }
+            },
+            "color": {
+              "hex": "#C0C0C0",
+              "hsv": [0, 0, 75],
+              "rgba": [192, 192, 192, 1]
+            },
+            "name": "Silver",
+            "numColumns": 4,
+            "sponsorsBoardList": ["-Mm-XeX-3MgS25dBXOw1"],
+            "topMargin": 1000000000
+          }
+        },
+        "lastChange": 1646006722663
+      },
+      "team": {
+        "0J72QVmPugUCWJKeG3Zsppp5TZz2": {
+          "info": {
+            "birth": "01/01/1900",
+            "degree": "MEEC",
+            "department": "Electrical Systems",
+            "description": ".",
+            "email": "john.doe@tecnico.ulisboa.pt",
+            "inTeam": true,
+            "joinedIn": "01/01/1900",
+            "leftIn": "",
+            "linkedin": "https://www.linkedin.com/",
+            "name": "John Doe",
+            "position": "Motors",
+            "userName": "john-doe"
+          }
+        }
+      }
+    },
+    "recruitment": {
+      "activeTable": "RecrutaMAR22",
+      "openDepartments": {
+        "dc": {
+          "acronym": "dc",
+          "color": "#0052d1",
+          "description": "Design and Composites",
+          "gradientColor": "bg-arielle-smile",
+          "icon": "fa-anchor",
+          "positions": [
+            "Junior",
+            "CFD│CAD",
+            "Hydrostatics│CAD",
+            "Hull Design│Composites",
+            "Mechanical Testing│FEM│CAD",
+            "FEM│CAD",
+            "FEM│CAM│CNC│CAD",
+            "CAM│CNC│CAD",
+            "Hydrostatics│CAD│Ergonomics"
+          ]
+        },
+        "hp": {
+          "acronym": "hp",
+          "color": "#c471f5",
+          "description": "Hydrogen Fuel Cell",
+          "gradientColor": "bg-mixed-hopes",
+          "icon": "fa-atom",
+          "positions": [
+            "Balance of Plant",
+            "I&D Produção de Células",
+            "I&D Produção de Hidrogénio"
+          ]
+        },
+        "mm": {
+          "acronym": "mm",
+          "color": "#0ba360",
+          "description": "Management and Marketing",
+          "gradientColor": "bg-tempting-azure",
+          "icon": "fa-chart-line",
+          "positions": ["Management", "Marketing"]
+        },
+        "ms": {
+          "acronym": "ms",
+          "color": "#00D1BB",
+          "description": "Mechanical Systems",
+          "gradientColor": "bg-happy-itmeo",
+          "icon": "fa-cogs",
+          "positions": [
+            "Junior",
+            "Hydrofoils",
+            "CAD design",
+            "Transmission system engineer",
+            "Hydrofoil Control engineer",
+            "Prop Design engineer",
+            "Structural Analisys engineer"
+          ]
+        }
+      }
+    },
+    "scheduleWebsite": {
+      "visitCount": 16989
+    }
+  }
+}

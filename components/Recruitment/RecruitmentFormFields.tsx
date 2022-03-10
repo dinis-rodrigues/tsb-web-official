@@ -33,6 +33,7 @@ import {
   RecruitmentDepartmentsForm,
   RecruitmentFormInfo,
 } from "../../interfaces";
+import { fullpageApi } from "@fullpage/react-fullpage";
 
 type Props = {
   info: RecruitmentFormInfo;
@@ -40,6 +41,7 @@ type Props = {
   departments: Departments;
   activeTable?: string;
   setSubmissionSuccess: Dispatch<SetStateAction<boolean>>;
+  fullPageApi: fullpageApi | undefined;
 };
 
 const RecruitmentFormFields = ({
@@ -48,6 +50,7 @@ const RecruitmentFormFields = ({
   departments,
   activeTable,
   setSubmissionSuccess,
+  fullPageApi,
 }: Props) => {
   const [checkedDepartments, setCheckedDepartments] =
     useState<RecruitmentDepartmentsForm>({});
@@ -71,7 +74,7 @@ const RecruitmentFormFields = ({
         <div className="col-md-4">
           <div className="form-group">
             <label className="f-medium">First Name</label>
-            <span className="text-danger">*</span>
+            <span className="text-info"> *</span>
             <div
               className={cx("input-group-alternative input-group", {
                 "has-error": formErrors.includes("firstName"),
@@ -97,7 +100,7 @@ const RecruitmentFormFields = ({
         <div className="col-md-4">
           <div className="form-group">
             <label className="f-medium">Last Name</label>
-            <span className="text-danger">*</span>
+            <span className="text-info"> *</span>
             <div
               className={cx("input-group-alternative input-group", {
                 "has-error": formErrors.includes("lastName"),
@@ -172,7 +175,7 @@ const RecruitmentFormFields = ({
         <div className="col-md-6">
           <div className="form-group">
             <label className="f-medium">Email address</label>
-            <span className="text-danger">*</span>
+            <span className="text-info"> *</span>
             <div
               className={cx("input-group-alternative input-group", {
                 "has-error": formErrors.includes("email"),
@@ -197,7 +200,7 @@ const RecruitmentFormFields = ({
         <div className="col-md-6">
           <div className="form-group">
             <label className="f-medium">Confirm Email address</label>
-            <span className="text-danger">*</span>
+            <span className="text-info"> *</span>
             <div
               className={cx("input-group-alternative input-group", {
                 "has-error": formErrors.includes("confirmEmail"),
@@ -224,7 +227,7 @@ const RecruitmentFormFields = ({
         <div className="col-md-4">
           <div className="form-group">
             <label className="f-medium">Degree</label>
-            <span className="text-danger">*</span>
+            <span className="text-info"> *</span>
             <div
               className={cx("input-group-alternative input-group", {
                 "has-error": formErrors.includes("degree"),
@@ -258,7 +261,7 @@ const RecruitmentFormFields = ({
         <div className="col-md-4">
           <div className="form-group">
             <label className="f-medium">Curricular Year</label>
-            <span className="text-danger">*</span>
+            <span className="text-info"> *</span>
             <div
               className={cx("input-group-alternative input-group", {
                 "has-error": formErrors.includes("curricularYear"),
@@ -293,7 +296,7 @@ const RecruitmentFormFields = ({
         <div className="col-md-4">
           <div className="form-group">
             <label className="f-medium">Country</label>
-            <span className="text-danger">*</span>
+            <span className="text-info"> *</span>
             <div
               className={cx("input-group-alternative input-group z-inf", {
                 "has-error": formErrors.includes("country"),
@@ -370,7 +373,10 @@ const RecruitmentFormFields = ({
             value={info.motivation}
             minRows={2}
             maxRows={10}
-            onChange={(e) => handleTextInput(e, "motivation", setInfo)}
+            onChange={(e) => {
+              handleTextInput(e, "motivation", setInfo);
+              fullPageApi?.reBuild();
+            }}
             cacheMeasurements
             className="form-control-r-alternative form-control-r"
             placeholder="Why do you want to join our team? Which topics do you like most?"
@@ -380,8 +386,9 @@ const RecruitmentFormFields = ({
       <div className="justify-content-center row">
         <div className="col-md-6">
           <ReCAPTCHA
-            sitekey="6LevdbcUAAAAALvwOgwXD4_aw716oeIx3WtZOXcQ"
+            sitekey="6LfFgfMUAAAAAPJbnorz-skApqpdUkaMjTBJXRUb"
             onChange={(value) => setRecaptcha(value)}
+            theme={"dark"}
           />
         </div>
         <div
@@ -396,6 +403,7 @@ const RecruitmentFormFields = ({
             type="submit"
             className="btnd btnd-info"
             onClick={() =>
+              !isSubmitting &&
               onRecruitmentFormSubmit(
                 info,
                 checkedDepartments,

@@ -46,13 +46,13 @@ const HydrogenSection = ({ startCount = false }: Props) => {
     },
     {
       icon: <RiBattery2ChargeLine className="icon-lg" />,
-      tooltip: "Fuel Cell Energy",
+      tooltip: "Fuel Cell Power",
       tooltipTarget: "tooltip-9",
       counter: true,
       counterStart: 0,
       counterEnd: 5000,
       counterDelay: GROUP_ANIMATION_DURATION_INTERVAL * 4 - 0.2,
-      suffix: " Wh",
+      suffix: " W",
       duration: 2.4,
     },
   ];
@@ -92,7 +92,11 @@ const HydrogenSection = ({ startCount = false }: Props) => {
           <div className="col-lg-4 d-flex align-items-center justify-content-center">
             <div className="row ">
               {tooltipItems.map((item, index) => (
-                <div className="col-md" key={index} style={stylesGroup[index]!}>
+                <div
+                  className="col-6 col-md"
+                  key={index}
+                  style={stylesGroup[index]!}
+                >
                   <div className="item-card p-3" id={item.tooltipTarget}>
                     <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                       {item.icon}
@@ -149,7 +153,7 @@ const HydrogenSection = ({ startCount = false }: Props) => {
             <p className="f-medium text-white">
               In 2020 we won the innovation prize from Monaco Solar and Energy
               Boat Challenge for our hydrogen setup, and in 2021 our first
-              catamaran prototype was completed featuring a 5 kWh fuel cell with
+              catamaran prototype was completed featuring a 5 kW fuel cell with
               flax fibre cabin.
             </p>
           </div>

@@ -64,6 +64,7 @@ const coursesOptions = [
       { value: "LEIC-A", label: "LEIC-A" },
       { value: "LEIC-T", label: "LEIC-T" },
       { value: "LEMat", label: "LEMat" },
+      { value: "LEMec", label: "LEMec" },
       { value: "LEGM", label: "LEGM" },
       { value: "LENO", label: "LENO" },
       { value: "LEQ", label: "LEQ" },

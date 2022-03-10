@@ -380,7 +380,10 @@ const handleTextInput = (
   key: string,
   setInfo: Dispatch<SetStateAction<RecruitmentFormInfo>>
 ) => {
-  const value = e.target.value;
+  let value = e.target.value;
+  if (key === "email" || key === "confirmEmail") {
+    value = value.trim();
+  }
   setInfo((info: RecruitmentFormInfo) => ({ ...info, [key]: value }));
 };
 
