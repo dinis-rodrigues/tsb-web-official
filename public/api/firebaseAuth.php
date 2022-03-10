@@ -11,8 +11,11 @@ class FirebaseAuth
 		try {
 			// Firebase configuration file is in a protected folder, should never be
 			// public :)
-			$factory = (new Factory)->withServiceAccount('../protected/firebaseJson.json');
-			$database = $factory->createDatabase();
+			$factory = (new \Firebase\Factory())
+				->withCredentials('../protected/firebaseJson.json')
+				->withDatabaseUri('https://tsb-aplication.firebaseio.com')
+				->create();
+			$database = $factory->getDatabase();
 			$reference = $database->getReference('private/usersMetadata/' . $id . "/pinfo/uid");
 
 			$snapshot = $reference->getSnapshot();
