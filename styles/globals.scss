@@ -1570,6 +1570,18 @@ textarea.form-control {
   transition: all 0.15s;
 }
 
+.form-control-subscribe:focus {
+  border-color: #16aaff;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #ccc;
+  background-color: transparent;
+  outline: none !important;
+  border-color: none;
+  outline: 0;
+}
+
 .contact-addr {
   color: #ccc;
   transition: all 0.2s ease-in;
@@ -2115,7 +2127,7 @@ textarea.form-control {
 
 @font-face {
   font-family: Gobold;
-  src: url(/~ist179089/projects/tsbOfficialDemo/assets/fonts/Gobold/Gobold-Regular.otf);
+  src: url(/assets/fonts/Gobold/Gobold-Regular.otf);
 }
 
 // /~ist179089/projects/tsbOfficialDemo
@@ -2567,6 +2579,38 @@ textarea.form-control {
   height: 10vh;
 }
 
+@media only screen and (max-device-width: 480px) {
+  .sponsor-height-0 {
+    height: 5vh !important;
+  }
+  .sponsor-height-1 {
+    height: 5vh !important;
+  }
+
+  .sponsor-height-2 {
+    height: 5vh !important;
+  }
+
+  .sponsor-height-3 {
+    height: 5vh !important;
+  }
+
+  .sponsor-height-4 {
+    height: 5vh !important;
+  }
+
+  .sponsor-height-5 {
+    height: 5vh !important;
+  }
+
+  .sponsor-height-6 {
+    height: 5vh !important;
+  }
+}
+
+.sponsor-height-0 {
+  height: 25vh;
+}
 .sponsor-height-1 {
   height: 20vh;
 }
@@ -2593,6 +2637,20 @@ textarea.form-control {
 
 .sponsor-divider {
   height: 3px !important;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .mobile-top-margin {
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+  }
+
+  .contact-margin {
+    margin-top: 2rem !important;
+  }
+}
+.contact-margin {
+  margin-top: 10rem;
 }
 
 /* Gallery */
@@ -3479,13 +3537,13 @@ textarea.form-control {
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label:before {
-  border-color: #5e72e4;
+  border-color: $color-info;
 }
 
 .custom-control-input:checked ~ .custom-control-label:before {
   color: #fff;
-  border-color: #5e72e4;
-  background-color: #5e72e4;
+  border-color: $color-info;
+  background-color: $color-info;
   box-shadow: none;
 }
 
@@ -3556,8 +3614,9 @@ textarea.form-control {
   content: "";
 }
 
+// /~ist179089/projects/tsbOfficialDemo
 .stars {
-  background: url("/~ist179089/projects/tsbOfficialDemo/assets/images/textures/overlay_stars.svg");
+  background: url("/assets/images/textures/overlay_stars.svg");
   background-repeat: repeat;
   background-size: contain;
   background-position: left top;
