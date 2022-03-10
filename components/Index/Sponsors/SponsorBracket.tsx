@@ -11,7 +11,7 @@ const SponsorBracket = ({ bracket, bracketNum }: Props) => {
   const bracketSponsors = bracket.bracketSponsors;
   return (
     <Fragment>
-      <div className="text-black">
+      <div className="text-black mt-3">
         <h5 className="text-uppercase m-0">{bracket.name}</h5>
         <hr
           className={"sponsor-divider mt-1"}

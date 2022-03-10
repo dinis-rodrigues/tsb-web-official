@@ -2,7 +2,6 @@ import ReactFullpage, { fullpageApi } from "@fullpage/react-fullpage";
 import Head from "next/head";
 import React, { Fragment, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
-import FaviconIcons from "../components/Head/FaviconIcons";
 import Navbar from "../components/Navbar/Navbar";
 import RecruitmentClosed from "../components/Recruitment/RecruitmentClosed";
 import RecruitmentDepartments from "../components/Recruitment/RecruitmentDepartments";
@@ -25,19 +24,12 @@ const Recruitment = () => {
   useEffect(() => {
     getRecruitmentTable(setActiveTable);
     getRecruitmentInfo(setOpenDepartments);
-    // if (Object.entries(openDepartments).length > 0 && fullPageApi) {
-    //   setTimeout(function () {
-    //     fullPageApi.reBuild();
-    //     console.log("rebuild");
-    //   }, 1000);
-    // }
   }, []);
 
   return (
     <div className="App">
       <Head>
         <title>Recruitment</title>
-        <FaviconIcons />
       </Head>
 
       <Navbar
@@ -59,8 +51,11 @@ const Recruitment = () => {
           onLeave={(origin, destination) => {
             setNavTheme(navRecruitmentTheme[destination.index]); // This throws a warning, don't care
           }}
-          render={({ fullpageApi }) => {
-            if (!fullPageApi) setFullPageApi(fullpageApi);
+          afterRender={() => {
+            // @ts-ignore
+            setFullPageApi(window.fullpage_api!);
+          }}
+          render={() => {
             return (
               <ReactFullpage.Wrapper>
                 <RecruitmentHeader />
@@ -71,6 +66,7 @@ const Recruitment = () => {
                     <RecruitmentForm
                       departments={openDepartments}
                       activeTable={activeTable}
+                      fullPageApi={fullPageApi}
                     />
                   </Fragment>
                 ) : (

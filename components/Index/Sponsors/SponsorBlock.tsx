@@ -24,6 +24,7 @@ const SponsorBlock = ({ svgPath, url, numColumns, currBracketNum }: Props) => {
       target="_blank"
       rel="noreferrer"
       className={cx("d-flex align-items-center justify-content-center pt-3", {
+        "sponsor-height-0": currBracketNum === 0,
         "sponsor-height-1": currBracketNum === 1,
         "sponsor-height-2": currBracketNum === 2,
         "sponsor-height-3": currBracketNum === 3,

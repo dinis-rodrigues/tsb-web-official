@@ -4,14 +4,12 @@ import Link from "next/link";
 import BottomWaves from "../components/Animations/BottomWaves";
 import GlowingStars from "../components/Animations/GlowingStars";
 import Universe from "../components/Animations/Universe";
-import FaviconIcons from "../components/Head/FaviconIcons";
 
 const Custom404 = () => {
   return (
     <div className="App">
       <Head>
         <title>Page not Found</title>
-        <FaviconIcons />
       </Head>
 
       <ReactFullpage

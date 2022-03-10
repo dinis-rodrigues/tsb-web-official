@@ -25,6 +25,8 @@ const getGalleryPhotos = (
   setGalleryPhotos: Dispatch<SetStateAction<AllAlbumPhotos>>
 ) => {
   if (!newActiveGallery) return;
+  // set new gallery info
+  setGalleryInfo(getCorrespondingGalleryInfo(newActiveGallery, galleryList));
   if (galleryPhotos[newActiveGallery]) return;
   get(
     child(
@@ -36,9 +38,6 @@ const getGalleryPhotos = (
     if (!allPhotos) return;
     // get all photos of album
     setGalleryPhotos({ ...galleryPhotos, [newActiveGallery]: allPhotos });
-
-    // set new gallery info
-    setGalleryInfo(getCorrespondingGalleryInfo(newActiveGallery, galleryList));
   });
 };
 

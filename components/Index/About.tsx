@@ -66,7 +66,7 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
         ></div>
       </div>
       <div className="container">
-        <div className="mt-2 row">
+        <div className="mobile-top-margin row">
           <div className="text-center justify-content-center row">
             <div className="col-lg-10 z-inf">
               <h4 className="index-header f-700 text-white">ABOUT US</h4>

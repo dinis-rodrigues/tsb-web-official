@@ -2,8 +2,9 @@ import type { NextPage } from "next";
 import Head from "next/head";
 
 import ReactFullpage, { fullpageApi } from "@fullpage/react-fullpage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
+import { ToastContainer } from "react-toastify";
 
 import CoverSection from "../components/Index/CoverSection";
 import About from "../components/Index/About";
@@ -13,9 +14,9 @@ import AutonomousSection from "../components/Index/AutonomousSection";
 import Team from "../components/Index/Team";
 import DynamicSponsors from "../components/Index/DynamicSponsors";
 import Contact from "../components/Index/Contact";
-import FaviconIcons from "../components/Head/FaviconIcons";
 import { navIndexTheme } from "../components/utils/constants";
-import { NavTheme } from "../interfaces";
+import { NavTheme, SponsorBracketPublic } from "../interfaces";
+import { getSponsorsFromDatabase } from "../components/utils/sponsorUtils";
 
 const Home: NextPage = () => {
   const anchors = [
@@ -35,11 +36,18 @@ const Home: NextPage = () => {
   const [playVideo, setPlayVideo] = useState(false);
   const [fullPageApi, setFullPageApi] = useState<fullpageApi>();
 
-  return (
+  const [sponsorBrackets, setSponsorBrackets] = useState<
+    [string, SponsorBracketPublic][]
+  >([]);
+
+  useEffect(() => {
+    getSponsorsFromDatabase(setSponsorBrackets);
+  }, []);
+
+  return sponsorBrackets.length > 0 ? (
     <div className="App">
       <Head>
         <title>Técnico Solar Boat</title>
-        <FaviconIcons />
       </Head>
       <Navbar
         theme={navTheme.color}
@@ -76,8 +84,11 @@ const Home: NextPage = () => {
           "Sponsors",
           "Contact",
         ]}
+        afterRender={() => {
+          // @ts-ignore
+          setFullPageApi(window.fullpage_api!);
+        }}
         render={({ fullpageApi }) => {
-          if (!fullPageApi) setFullPageApi(fullpageApi);
           return (
             <ReactFullpage.Wrapper>
               <CoverSection />
@@ -85,15 +96,19 @@ const Home: NextPage = () => {
               <SolarSection startCount={solarCount} />
               <HydrogenSection startCount={hydrogenCount} />
               <AutonomousSection playVideo={playVideo} />
-              <Team onBottomScroll={() => fullPageApi!.moveTo("sponsors", 0)} />
-              <DynamicSponsors fullPageApi={fullPageApi} />
+              <Team onBottomScroll={() => fullpageApi!.moveTo("sponsors", 0)} />
+              <DynamicSponsors
+                sponsorBrackets={sponsorBrackets}
+                fullPageApi={fullPageApi}
+              />
               <Contact />
             </ReactFullpage.Wrapper>
           );
         }}
       />
+      <ToastContainer theme="dark" />
     </div>
-  );
+  ) : null;
 };
 
 export default Home;
