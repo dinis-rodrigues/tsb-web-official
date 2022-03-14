@@ -229,18 +229,23 @@ const sendSubmissionToServer = async (
     console.log(resData);
     if (resData.success) {
       // Send data to firebase database
-      const result = await senUserToDb(info, checkedDepartments, activeTable);
-      if (result) {
-        showSuccessMessage();
-        setSubmissionSuccess(true);
-      } else {
-        showErrorMessage(resData.msg);
-      }
-    } else {
-      showErrorMessage(resData.msg);
+      senUserToDb(info, checkedDepartments, activeTable)
+        .then(() => {
+          showSuccessMessage();
+          setSubmissionSuccess(true);
+        })
+        .catch((err) => {
+          showErrorMessage(err.message);
+        });
     }
   } catch (error) {
-    showErrorMessage("An error as occurred, please reach out to us.");
+    if (info.email === "guilherme@rothbarth.com.br") {
+      // @ts-ignore
+      showErrorMessage(error.message);
+    } else {
+      showErrorMessage("An error as occurred, please reach out to us.");
+    }
+
     console.log(error);
   }
   setIsSubmitting(false);
