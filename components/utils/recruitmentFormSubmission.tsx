@@ -5,7 +5,7 @@ import {
   RecruitmentFormInfo,
 } from "../../interfaces";
 import { db } from "../Contexts/Firebase";
-import { ref, push } from "@firebase/database";
+import { ref, push, remove } from "@firebase/database";
 
 const errorMessages: { [key: string]: string } = {
   firstName: "Please enter your first name",
@@ -220,35 +220,37 @@ const sendSubmissionToServer = async (
     body: data,
   };
 
-  try {
-    const res = await fetch(
-      "https://tecnicosolarboat.tecnico.ulisboa.pt/api/submitApplication.php",
-      requestOptions
-    );
-    const resData = await res.json();
-    console.log(resData);
-    if (resData.success) {
-      // Send data to firebase database
-      senUserToDb(info, checkedDepartments, activeTable)
-        .then(() => {
+  // Send data to firebase database
+  senUserToDb(info, checkedDepartments, activeTable)
+    .then(async (ref) => {
+      try {
+        // Send email after firebase entry
+        const res = await fetch(
+          "https://tecnicosolarboat.tecnico.ulisboa.pt/api/submitApplication.php",
+          requestOptions
+        );
+        const resData = await res.json();
+        console.log(resData);
+        if (resData.success) {
           showSuccessMessage();
           setSubmissionSuccess(true);
-        })
-        .catch((err) => {
-          showErrorMessage(err.message);
-        });
-    }
-  } catch (error) {
-    if (info.email === "guilherme@rothbarth.com.br") {
-      // @ts-ignore
-      showErrorMessage(error.message);
-    } else {
-      showErrorMessage("An error as occurred, please reach out to us.");
-    }
-
-    console.log(error);
-  }
-  setIsSubmitting(false);
+        }
+      } catch (error) {
+        // remove entry from firebase, if email was not successfully sent
+        showErrorMessage(
+          "An error internal error has occurred, please reach out to us."
+        );
+        remove(ref);
+        setIsSubmitting(false);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      showErrorMessage(
+        "An error has occurred with your application, please reach out to us."
+      );
+      setIsSubmitting(false);
+    });
 };
 
 const onRecruitmentFormSubmit = (

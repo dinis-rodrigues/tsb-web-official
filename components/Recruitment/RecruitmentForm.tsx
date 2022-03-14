@@ -28,7 +28,7 @@ const RecruitmentForm = ({ departments, activeTable, fullPageApi }: Props) => {
     if (submissionSuccess && fullPageApi) {
       fullPageApi.reBuild();
     }
-  }, [submissionSuccess]);
+  }, [submissionSuccess]); // eslint-disable-line
   const [info, setInfo] = useState<RecruitmentFormInfo>({
     firstName: "",
     lastName: "",

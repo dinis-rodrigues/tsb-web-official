@@ -2,7 +2,6 @@ import { fullpageApi } from "@fullpage/react-fullpage";
 import { useEffect } from "react";
 import { SponsorBracketPublic } from "../../interfaces";
 
-import { getSponsorsFromDatabase } from "../utils/sponsorUtils";
 import SponsorBracket from "./Sponsors/SponsorBracket";
 // import { sponsorOrder } from "../Images/sponsorObj";
 
