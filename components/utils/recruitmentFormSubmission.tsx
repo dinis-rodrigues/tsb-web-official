@@ -241,6 +241,7 @@ const sendSubmissionToServer = async (
           "An error internal error has occurred, please reach out to us."
         );
         remove(ref);
+        setIsSubmitting(false);
       }
     })
     .catch((error) => {
@@ -248,9 +249,8 @@ const sendSubmissionToServer = async (
       showErrorMessage(
         "An error has occurred with your application, please reach out to us."
       );
+      setIsSubmitting(false);
     });
-
-  setIsSubmitting(false);
 };
 
 const onRecruitmentFormSubmit = (
