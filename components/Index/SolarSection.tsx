@@ -95,7 +95,7 @@ const SolarSection = ({ startCount = false }: Props) => {
 
   return (
     <div
-      className="section fp-noscroll fp-auto-height-responsive"
+      className="section fp-noscroll"
       style={{
         backgroundColor: "black",
         fontSize: "small",
