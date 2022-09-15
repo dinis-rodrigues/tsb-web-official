@@ -25,7 +25,6 @@ const errorMessages: { [key: string]: string } = {
 
 const validateInfo = (info: RecruitmentFormInfo) => {
   let errors = [];
-  console.log(info.phoneNumber);
   if (!info.firstName) errors.push("firstName");
   if (!info.lastName) errors.push("lastName");
   // if (info.phoneNumber || info.phoneNumber.length < 9)
@@ -213,7 +212,7 @@ const sendSubmissionToServer = async (
   data.append("activeTable", activeTable);
   data.append("departments", selectedDepartments);
 
-  console.log("Ative table", activeTable);
+  // console.log("Ative table", activeTable);
   var requestOptions = {
     method: "POST",
     headers: myHeaders,

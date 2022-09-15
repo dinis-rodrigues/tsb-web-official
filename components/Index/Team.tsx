@@ -33,7 +33,6 @@ const Team = ({ onBottomScroll }: Props) => {
       const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
       if (scrollTop + clientHeight === scrollHeight) {
         // TO SOMETHING HERE
-        console.log("Reached bottom");
         onBottomScroll();
       }
     }
