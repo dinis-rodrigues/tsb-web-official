@@ -32,10 +32,10 @@ const Member = ({ userInfo, userId }: Props) => {
         responsiveWidth={1250}
         verticalCentered
         onLeave={(origin, destination, direction) => {
-          console.log("onLeave", { origin, destination, direction });
+          // console.log("onLeave", { origin, destination, direction });
         }}
         afterReBuild={() => {
-          console.log("Rebuilted....");
+          // console.log("Rebuilted....");
         }}
         render={() => {
           return (
