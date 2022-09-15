@@ -238,7 +238,7 @@ const sendSubmissionToServer = async (
       } catch (error) {
         // remove entry from firebase, if email was not successfully sent
         showErrorMessage(
-          "An error internal error has occurred, please reach out to us."
+          "An internal error has occurred, please reach out to us."
         );
         remove(ref);
         setIsSubmitting(false);
