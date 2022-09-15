@@ -287,7 +287,7 @@ const replaceSVGWidthAndHeight = (s: string, toReplace: string) => {
  * @param s
  * @returns
  */
-const getStringMatches = (s: string, expr: string) => {
+const getStringMatches = (s: string, expr = "linear") => {
   // Find all linear gradients indexes in svg string
 
   let regexp = /<linearGradient id=/g;
@@ -305,6 +305,37 @@ const getStringMatches = (s: string, expr: string) => {
 /**
  * Replaces all linear gradients id, with a unique identifier, so that all id's among
  * all svgs are unique and different, otherwise the colors will get mixed
+ * @param s
+ * @returns
+ */
+const replaceClsClasses = (s: string, toFind: string) => {
+  // replace all occurrences
+  s = s.replaceAll(toFind, "class-" + uuid());
+
+  return s;
+};
+
+/**
+ * Cleans the svg string
+ * @param s
+ * @returns
+ */
+const cleanSvgString = (s: string) => {
+  s = replaceSVGWidthAndHeight(s, `width="`);
+  s = replaceSVGWidthAndHeight(s, `height="`);
+  s = replaceLinearGradients(s, `<linearGradient id="`);
+  s = replaceLinearGradients(s, `<image id="`, "image");
+  s = replaceLinearGradients(s, `<pattern id="`, "pattern");
+  for (let i = 0; i < 10; i++) {
+    s = replaceClsClasses(s, `cls-${i}`);
+  }
+  s = replaceClsClasses(s, `cls`);
+
+  return s;
+};
+
+/**
+ * Replaces all cls default class names with unique identifiers
  * @param s
  * @returns
  */
@@ -530,4 +561,6 @@ export {
   getUserProfileLink,
   imageLoader,
   getFooterTheme,
+  replaceClsClasses,
+  cleanSvgString,
 };

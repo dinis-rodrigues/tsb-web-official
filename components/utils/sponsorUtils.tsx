@@ -2,10 +2,7 @@ import { get, ref } from "@firebase/database";
 import { Dispatch, SetStateAction } from "react";
 import { SponsorBracketPublic, SponsorBracketsPublic } from "../../interfaces";
 import { db } from "../Contexts/Firebase";
-import {
-  replaceLinearGradients,
-  replaceSVGWidthAndHeight,
-} from "./generalFunctions";
+import { cleanSvgString } from "./generalFunctions";
 
 /**
  * Retrieves and builds an svg string from existing svg url on server
@@ -31,11 +28,7 @@ const getSvgStringFromPath = async (
     .then(async (response) => ({ ok: response.ok, txt: await response.text() }))
     .then((result) => {
       if (result.ok) {
-        let s = replaceSVGWidthAndHeight(result.txt, `width="`);
-        s = replaceSVGWidthAndHeight(s, `height="`);
-        s = replaceLinearGradients(s, `<linearGradient id="`);
-        s = replaceLinearGradients(s, `<image id="`, "image");
-        s = replaceLinearGradients(s, `<pattern id="`, "pattern");
+        let s = cleanSvgString(result.txt);
         setSvgString(s);
       } else {
         setSvgString(" ");

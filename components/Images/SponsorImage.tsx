@@ -1,6 +1,7 @@
 import parse from "html-react-parser";
 import cx from "classnames";
 import {
+  replaceClsClasses,
   replaceLinearGradients,
   replaceSVGWidthAndHeight,
 } from "../utils/generalFunctions";
@@ -17,6 +18,12 @@ const SponsorImage = ({ svgString, level }: Props) => {
   svgString = replaceLinearGradients(svgString, `<linearGradient id="`);
   svgString = replaceLinearGradients(svgString, `<image id="`, "image");
   svgString = replaceLinearGradients(svgString, `<pattern id="`, "pattern");
+  console.log(svgString);
+  for (let i = 0; i < 10; i++) {
+    svgString = replaceClsClasses(svgString, `cls-${i}`);
+  }
+  svgString = replaceClsClasses(svgString, `cls`);
+
   return (
     <div
       className={cx({
