@@ -114,7 +114,6 @@ jobs:
             mv ../old_version/terms_and_conditions.html .
             mv ../old_version/privacy_policy.html .
             mv ../old_version/public .
-            mv ../old_version/.htaccess .
             echo "Removing old version"
             rm -rf ../old_version
             shopt -u dotglob
