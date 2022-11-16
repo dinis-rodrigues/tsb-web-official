@@ -68,8 +68,8 @@ const MlCharts = ({
               {trainLoss && (
                 <Tooltip
                   formatter={(value: number, name: string) => {
-                    if (value) return [value.toFixed(3), name];
-                    return [""];
+                    if (value) return [parseFloat(value.toFixed(3)), name];
+                    return [0, ""];
                   }}
                   allowEscapeViewBox={{ x: true, y: true }}
                   labelClassName={"d-none"}
@@ -130,8 +130,8 @@ const MlCharts = ({
               {trainAcc && (
                 <Tooltip
                   formatter={(value: number, name: string) => {
-                    if (value) return [value.toFixed(3), name];
-                    return [""];
+                    if (value) return [parseFloat(value.toFixed(3)), name];
+                    return [0, ""];
                   }}
                   allowEscapeViewBox={{ x: false, y: true }}
                   labelClassName={"d-none"}
