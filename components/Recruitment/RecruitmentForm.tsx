@@ -69,11 +69,14 @@ const RecruitmentForm = ({ departments, activeTable, fullPageApi }: Props) => {
                   <p>
                     You will receive a confirmation email at{" "}
                     <span className="contact-addr">{info.email}</span> with
-                    further information on the process. If you don&apos;t
-                    receive it please contact us at{" "}
-                    <span className="contact-addr">
-                      tecnico.solarboat@gmail.com
-                    </span>
+                    further information on the process.
+                    <p>Please check your spam folder.</p>
+                    <p>
+                      If you don&apos;t receive it please contact us at{" "}
+                      <span className="contact-addr">
+                        tecnico.solarboat@gmail.com
+                      </span>
+                    </p>
                   </p>
                 </Fragment>
               ) : (
