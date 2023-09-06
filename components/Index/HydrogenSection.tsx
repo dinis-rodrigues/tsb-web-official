@@ -81,7 +81,7 @@ const HydrogenSection = ({ startCount = false }: Props) => {
         <div
           className={cx("section-bg", { active: startCount })}
           style={{
-            backgroundImage: `radial-gradient(transparent, black),url("${process.env.BASE_PATH}/assets/images/index/about/hp2.jpg")`,
+            backgroundImage: `radial-gradient(transparent, black),url("${process.env.BASE_PATH}/assets/images/index/about/SM01_2023.jpg")`,
             opacity: "0.7",
             // backgroundPosition: "center 10%",
           }}
@@ -154,7 +154,8 @@ const HydrogenSection = ({ startCount = false }: Props) => {
               In 2020 we won the innovation prize from Monaco Solar and Energy
               Boat Challenge for our hydrogen setup, and in 2021 our first
               catamaran prototype was completed featuring a 5 kW fuel cell with
-              flax fibre cabin.
+              flax fibre cabin. In 2022, we were awarded the Innovation Prize at
+              Monaco Energy Boat Challenge for our improvements to the hydrogen systems.
             </p>
           </div>
         </div>

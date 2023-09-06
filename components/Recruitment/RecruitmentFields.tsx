@@ -20,33 +20,33 @@ const RecruitmentFields = () => {
       >
         <a
           className="col-4 m-0 p-0 pb-2"
-          href={`${process.env.BASE_PATH}/assets/images/recruitment/DC.jpeg`}
+          href={`${process.env.BASE_PATH}/assets/images/recruitment/DC2023_1sem.jpg`}
         >
           <div className="field cursor-pointer">
             <img
-              src={`${process.env.BASE_PATH}/assets/images/recruitment/DC.jpeg`}
+              src={`${process.env.BASE_PATH}/assets/images/recruitment/DC2023_1sem.jpg`}
               alt=""
             />
           </div>
         </a>
         <a
           className="col-4 m-0 p-0 pb-2"
-          href={`${process.env.BASE_PATH}/assets/images/recruitment/MM.jpeg`}
+          href={`${process.env.BASE_PATH}/assets/images/recruitment/MM2023_1sem.jpg`}
         >
           <div className="field cursor-pointer">
             <img
-              src={`${process.env.BASE_PATH}/assets/images/recruitment/MM.jpeg`}
+              src={`${process.env.BASE_PATH}/assets/images/recruitment/MM2023_1sem.jpg`}
               alt=""
             />
           </div>
         </a>
         <a
           className="col-4 m-0 p-0 pb-2"
-          href={`${process.env.BASE_PATH}/assets/images/recruitment/SE.jpeg`}
+          href={`${process.env.BASE_PATH}/assets/images/recruitment/SE2023_1sem.jpg`}
         >
           <div className="field cursor-pointer">
             <img
-              src={`${process.env.BASE_PATH}/assets/images/recruitment/SE.jpeg`}
+              src={`${process.env.BASE_PATH}/assets/images/recruitment/SE2023_1sem.jpg`}
               alt=""
             />
           </div>
