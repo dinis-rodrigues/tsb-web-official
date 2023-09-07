@@ -2,8 +2,13 @@ import React from "react";
 import RecruitmentFaq from "./RecruitmentFaq";
 import RecruitmentFields from "./RecruitmentFields";
 import GlowingStars from "../Animations/GlowingStars";
+import { Departments } from "../../interfaces";
 
-const RecruitmentDepartments = () => {
+interface Props {
+  openDepartments: Departments;
+}
+
+const RecruitmentDepartments = ({ openDepartments }: Props) => {
   return (
     <div
       className="section fp-noscroll"
@@ -15,7 +20,7 @@ const RecruitmentDepartments = () => {
       <div className="container">
         <div className="row ">
           <div className="col d-flex align-items-center justify-content-center z-inf">
-            <RecruitmentFields />
+            <RecruitmentFields openDepartments={openDepartments} />
           </div>
           <div className="col d-flex align-items-center justify-content-center z-inf">
             <RecruitmentFaq />

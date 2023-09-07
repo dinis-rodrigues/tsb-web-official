@@ -62,7 +62,7 @@ const Recruitment = () => {
                 <RecruitmentIntro />
                 {activeTable ? (
                   <Fragment>
-                    <RecruitmentDepartments />
+                    <RecruitmentDepartments openDepartments={openDepartments} />
                     <RecruitmentForm
                       departments={openDepartments}
                       activeTable={activeTable}
