@@ -40,7 +40,7 @@ const SolarSection = ({ startCount = false }: Props) => {
       tooltipTarget: "tooltip-2",
       counter: true,
       counterStart: 10,
-      counterEnd: 30,
+      counterEnd: 40,
       counterDelay: GROUP_ANIMATION_DURATION_INTERVAL * 1 - 0.2,
       suffix: " km/h",
       duration: 2.1,
@@ -73,7 +73,7 @@ const SolarSection = ({ startCount = false }: Props) => {
       tooltipTarget: "tooltip-5",
       counter: true,
       counterStart: 1000,
-      counterEnd: 15000,
+      counterEnd: 10000,
       counterDelay: GROUP_ANIMATION_DURATION_INTERVAL * 4 - 0.2,
       suffix: " W",
       duration: 3,
@@ -123,8 +123,8 @@ const SolarSection = ({ startCount = false }: Props) => {
                 they wanted to do more within the Naval engineering degree.
               </p>
               <p>
-                Already counting on three built prototypes: SR 01, SR 02 and SR
-                03 with which we participated in five years of international
+                Already counting on three built prototypes: SR01, SR02 and SR03 
+                with which we participated in five years of international 
                 competitions.
               </p>{" "}
               <p>
@@ -133,10 +133,10 @@ const SolarSection = ({ startCount = false }: Props) => {
                 Monaco Solar and Energy Boat Challenge.
               </p>
               <p>
-                Our latest, SR 03 features a uniquely designed dual motor system
-                and three autonomous controlled hydrofoils. It&apos;s designed
-                for fast and smooth cruising both at open sea and river like
-                environments.
+                Our latest, SR03, features three autonomous controlled hydrofoils.
+                It&apos;s designed for fast and smooth cruising both at open sea 
+                and still water environments. In 2022, SR03 finished 3rd in the Solar 
+                class at Monaco Energy Boat Challenge.
               </p>
             </div>
           </div>

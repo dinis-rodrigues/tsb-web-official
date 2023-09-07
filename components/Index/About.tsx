@@ -34,13 +34,13 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
         <div
           className={cx("section-bg", { active: activeDep === "es" })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/es3.jpg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/es2023.jpg")`,
           }}
         ></div>
         <div
           className={cx("section-bg", { active: activeDep === "ms" })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/ms2.jpg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/ms2023.jpg")`,
           }}
         ></div>
         <div
@@ -49,19 +49,19 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
             "zoom-eff": initialZoom === "dc",
           })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/dc.jpg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/dc2023.jpg")`,
           }}
         ></div>
         <div
           className={cx("section-bg", { active: activeDep === "mm" })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/mm3.jpg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/mm2023.jpg")`,
           }}
         ></div>
         <div
           className={cx("section-bg", { active: activeDep === "hp" })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/hp.jpg")`,
+            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/hp2023.jpg")`,
           }}
         ></div>
       </div>
@@ -144,7 +144,7 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
                 Management and Marketing
               </h5>
               <p className="department-description mt-2 text-shadow">
-                Business endeavors Resource acquisition and allocation. Business
+                Business endeavors. Resource acquisition and allocation. Business
                 contracts.
               </p>
             </div>
