@@ -4,27 +4,27 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import GallerySidebar from "../components/Gallery/GallerySidebar";
-import GalleryInfo from "../components/Gallery/GalleryInfo";
 import { Controller, Scene } from "react-scrollmagic";
+import GalleryInfo from "../components/Gallery/GalleryInfo";
+import GallerySidebar from "../components/Gallery/GallerySidebar";
 
 import LightGallery from "lightgallery/react";
 
 // import plugins if you need
-import lgThumbnail from "lightgallery/plugins/thumbnail";
-import lgZoom from "lightgallery/plugins/zoom";
 import lgAutoplay from "lightgallery/plugins/autoplay";
 import lgFullscreen from "lightgallery/plugins/fullscreen";
 import lgRotate from "lightgallery/plugins/rotate";
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
 
 import {
   getGalleryList,
   getGalleryPhotos,
 } from "../components/Gallery/galleryUtils";
 
+import GalleryHeader from "../components/Gallery/GalleryHeader";
 import Navbar from "../components/Navbar/Navbar";
 import { AllAlbumPhotos, GalleryItem } from "../interfaces";
-import GalleryHeader from "../components/Gallery/GalleryHeader";
 
 const Gallery: NextPage = () => {
   const [galleryInfo, setGalleryInfo] = useState<GalleryItem>();
@@ -79,16 +79,19 @@ const Gallery: NextPage = () => {
           }}
         </Scene>
         <div id="triggerEl">
-          <div className="container">
+          <div className="flex mx-5 justify-center">
             <div className="row nav-margin">
-              <div className="col-lg-2">
+              <div className="col-sm-12 col-lg-3">
                 <GallerySidebar
                   galleryList={galleryList}
                   activeGallery={activeGallery}
                   setActiveGallery={setActiveGallery}
                 />
               </div>
-              <div className="col" style={{ minHeight: "120vh" }}>
+              <div
+                className="col-sm-12 col-md-6"
+                style={{ minHeight: "120vh" }}
+              >
                 {galleryPhotos.hasOwnProperty(activeGallery) &&
                 Object.entries(galleryPhotos[activeGallery]).length > 0 ? (
                   <LightGallery
@@ -124,7 +127,7 @@ const Gallery: NextPage = () => {
                   </LightGallery>
                 ) : null}
               </div>
-              <div className="col-lg-2">
+              <div className="col-sm-12 col-lg-3">
                 <GalleryInfo galleryInfo={galleryInfo} />
               </div>
             </div>
