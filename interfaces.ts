@@ -143,6 +143,12 @@ export interface SM01Count {
   likeCount: number;
 }
 
+export interface SP01Count {
+  esDownloadCount: number;
+  dcDownloadCount: number;
+  likeCount: number;
+}
+
 export interface RecruitmentFormInfo {
   firstName: string;
   lastName: string;

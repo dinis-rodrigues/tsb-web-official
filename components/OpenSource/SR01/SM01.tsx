@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import cx from "classnames";
 
+import { GiAnchor } from "react-icons/gi";
 import { IoBulbOutline } from "react-icons/io5";
 import { SiAtom } from "react-icons/si";
-import { GiAnchor } from "react-icons/gi";
+import { SM01Count } from "../../../interfaces";
 import ClapButton from "../../Buttons/ClapButton";
 import {
   addCountToButton,
@@ -12,7 +13,6 @@ import {
   removeButtonDBListeners,
   startSMButtonDBListeners,
 } from "../openSourceUtils";
-import { SM01Count } from "../../../interfaces";
 
 const SM01 = () => {
   const [countButtons, setCountButtons] = useState<SM01Count>({
@@ -88,7 +88,7 @@ const SM01 = () => {
                     countButtons.esDownloadCount,
                     "esDownloadCount",
                     "sm01",
-                    "https://gitlab.com/tecnico.solar.boat/2021/SM01"
+                    "https://gitlab.com/tecnico.solar.boat/2023/SM01"
                   )
                 }
               >
