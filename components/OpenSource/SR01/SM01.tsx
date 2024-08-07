@@ -124,7 +124,7 @@ const SM01 = () => {
                     countButtons.hpDownloadCount,
                     "hpDownloadCount",
                     "sm01",
-                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SM01/SM/SM-SM01.zip"
+                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SM01/H2/H2-SM01.zip"
                   )
                 }
               >
