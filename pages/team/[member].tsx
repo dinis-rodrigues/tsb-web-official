@@ -85,10 +85,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     if (Object.entries(team).length > 0) {
       const paths = Object.entries(team).map(([userId, user]) => {
         if (!user.info.userName) {
-          console.warn(
-            "Something went wrong, please check. UserName not found in userId:",
-            userId
-          );
+          console.warn("Something went wrong, please check. UserName not found in userId:", userId);
         }
         return {
           params: {

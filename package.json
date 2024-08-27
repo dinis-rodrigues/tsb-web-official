@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
-    "build": "next build && next export",
-    "export": "next export",
+    "dev": "pnpm lint && next dev -p 8500",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "install-all": "npm ci && cd public/api && composer install"
+    "export": "next export",
+    "lint": "pnpm biome check . && pnpm tsc",
+    "fix": "pnpm biome check --fix .",
+    "fix-unsafe": "pnpm biome check --fix --unsafe .",
+    "format": "pnpm biome format --write .",
+    "install-all": "pnpm ci && cd public/api && composer install",
+    "preinstall": "npx only-allow pnpm"
   },
   "eslintConfig": {
     "extends": [
@@ -22,6 +26,7 @@
     "@fullpage/react-fullpage": "^0.1.19",
     "@mui/material": "^5.0.3",
     "@tensorflow/tfjs": "^3.9.0",
+    "@tensorflow/tfjs-layers": "^4.20.0",
     "bootstrap": "^5.0.0-beta3",
     "classnames": "^2.3.1",
     "firebase": "^9.1.2",
@@ -48,6 +53,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.8.3",
     "@types/gtag.js": "^0.0.8",
     "@types/react": "17.0.24",
     "@types/react-google-recaptcha": "^2.1.2",
@@ -56,6 +62,6 @@
     "eslint": "7.32.0",
     "eslint-config-next": "^11.1.2",
     "tailwindcss": "^3.4.0",
-    "typescript": "4.4.3"
+    "typescript": "5.5.4"
   }
 }

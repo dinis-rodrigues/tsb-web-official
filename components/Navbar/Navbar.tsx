@@ -1,12 +1,12 @@
-import { useState } from "react";
-import cx from "classnames";
-import { IoClose } from "react-icons/io5";
 import { fullpageApi } from "@fullpage/react-fullpage";
+import cx from "classnames";
+import { useState } from "react";
+import { IoClose } from "react-icons/io5";
+import { getFooterTheme } from "../utils/generalFunctions";
+import CopyrightText from "./CopyrightText";
+import Footer from "./Footer";
 import NavItem from "./NavItem";
 import NavLogo from "./NavLogo";
-import Footer from "./Footer";
-import CopyrightText from "./CopyrightText";
-import { getFooterTheme } from "../utils/generalFunctions";
 
 type Props = {
   theme: 0 | 1 | "white" | "black";
@@ -34,10 +34,7 @@ const Navbar = ({
         opaque: isOpaque,
       })}
     >
-      <nav
-        className={cx("navbar navbar-desktop")}
-        style={{ position: "fixed" }}
-      >
+      <nav className={cx("navbar navbar-desktop")} style={{ position: "fixed" }}>
         <div className="w-100 h-100 d-flex align-items-center">
           <NavLogo theme={theme} fullPageApi={fullPageApi} />
 
@@ -48,33 +45,16 @@ const Navbar = ({
               link={"/#about"}
               anchorName={"about"}
             />
-            <NavItem
-              name={"Team"}
-              fullPageApi={fullPageApi}
-              link={"/#team"}
-              anchorName={"team"}
-            />
+            <NavItem name={"Team"} fullPageApi={fullPageApi} link={"/#team"} anchorName={"team"} />
             <NavItem
               name={"Sponsors"}
               fullPageApi={fullPageApi}
               link={"/#sponsors"}
               anchorName={"sponsors"}
             />
-            <NavItem
-              name={"Gallery"}
-              fullPageApi={fullPageApi}
-              link={"/gallery"}
-            />
-            <NavItem
-              name={"Open Source"}
-              fullPageApi={fullPageApi}
-              link={"/opensource"}
-            />
-            <NavItem
-              name={"recruitment"}
-              fullPageApi={fullPageApi}
-              link={"/recruitment"}
-            />
+            <NavItem name={"Gallery"} fullPageApi={fullPageApi} link={"/gallery"} />
+            <NavItem name={"Open Source"} fullPageApi={fullPageApi} link={"/opensource"} />
+            <NavItem name={"recruitment"} fullPageApi={fullPageApi} link={"/recruitment"} />
             <NavItem
               name={"Contact"}
               fullPageApi={fullPageApi}
@@ -83,10 +63,7 @@ const Navbar = ({
             />
           </div>
 
-          <button
-            className="toggler"
-            onClick={() => setMenuIsOpen(!menuIsOpen)}
-          >
+          <button type="button" className="toggler" onClick={() => setMenuIsOpen(!menuIsOpen)}>
             <span className="toggler-icon"></span>
             <span className="toggler-icon"></span>
             <span className="toggler-icon"></span>
@@ -94,10 +71,7 @@ const Navbar = ({
         </div>
       </nav>
 
-      <Footer
-        hide={hideFooter}
-        theme={getFooterTheme(theme, switchFooterTheme)}
-      />
+      <Footer hide={hideFooter} theme={getFooterTheme(theme, switchFooterTheme)} />
 
       <nav className="navbar navbar-mobile">
         <span className="close" onClick={() => setMenuIsOpen(false)}>

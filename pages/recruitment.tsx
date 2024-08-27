@@ -1,6 +1,6 @@
 import ReactFullpage, { fullpageApi } from "@fullpage/react-fullpage";
 import Head from "next/head";
-import React, { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import Navbar from "../components/Navbar/Navbar";
 import RecruitmentClosed from "../components/Recruitment/RecruitmentClosed";
@@ -9,10 +9,7 @@ import RecruitmentForm from "../components/Recruitment/RecruitmentForm";
 import RecruitmentHeader from "../components/Recruitment/RecruitmentHeader";
 import RecruitmentIntro from "../components/Recruitment/RecruitmentIntro";
 import { navRecruitmentTheme } from "../components/utils/constants";
-import {
-  getRecruitmentInfo,
-  getRecruitmentTable,
-} from "../components/utils/generalFunctions";
+import { getRecruitmentInfo, getRecruitmentTable } from "../components/utils/generalFunctions";
 import { Departments, NavTheme } from "../interfaces";
 
 const Recruitment = () => {
@@ -61,18 +58,18 @@ const Recruitment = () => {
                 <RecruitmentHeader />
                 <RecruitmentIntro />
                 {activeTable ? (
-                  <Fragment>
+                  <>
                     <RecruitmentDepartments openDepartments={openDepartments} />
                     <RecruitmentForm
                       departments={openDepartments}
                       activeTable={activeTable}
                       fullPageApi={fullPageApi}
                     />
-                  </Fragment>
+                  </>
                 ) : (
-                  <Fragment>
+                  <>
                     <RecruitmentClosed />
-                  </Fragment>
+                  </>
                 )}
               </ReactFullpage.Wrapper>
             );

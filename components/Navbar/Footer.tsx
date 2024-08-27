@@ -1,12 +1,7 @@
-import Link from "next/link";
-import {
-  IoLogoFacebook,
-  IoLogoYoutube,
-  IoLogoLinkedin,
-  IoLogoInstagram,
-} from "react-icons/io5";
-import CopyrightText from "./CopyrightText";
 import cx from "classnames";
+import Link from "next/link";
+import { IoLogoFacebook, IoLogoInstagram, IoLogoLinkedin, IoLogoYoutube } from "react-icons/io5";
+import CopyrightText from "./CopyrightText";
 
 type Props = {
   hide: boolean;
@@ -31,30 +26,21 @@ const Footer = ({ hide, theme }: Props) => {
             </Link>
           </li>
           <li>
-            <Link
-              href={"https://www.youtube.com/c/tecnicosolarboat/null"}
-              passHref
-            >
+            <Link href={"https://www.youtube.com/c/tecnicosolarboat/null"} passHref>
               <a target={"_blank"} className="ion-icon">
                 <IoLogoYoutube />
               </a>
             </Link>
           </li>
           <li>
-            <Link
-              href={"https://linkedin.com/company/t%C3%A9cnico-solar-boat"}
-              passHref
-            >
+            <Link href={"https://linkedin.com/company/t%C3%A9cnico-solar-boat"} passHref>
               <a target={"_blank"} className="ion-icon">
                 <IoLogoLinkedin />
               </a>
             </Link>
           </li>
           <li>
-            <Link
-              href={"https://www.instagram.com/tecnico.solar.boat/"}
-              passHref
-            >
+            <Link href={"https://www.instagram.com/tecnico.solar.boat/"} passHref>
               <a target={"_blank"} className="ion-icon">
                 <IoLogoInstagram />
               </a>

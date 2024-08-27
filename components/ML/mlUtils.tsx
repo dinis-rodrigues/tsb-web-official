@@ -1,9 +1,9 @@
-import { Sequential } from "@tensorflow/tfjs-layers";
 import { Rank, Tensor } from "@tensorflow/tfjs";
+import * as tf from "@tensorflow/tfjs";
+import { Sequential } from "@tensorflow/tfjs-layers";
+import { ReactSketchCanvas } from "react-sketch-canvas";
 import { ChartValue, Predictions } from "../../interfaces";
 import { MnistData } from "./data";
-import * as tf from "@tensorflow/tfjs";
-import { ReactSketchCanvas } from "react-sketch-canvas";
 
 const predictionsValues: Predictions = {
   "0": {
@@ -79,7 +79,7 @@ const startTrain = async (
   setValAcc: Function,
   setStopTrain: Function,
   setMyModel: Function,
-  setChartSteps: Function
+  setChartSteps: Function,
 ) => {
   if (myModel) myModel.dispose();
   setStopTrain(false);
@@ -95,7 +95,7 @@ const startTrain = async (
     setValAcc,
     setStopTrain,
     setMyModel,
-    setChartSteps
+    setChartSteps,
   );
 };
 
@@ -109,15 +109,9 @@ const startTrain = async (
  * @param key
  * @returns
  */
-const linearInterpolate = (
-  a: number,
-  b: number,
-  steps: number,
-  xinit: number,
-  key: string
-) => {
+const linearInterpolate = (a: number, b: number, steps: number, xinit: number, key: string) => {
   // points A and B, frac between 0 and 1
-  let auxArr = [];
+  const auxArr = [];
   let frac = 0;
   let newVal = 0;
   for (let i = 1; i < steps; i++) {
@@ -143,14 +137,14 @@ const updateValidationSeries = (
   setSeries: Function,
   STEPS_PER_EPOCH: number,
   key: string,
-  isLoss = true
+  isLoss = true,
 ) => {
   setSeries((state: ChartValue[]) => {
     let auxVals = [];
     let init = 2.5;
-    // let xinit = 0;
+
     if (state.length <= 0) {
-      isLoss ? (init = 2.5) : (init = 0);
+      init = isLoss ? 2.5 : 0;
       auxVals = linearInterpolate(init, newValue, STEPS_PER_EPOCH, 0, key);
     } else {
       auxVals = linearInterpolate(
@@ -158,7 +152,7 @@ const updateValidationSeries = (
         newValue,
         STEPS_PER_EPOCH,
         state[state.length - 1].x,
-        key
+        key,
       );
     }
     return [...state, ...auxVals];
@@ -176,13 +170,13 @@ const updateTrainSeries = (
   newValue: number[] | number,
   setSeries: Function,
   batchNum: number,
-  key: string
+  key: string,
 ) => {
   setSeries((state: ChartValue[]) => {
     if (newValue instanceof Array) {
       let initNum = 0;
       if (state.length > 0) initNum = state[state.length - 1].x;
-      let auxArr: ChartValue[] = [];
+      const auxArr: ChartValue[] = [];
       for (let i = 0; i < newValue.length; i++) {
         auxArr.push({ x: initNum + i, [key]: newValue[i] });
       }
@@ -205,9 +199,7 @@ const showExamples = async (data: MnistData) => {
   for (let i = 0; i < numExamples; i++) {
     const imageTensor = tf.tidy(() => {
       // Reshape the image to 28x28 px
-      return examples.xs
-        .slice([i, 0], [1, examples.xs.shape[1]])
-        .reshape([28, 28, 1]);
+      return examples.xs.slice([i, 0], [1, examples.xs.shape[1]]).reshape([28, 28, 1]);
     });
 
     const canvas = document.createElement("canvas");
@@ -239,7 +231,7 @@ const getAndTrainModel = async (
   setValAcc: Function,
   setStopTrain: Function,
   setMyModel: Function,
-  setChartSteps: Function
+  setChartSteps: Function,
 ) => {
   const data = new MnistData();
   await data.load();
@@ -255,7 +247,7 @@ const getAndTrainModel = async (
     setValAcc,
     setStopTrain,
     setMyModel,
-    setChartSteps
+    setChartSteps,
   );
 };
 
@@ -281,7 +273,7 @@ const getModel = () => {
       strides: 1,
       activation: "relu",
       kernelInitializer: "varianceScaling",
-    })
+    }),
   );
 
   // The MaxPooling layer acts as a sort of downsampling using max values
@@ -297,7 +289,7 @@ const getModel = () => {
       strides: 1,
       activation: "relu",
       kernelInitializer: "varianceScaling",
-    })
+    }),
   );
   model.add(tf.layers.maxPooling2d({ poolSize: [2, 2], strides: [2, 2] }));
 
@@ -314,7 +306,7 @@ const getModel = () => {
       units: NUM_OUTPUT_CLASSES,
       kernelInitializer: "varianceScaling",
       activation: "softmax",
-    })
+    }),
   );
 
   // Choose an optimizer, loss function and accuracy metric,
@@ -351,7 +343,7 @@ const train = async (
   setValAcc: Function,
   setStopTrain: Function,
   setMyModel: Function,
-  setChartSteps: Function
+  setChartSteps: Function,
 ) => {
   const BATCH_SIZE = 64;
   const TRAIN_DATA_SIZE = 6000;
@@ -391,29 +383,16 @@ const train = async (
           updateTrainSeries(logs.loss, setTrainLoss, batchNum, "trainLoss");
           updateTrainSeries(logs.acc, setTrainAcc, batchNum, "trainAcc");
           setStopTrain((state: boolean) => {
-            state ? (model.stopTraining = true) : (model.stopTraining = false);
+            model.stopTraining = state;
             setMyModel(model);
             return state;
           });
         },
         onEpochEnd: (epoch: number, logs: any) => {
-          // updateTrainSeries(trainLoss, setTrainLoss, batchNum, "trainLoss");
-          // updateTrainSeries(trainAcc, setTrainAcc, batchNum, "trainAcc");
           trainLoss.length = 0;
           trainAcc.length = 0;
-          updateValidationSeries(
-            logs.val_loss,
-            setValLoss,
-            STEPS_PER_EPOCH,
-            "valLoss"
-          );
-          updateValidationSeries(
-            logs.val_acc,
-            setValAcc,
-            STEPS_PER_EPOCH,
-            "valAcc",
-            false
-          );
+          updateValidationSeries(logs.val_loss, setValLoss, STEPS_PER_EPOCH, "valLoss");
+          updateValidationSeries(logs.val_acc, setValAcc, STEPS_PER_EPOCH, "valAcc", false);
         },
         onTrainEnd: () => {
           setStopTrain(true);
@@ -451,7 +430,7 @@ const load = (url: string): Promise<HTMLImageElement> => {
 const predict = async (
   cvx: ReactSketchCanvas | null,
   myModel: Sequential | null,
-  setPredictions: Function
+  setPredictions: Function,
 ) => {
   if (!cvx || !myModel) return;
   const imgPath = await cvx.exportImage("png");
@@ -488,11 +467,4 @@ const predict = async (
   setPredictions(predictionsObj);
 };
 
-export {
-  startTrain,
-  stopTraining,
-  predictionsValues,
-  getAndTrainModel,
-  showExamples,
-  predict,
-};
+export { startTrain, stopTraining, predictionsValues, getAndTrainModel, showExamples, predict };

@@ -50,15 +50,12 @@ const SM01 = () => {
             <h4 className="index-header f-700 text-white">SÃO MIGUEL 01</h4>
             <hr className="divider" />
             <p className="f-medium text-white">
-              The sensational hydrogen combined with the most eco-friendly
-              cockpit ever is here.
+              The sensational hydrogen combined with the most eco-friendly cockpit ever is here.
             </p>
 
             <ClapButton
               count={countButtons.likeCount}
-              onClick={() =>
-                addCountToButton(countButtons.likeCount, "likeCount", "sm01")
-              }
+              onClick={() => addCountToButton(countButtons.likeCount, "likeCount", "sm01")}
             />
           </div>
         </div>
@@ -69,26 +66,23 @@ const SM01 = () => {
                 <IoBulbOutline className="icon-lg" />
                 {/* <SiAtom className="icon-lg" /> */}
               </div>
-              <h5 className="text-white mt-2 text-shadow">
-                Electrical Systems
-              </h5>
+              <h5 className="text-white mt-2 text-shadow">Electrical Systems</h5>
 
               <ul className="opensource-list">
                 <li className="onsource-list-item">Electrical Schematic</li>
                 <li className="onsource-list-item">Documentation</li>
-                <li className="onsource-list-item">
-                  Printed Circuit Boards (PCBs)
-                </li>
+                <li className="onsource-list-item">Printed Circuit Boards (PCBs)</li>
                 <li className="onsource-list-item">Source Code</li>
               </ul>
               <button
+                type="button"
                 className="btnd btnd-info mt-2"
                 onClick={() =>
                   downloadMaterial(
                     countButtons.esDownloadCount,
                     "esDownloadCount",
                     "sm01",
-                    "https://gitlab.com/tecnico.solar.boat/2023/SM01"
+                    "https://gitlab.com/tecnico.solar.boat/2023/SM01",
                   )
                 }
               >
@@ -109,22 +103,21 @@ const SM01 = () => {
               </div>
               <h5 className="text-white mt-2 text-shadow">{"FC & Hydrogen"}</h5>
               <ul className="opensource-list">
-                <li className="onsource-list-item">
-                  Hydrogen Admission System
-                </li>
+                <li className="onsource-list-item">Hydrogen Admission System</li>
                 <li className="onsource-list-item">Air Admission System</li>
                 <li className="onsource-list-item">Cooling System</li>
                 <li className="onsource-list-item">Simulations</li>
                 <li className="onsource-list-item">List of Material</li>
               </ul>
               <button
+                type="button"
                 className="btnd btnd-info mt-2"
                 onClick={() =>
                   downloadMaterial(
                     countButtons.hpDownloadCount,
                     "hpDownloadCount",
                     "sm01",
-                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SM01/SM/SM-SM01.zip"
+                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SM01/SM/SM-SM01.zip",
                   )
                 }
               >
@@ -143,23 +136,20 @@ const SM01 = () => {
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                 <GiAnchor className="icon-lg" />
               </div>
-              <h5 className="text-white mt-2 text-shadow">
-                Design and Composites
-              </h5>
+              <h5 className="text-white mt-2 text-shadow">Design and Composites</h5>
               <ul className="opensource-list">
-                <li className="onsource-list-item">
-                  {"Struture & Composite Assembly"}
-                </li>
+                <li className="onsource-list-item">{"Struture & Composite Assembly"}</li>
                 <li className="onsource-list-item">{"List of Materials"}</li>
               </ul>
               <button
+                type="button"
                 className="btnd btnd-info mt-2"
                 onClick={() =>
                   downloadMaterial(
                     countButtons.dcDownloadCount,
                     "dcDownloadCount",
                     "sm01",
-                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SM01/DC/DC-SM01.zip"
+                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SM01/DC/DC-SM01.zip",
                   )
                 }
               >

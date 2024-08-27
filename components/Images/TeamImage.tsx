@@ -24,9 +24,7 @@ const TeamImage = ({ src, name, position }: Props) => {
             src={srcUrl}
             alt=""
             onError={() =>
-              setSrcUrl(
-                `${process.env.BASE_PATH}/assets/images/index/placeholder.png`
-              )
+              setSrcUrl(`${process.env.BASE_PATH}/assets/images/index/placeholder.png`)
             }
             width="100%"
           />

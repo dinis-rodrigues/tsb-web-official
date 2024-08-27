@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { SponsorBracketPublic } from "../../../interfaces";
 import SponsorBlock from "./SponsorBlock";
 
@@ -10,13 +9,10 @@ const SponsorBracket = ({ bracket, bracketNum }: Props) => {
   // justify-content-center d-flex
   const bracketSponsors = bracket.bracketSponsors;
   return (
-    <Fragment>
+    <>
       <div className="text-black mt-3">
         <h5 className="text-uppercase m-0">{bracket.name}</h5>
-        <hr
-          className={"sponsor-divider mt-1"}
-          style={{ backgroundColor: bracket.color?.hex }}
-        />
+        <hr className={"sponsor-divider mt-1"} style={{ backgroundColor: bracket.color?.hex }} />
       </div>
       {/* Sponsor SVG's go here */}
       <div className="row text-black d-flex justify-content-center">
@@ -33,7 +29,7 @@ const SponsorBracket = ({ bracket, bracketNum }: Props) => {
           );
         })}
       </div>
-    </Fragment>
+    </>
   );
 };
 

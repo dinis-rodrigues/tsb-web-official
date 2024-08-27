@@ -1,6 +1,5 @@
-import { Predictions } from "../../interfaces";
 import cx from "classnames";
-import { Fragment } from "react";
+import { Predictions } from "../../interfaces";
 
 type Props = {
   predictions: Predictions;
@@ -8,7 +7,7 @@ type Props = {
 
 const MlPredictions = ({ predictions }: Props) => {
   return (
-    <Fragment>
+    <>
       <div className="output-column">
         <div className="output">
           <div
@@ -153,7 +152,7 @@ const MlPredictions = ({ predictions }: Props) => {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

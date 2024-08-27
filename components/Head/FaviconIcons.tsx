@@ -1,8 +1,6 @@
-import React, { Fragment } from "react";
-
 const FaviconIcons = () => {
   return (
-    <Fragment>
+    <>
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
@@ -39,10 +37,7 @@ const FaviconIcons = () => {
         href={`${process.env.BASE_PATH}/assets/images/favicons/favicon.ico`}
       />
       <meta name="msapplication-TileColor" content="#da532c" />
-      <meta
-        name="msapplication-config"
-        content="/assets/images/favicons/browserconfig.xml"
-      />
+      <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml" />
       <meta name="theme-color" content="#ffffff" />
       <meta name="msapplication-TileColor" content="#ffffff"></meta>
 
@@ -59,7 +54,7 @@ const FaviconIcons = () => {
         name="twitter:image"
         content={`${process.env.BASE_PATH}/assets/images/ogimage.png`}
       ></meta>
-    </Fragment>
+    </>
   );
 };
 

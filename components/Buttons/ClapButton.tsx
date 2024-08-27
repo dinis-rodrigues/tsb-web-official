@@ -6,13 +6,11 @@ type Props = {
 };
 
 const ClapButton = ({ count = 0, onClick }: Props) => {
-  //   const [count, setCount] = useState(0);
-
   const triggerConfetti = (e: any) => {
     e.preventDefault();
     e.target.classList.remove("confettis-on");
     // triggering reflow, so that the CSS animation restarts
-    void e.target.offsetWidth;
+    const _ = e.target.offsetWidth;
     e.target.classList.add("confettis-on");
     onClick();
   };
@@ -20,6 +18,7 @@ const ClapButton = ({ count = 0, onClick }: Props) => {
   return (
     <div style={{ position: "relative" }}>
       <button
+        type="button"
         className="btnd btnd-round btnd-danger"
         data-confettis
         onClick={(e) => triggerConfetti(e)}

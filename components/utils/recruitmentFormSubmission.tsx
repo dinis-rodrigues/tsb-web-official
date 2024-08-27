@@ -1,11 +1,8 @@
+import { push, ref, remove } from "firebase/database";
 import { Dispatch, SetStateAction } from "react";
 import { toast } from "react-toastify";
-import {
-  RecruitmentDepartmentsForm,
-  RecruitmentFormInfo,
-} from "../../interfaces";
+import { RecruitmentDepartmentsForm, RecruitmentFormInfo } from "../../interfaces";
 import { db } from "../Contexts/Firebase";
-import { ref, push, remove } from "@firebase/database";
 
 const errorMessages: { [key: string]: string } = {
   firstName: "Please enter your first name",
@@ -24,7 +21,7 @@ const errorMessages: { [key: string]: string } = {
 };
 
 const validateInfo = (info: RecruitmentFormInfo) => {
-  let errors = [];
+  const errors = [];
   if (!info.firstName) errors.push("firstName");
   if (!info.lastName) errors.push("lastName");
   // if (info.phoneNumber || info.phoneNumber.length < 9)
@@ -33,8 +30,7 @@ const validateInfo = (info: RecruitmentFormInfo) => {
     errors.push("email");
     errors.push("confirmEmail");
   }
-  if (info.email && info.email != info.confirmEmail)
-    errors.push("confirmEmail");
+  if (info.email && info.email !== info.confirmEmail) errors.push("confirmEmail");
   if (!info.degree) errors.push("degree");
   if (!info.curricularYear) errors.push("curricularYear");
   if (!info.country) errors.push("country");
@@ -42,10 +38,8 @@ const validateInfo = (info: RecruitmentFormInfo) => {
   return errors;
 };
 
-const validateDepartments = (
-  checkedDepartments: RecruitmentDepartmentsForm
-) => {
-  let errors: string[] = [];
+const validateDepartments = (checkedDepartments: RecruitmentDepartmentsForm) => {
+  const errors: string[] = [];
   let atLeastOneChecked = false;
   Object.entries(checkedDepartments).forEach(([value]) => {
     if (value) atLeastOneChecked = true;
@@ -64,10 +58,8 @@ const validateTable = (activeTable: string | undefined) => {
   return !activeTable ? ["activeTable"] : [];
 };
 
-const getSelectedDepartmentsArray = (
-  checkedDepartments: RecruitmentDepartmentsForm
-) => {
-  let selectedDepartments: string[] = [];
+const getSelectedDepartmentsArray = (checkedDepartments: RecruitmentDepartmentsForm) => {
+  const selectedDepartments: string[] = [];
 
   Object.entries(checkedDepartments).forEach(([acronym, isChecked]) => {
     if (isChecked) selectedDepartments.push(acronym);
@@ -133,14 +125,12 @@ const showErrorMessage = (msg: string) => {
 const senUserToDb = (
   info: RecruitmentFormInfo,
   checkedDepartments: RecruitmentDepartmentsForm,
-  activeTable: string
+  activeTable: string,
 ) => {
-  let timestamp = Date.now();
+  const timestamp = Date.now();
   const selectedDepartments = getSelectedDepartmentsArray(checkedDepartments);
   const data = {
-    name: info.firstName
-      ? info.firstName.trim() + " " + info.lastName.trim()
-      : "Joe Doe",
+    name: info.firstName ? `${info.firstName.trim()} ${info.lastName.trim()}` : "Joe Doe",
     departments: selectedDepartments ? selectedDepartments : ["MM"],
     country: info.country ? info.country : "Portugal",
     email: info.email.trim(),
@@ -186,23 +176,18 @@ const sendSubmissionToServer = async (
   recaptcha: string,
   activeTable: string,
   setIsSubmitting: Dispatch<SetStateAction<boolean>>,
-  setSubmissionSuccess: Dispatch<SetStateAction<boolean>>
+  setSubmissionSuccess: Dispatch<SetStateAction<boolean>>,
 ) => {
   setIsSubmitting(true);
-  var data = new FormData();
-  const selectedDepartments = JSON.stringify(
-    getSelectedDepartmentsArray(checkedDepartments)
-  );
-  var myHeaders = new Headers();
+  const data = new FormData();
+  const selectedDepartments = JSON.stringify(getSelectedDepartmentsArray(checkedDepartments));
+  const myHeaders = new Headers();
   // From postman, probably this isn't needed
   myHeaders.append("Cookie", "BACKENDID=backend_1OPQ1_omega03|Yg7Jk|Yg7Jh");
 
-  data.append("name", info.firstName + " " + info.lastName);
+  data.append("name", `${info.firstName} ${info.lastName}`);
   data.append("email", info.email);
-  data.append(
-    "phoneNumber",
-    info.phoneNumber ? info.phoneNumber.toString() : ""
-  );
+  data.append("phoneNumber", info.phoneNumber ? info.phoneNumber.toString() : "");
   data.append("degree", info.degree);
   data.append("curricularYear", info.curricularYear.toString());
   data.append("country", info.country);
@@ -213,7 +198,7 @@ const sendSubmissionToServer = async (
   data.append("departments", selectedDepartments);
 
   // console.log("Ative table", activeTable);
-  var requestOptions = {
+  const requestOptions = {
     method: "POST",
     headers: myHeaders,
     body: data,
@@ -226,7 +211,7 @@ const sendSubmissionToServer = async (
         // Send email after firebase entry
         const res = await fetch(
           "https://tecnicosolarboat.tecnico.ulisboa.pt/api/submitApplication.php",
-          requestOptions
+          requestOptions,
         );
         const resData = await res.json();
         console.log(resData);
@@ -236,18 +221,14 @@ const sendSubmissionToServer = async (
         }
       } catch (error) {
         // remove entry from firebase, if email was not successfully sent
-        showErrorMessage(
-          "An internal error has occurred, please reach out to us."
-        );
+        showErrorMessage("An internal error has occurred, please reach out to us.");
         remove(ref);
         setIsSubmitting(false);
       }
     })
     .catch((error) => {
       console.log(error);
-      showErrorMessage(
-        "An error has occurred with your application, please reach out to us."
-      );
+      showErrorMessage("An error has occurred with your application, please reach out to us.");
       setIsSubmitting(false);
     });
 };
@@ -259,19 +240,14 @@ const onRecruitmentFormSubmit = (
   activeTable: string | undefined,
   setFormErrors: Dispatch<SetStateAction<string[]>>,
   setIsSubmitting: Dispatch<SetStateAction<boolean>>,
-  setSubmissionSuccess: Dispatch<SetStateAction<boolean>>
+  setSubmissionSuccess: Dispatch<SetStateAction<boolean>>,
 ) => {
-  let infoErrors = validateInfo(info);
-  let departmentsErrors = validateDepartments(checkedDepartments);
-  let recaptchaError = validateRecaptcha(recaptcha);
-  let tableError = validateTable(activeTable);
+  const infoErrors = validateInfo(info);
+  const departmentsErrors = validateDepartments(checkedDepartments);
+  const recaptchaError = validateRecaptcha(recaptcha);
+  const tableError = validateTable(activeTable);
 
-  let errors = [
-    ...infoErrors,
-    ...departmentsErrors,
-    ...recaptchaError,
-    ...tableError,
-  ];
+  const errors = [...infoErrors, ...departmentsErrors, ...recaptchaError, ...tableError];
   setFormErrors(errors);
   if (errors.length > 0) showValidationError(errors);
   else {
@@ -281,7 +257,7 @@ const onRecruitmentFormSubmit = (
       recaptcha!,
       activeTable!,
       setIsSubmitting,
-      setSubmissionSuccess
+      setSubmissionSuccess,
     );
   }
 };

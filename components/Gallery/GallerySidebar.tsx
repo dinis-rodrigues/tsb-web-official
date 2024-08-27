@@ -1,18 +1,14 @@
-import { FaAngleRight } from "react-icons/fa";
-import { GalleryItem } from "../../interfaces";
 import cx from "classnames";
 import { Dispatch, SetStateAction } from "react";
+import { FaAngleRight } from "react-icons/fa";
+import { GalleryItem } from "../../interfaces";
 
 type Props = {
   galleryList: [string, GalleryItem][];
   activeGallery: string;
   setActiveGallery: Dispatch<SetStateAction<string>>;
 };
-const GallerySidebar = ({
-  galleryList,
-  activeGallery,
-  setActiveGallery,
-}: Props) => {
+const GallerySidebar = ({ galleryList, activeGallery, setActiveGallery }: Props) => {
   return (
     <div className="gallery-side" style={{ position: "sticky", top: 150 }}>
       <h5 className="side-title">Albums</h5>

@@ -1,5 +1,3 @@
-import React from "react";
-
 const RecruitmentHeader = () => {
   return (
     <div
@@ -27,9 +25,7 @@ const RecruitmentHeader = () => {
         <div className="row mt-2">
           <div className="col-lg z-inf">
             <div>
-              <h4 className="index-header f-700 text-white">
-                YOUR JOURNEY STARTS HERE
-              </h4>
+              <h4 className="index-header f-700 text-white">YOUR JOURNEY STARTS HERE</h4>
               {/* <hr className="divider" /> */}
             </div>
           </div>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import cx from "classnames";
 import { fullpageApi } from "@fullpage/react-fullpage";
+import cx from "classnames";
 
 type Props = {
   theme: 0 | 1 | "white" | "black";

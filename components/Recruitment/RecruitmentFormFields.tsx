@@ -1,14 +1,14 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import { BsPerson, BsLink45Deg, BsPhone } from "react-icons/bs";
-import { AiOutlineMail, AiOutlineFieldNumber } from "react-icons/ai";
-import { BiWorld, BiMessage } from "react-icons/bi";
+import { AiOutlineFieldNumber, AiOutlineMail } from "react-icons/ai";
+import { BiMessage, BiWorld } from "react-icons/bi";
+import { BsLink45Deg, BsPerson, BsPhone } from "react-icons/bs";
 import { FaUniversity } from "react-icons/fa";
 import NumberFormat from "react-number-format";
 
-import TextareaAutosize from "react-textarea-autosize";
-import ReCAPTCHA from "react-google-recaptcha";
 import cx from "classnames";
+import ReCAPTCHA from "react-google-recaptcha";
+import TextareaAutosize from "react-textarea-autosize";
 
 import {
   handleCheckbox,
@@ -18,6 +18,7 @@ import {
 } from "../utils/generalFunctions";
 import { onRecruitmentFormSubmit } from "../utils/recruitmentFormSubmission";
 
+import Select from "react-select";
 import {
   countryOptions,
   coursesOptions,
@@ -26,14 +27,9 @@ import {
   selectCustomStyle,
   selectStyles,
 } from "../utils/constants";
-import Select from "react-select";
 
-import {
-  Departments,
-  RecruitmentDepartmentsForm,
-  RecruitmentFormInfo,
-} from "../../interfaces";
 import { fullpageApi } from "@fullpage/react-fullpage";
+import { Departments, RecruitmentDepartmentsForm, RecruitmentFormInfo } from "../../interfaces";
 
 type Props = {
   info: RecruitmentFormInfo;
@@ -52,8 +48,7 @@ const RecruitmentFormFields = ({
   setSubmissionSuccess,
   fullPageApi,
 }: Props) => {
-  const [checkedDepartments, setCheckedDepartments] =
-    useState<RecruitmentDepartmentsForm>({});
+  const [checkedDepartments, setCheckedDepartments] = useState<RecruitmentDepartmentsForm>({});
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
@@ -138,9 +133,7 @@ const RecruitmentFormFields = ({
               </div>
               <NumberFormat
                 value={info.phoneNumber && info.phoneNumber}
-                onValueChange={(e) =>
-                  handleInputMask(e, "phoneNumber", setInfo)
-                }
+                onValueChange={(e) => handleInputMask(e, "phoneNumber", setInfo)}
                 className="form-control-r text-center"
                 format={"### ### ###"}
                 mask="_"
@@ -159,9 +152,7 @@ const RecruitmentFormFields = ({
                   className="custom-control-input"
                   id={key}
                   checked={checkedDepartments[key]}
-                  onChange={(e) =>
-                    handleCheckbox(e, key, setCheckedDepartments)
-                  }
+                  onChange={(e) => handleCheckbox(e, key, setCheckedDepartments)}
                   type="checkbox"
                 />
                 <label className="custom-control-label" htmlFor={key}>
@@ -275,9 +266,7 @@ const RecruitmentFormFields = ({
               <Select
                 id="curricularYear"
                 instanceId="curricularYear"
-                onChange={(e) =>
-                  handleSelectInput(e, "curricularYear", setInfo)
-                }
+                onChange={(e) => handleSelectInput(e, "curricularYear", setInfo)}
                 value={{
                   value: info && info.curricularYear,
                   label: info && info.curricularYear,
@@ -322,9 +311,7 @@ const RecruitmentFormFields = ({
                 onFocus={() => console.log("focus")}
                 theme={(theme) => selectStyles(theme, false)}
                 styles={selectCustomStyle}
-                menuPortalTarget={
-                  _document ? _document.querySelector("body") : null
-                }
+                menuPortalTarget={_document ? _document.querySelector("body") : null}
               />
             </div>
           </div>
@@ -411,7 +398,7 @@ const RecruitmentFormFields = ({
                 activeTable,
                 setFormErrors,
                 setIsSubmitting,
-                setSubmissionSuccess
+                setSubmissionSuccess,
               )
             }
           >

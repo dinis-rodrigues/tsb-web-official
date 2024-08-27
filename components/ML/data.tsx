@@ -70,9 +70,7 @@ export class MnistData {
         img.width = img.naturalWidth;
         img.height = img.naturalHeight;
 
-        const datasetBytesBuffer = new ArrayBuffer(
-          NUM_DATASET_ELEMENTS * IMAGE_SIZE * 4
-        );
+        const datasetBytesBuffer = new ArrayBuffer(NUM_DATASET_ELEMENTS * IMAGE_SIZE * 4);
 
         const chunkSize = 5000;
         canvas.width = img.width;
@@ -82,27 +80,12 @@ export class MnistData {
           const datasetBytesView = new Float32Array(
             datasetBytesBuffer,
             i * IMAGE_SIZE * chunkSize * 4,
-            IMAGE_SIZE * chunkSize
+            IMAGE_SIZE * chunkSize,
           );
           if (ctx) {
-            ctx.drawImage(
-              img,
-              0,
-              i * chunkSize,
-              img.width,
-              chunkSize,
-              0,
-              0,
-              img.width,
-              chunkSize
-            );
+            ctx.drawImage(img, 0, i * chunkSize, img.width, chunkSize, 0, 0, img.width, chunkSize);
 
-            const imageData = ctx.getImageData(
-              0,
-              0,
-              canvas.width,
-              canvas.height
-            );
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
             for (let j = 0; j < imageData.data.length / 4; j++) {
               // All channels hold an equal value since the image is grayscale, so
@@ -129,51 +112,27 @@ export class MnistData {
     this.testIndices = tf.util.createShuffledIndices(NUM_TEST_ELEMENTS);
 
     // Slice the the images and labels into train and test sets.
-    this.trainImages = this.datasetImages?.slice(
-      0,
-      IMAGE_SIZE * NUM_TRAIN_ELEMENTS
-    );
-    this.testImages = this.datasetImages?.slice(
-      IMAGE_SIZE * NUM_TRAIN_ELEMENTS
-    );
-    this.trainLabels = this.datasetLabels.slice(
-      0,
-      NUM_CLASSES * NUM_TRAIN_ELEMENTS
-    );
-    this.testLabels = this.datasetLabels.slice(
-      NUM_CLASSES * NUM_TRAIN_ELEMENTS
-    );
+    this.trainImages = this.datasetImages?.slice(0, IMAGE_SIZE * NUM_TRAIN_ELEMENTS);
+    this.testImages = this.datasetImages?.slice(IMAGE_SIZE * NUM_TRAIN_ELEMENTS);
+    this.trainLabels = this.datasetLabels.slice(0, NUM_CLASSES * NUM_TRAIN_ELEMENTS);
+    this.testLabels = this.datasetLabels.slice(NUM_CLASSES * NUM_TRAIN_ELEMENTS);
   }
 
   nextTrainBatch(batchSize: number) {
-    return this.nextBatch(
-      batchSize,
-      [this.trainImages!, this.trainLabels!],
-      () => {
-        this.shuffledTrainIndex =
-          (this.shuffledTrainIndex + 1) % this.trainIndices!.length;
-        return this.trainIndices![this.shuffledTrainIndex];
-      }
-    );
+    return this.nextBatch(batchSize, [this.trainImages!, this.trainLabels!], () => {
+      this.shuffledTrainIndex = (this.shuffledTrainIndex + 1) % this.trainIndices!.length;
+      return this.trainIndices![this.shuffledTrainIndex];
+    });
   }
 
   nextTestBatch(batchSize: number) {
-    return this.nextBatch(
-      batchSize,
-      [this.testImages!, this.testLabels!],
-      () => {
-        this.shuffledTestIndex =
-          (this.shuffledTestIndex + 1) % this.testIndices!.length;
-        return this.testIndices![this.shuffledTestIndex];
-      }
-    );
+    return this.nextBatch(batchSize, [this.testImages!, this.testLabels!], () => {
+      this.shuffledTestIndex = (this.shuffledTestIndex + 1) % this.testIndices!.length;
+      return this.testIndices![this.shuffledTestIndex];
+    });
   }
 
-  nextBatch(
-    batchSize: number,
-    data: [ArrayLike<number>, ArrayLike<number>],
-    index: Function
-  ) {
+  nextBatch(batchSize: number, data: [ArrayLike<number>, ArrayLike<number>], index: Function) {
     const batchImagesArray = new Float32Array(batchSize * IMAGE_SIZE);
     const batchLabelsArray = new Uint8Array(batchSize * NUM_CLASSES);
 
@@ -183,14 +142,14 @@ export class MnistData {
       const image = Array.prototype.slice.call(
         data[0],
         idx * IMAGE_SIZE,
-        idx * IMAGE_SIZE + IMAGE_SIZE
+        idx * IMAGE_SIZE + IMAGE_SIZE,
       );
       batchImagesArray.set(image, i * IMAGE_SIZE);
 
       const label = Array.prototype.slice.call(
         data[1],
         idx * NUM_CLASSES,
-        idx * NUM_CLASSES + NUM_CLASSES
+        idx * NUM_CLASSES + NUM_CLASSES,
       );
       batchLabelsArray.set(label, i * NUM_CLASSES);
     }

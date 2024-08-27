@@ -1,8 +1,7 @@
-import React from "react";
+import { Departments } from "../../interfaces";
+import GlowingStars from "../Animations/GlowingStars";
 import RecruitmentFaq from "./RecruitmentFaq";
 import RecruitmentFields from "./RecruitmentFields";
-import GlowingStars from "../Animations/GlowingStars";
-import { Departments } from "../../interfaces";
 
 interface Props {
   openDepartments: Departments;

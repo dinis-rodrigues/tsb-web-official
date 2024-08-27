@@ -1,5 +1,5 @@
-import parse from "html-react-parser";
 import cx from "classnames";
+import parse from "html-react-parser";
 import {
   replaceClsClasses,
   replaceLinearGradients,

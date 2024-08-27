@@ -1,18 +1,18 @@
-import { db } from "../Contexts/Firebase";
-import { ref, get } from "@firebase/database";
+import { get, ref } from "firebase/database";
+import { ImageLoader, ImageLoaderProps } from "next/image";
+import Link from "next/link";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { NumberFormatValues } from "react-number-format";
+import { v4 as uuid } from "uuid";
 import {
-  Departments,
   DepartmentTab,
+  Departments,
   PublicTeam,
   RecruitmentDepartmentsForm,
   RecruitmentFormInfo,
 } from "../../interfaces";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { db } from "../Contexts/Firebase";
 import TeamImage from "../Images/TeamImage";
-import { v4 as uuid } from "uuid";
-import { NumberFormatValues } from "react-number-format";
-import Link from "next/link";
-import { ImageLoader, ImageLoaderProps } from "next/image";
 
 /** Transforms the date string into Date Object
  * @param  {string} date dd/mm/yyy or dd-mm-yyyy
@@ -41,12 +41,12 @@ const inputToDate = (date: string | number) => {
     const month = parseInt(arr[1]) - 1;
     const day = parseInt(arr[0]);
     return new Date(year, month, day);
-  } else if (typeof date === "number") {
+  }
+  if (typeof date === "number") {
     // then it is a timestamp
     return new Date(date);
-  } else {
-    return new Date();
   }
+  return new Date();
 };
 
 /** Retrieves the profile image path based on the User ID
@@ -58,10 +58,9 @@ const inputToDate = (date: string | number) => {
 const getUserImgUrl = (id: string, compressed: boolean = false) => {
   const baseUrl = "https://tsb.tecnico.ulisboa.pt";
   if (compressed) {
-    return baseUrl + `/db/users/${id}/img/${id}comp.png`;
-  } else {
-    return baseUrl + `/db/users/${id}/img/${id}.png`;
+    return `${baseUrl}/db/users/${id}/img/${id}comp.png`;
   }
+  return `${baseUrl}/db/users/${id}/img/${id}.png`;
 };
 
 /**
@@ -102,7 +101,7 @@ const getTeamToDisplay = (
   setPublicTeam: Dispatch<SetStateAction<PublicTeam | undefined>>,
   setTeamToDisplay: Dispatch<SetStateAction<PublicTeam | undefined>>,
   setDepartmentTabs: Dispatch<SetStateAction<DepartmentTab[] | undefined>>,
-  setTeamNumber: Dispatch<SetStateAction<number>>
+  setTeamNumber: Dispatch<SetStateAction<number>>,
 ) => {
   // Retrieve public team information from DB
   get(ref(db, "public/officialWebsite/team"))
@@ -129,14 +128,12 @@ const getTeamToDisplay = (
  */
 const getTeamDepartments = (
   publicTeamDb: PublicTeam,
-  setDepartmentTabs: Dispatch<SetStateAction<DepartmentTab[] | undefined>>
+  setDepartmentTabs: Dispatch<SetStateAction<DepartmentTab[] | undefined>>,
 ) => {
   const tabs = [{ name: "All", active: true }];
 
   // Get all departments
-  const departments = Object.entries(publicTeamDb).map(
-    ([, user]) => user.info.department
-  );
+  const departments = Object.entries(publicTeamDb).map(([, user]) => user.info.department);
   // get all unique departments
   const uniqueDepartments = departments.filter((value, index, self) => {
     return self.indexOf(value) === index;
@@ -161,7 +158,7 @@ const toggleActiveDepartment = (
   department: string,
   departmentTabs: DepartmentTab[],
   setDepartmentTabs: Dispatch<SetStateAction<DepartmentTab[] | undefined>>,
-  setTeamToDisplay: Dispatch<SetStateAction<PublicTeam | undefined>>
+  setTeamToDisplay: Dispatch<SetStateAction<PublicTeam | undefined>>,
 ) => {
   if (!publicTeam) return;
   const newTabs = departmentTabs.map((dep) => {
@@ -174,10 +171,7 @@ const toggleActiveDepartment = (
   // Filter now the corresponding team members of the department
   const newTeamToDisplay: PublicTeam = {};
   Object.entries(publicTeam).forEach(([userId, user]) => {
-    if (
-      (user.info.department === department || department === "All") &&
-      user.info.inTeam
-    )
+    if ((user.info.department === department || department === "All") && user.info.inTeam)
       newTeamToDisplay[userId] = user;
   });
   setTeamToDisplay(newTeamToDisplay);
@@ -189,15 +183,11 @@ const toggleActiveDepartment = (
  * @returns
  */
 const sortTeaMembers = (teamToDisplay: PublicTeam) => {
-  const adminPositions = [
-    "Team Leader",
-    "Head of Department",
-    "Technical Director",
-  ];
+  const adminPositions = ["Team Leader", "Head of Department", "Technical Director"];
   const usersList = Object.entries(teamToDisplay).map((userObj) => userObj);
   return usersList.sort((a, b) => {
-    let userA = a[1].info;
-    let userB = b[1].info;
+    const userA = a[1].info;
+    const userB = b[1].info;
 
     // Check if users has the max position
     let idxA = adminPositions.indexOf(userA.position);
@@ -212,9 +202,10 @@ const sortTeaMembers = (teamToDisplay: PublicTeam) => {
       if (inputToDate(userA.joinedIn) > inputToDate(userB.joinedIn)) return 1;
       if (inputToDate(userA.joinedIn) < inputToDate(userB.joinedIn)) return -1;
       return 0;
-    } else if (idxA < idxB) return -1;
-    else if (idxA > idxB) return 1;
-    else return 0;
+    }
+    if (idxA < idxB) return -1;
+    if (idxA > idxB) return 1;
+    return 0;
   });
 };
 
@@ -255,31 +246,30 @@ const replaceSVGWidthAndHeight = (s: string, toReplace: string) => {
   s = s.substring(s.indexOf("<svg"));
 
   // Check if the <svg ... > has existing width/height attribute
-  let svgParentString = s.substring(s.indexOf("<svg"), s.indexOf(">"));
-  let toReplaceExists = svgParentString.indexOf(toReplace) > -1;
+  const svgParentString = s.substring(s.indexOf("<svg"), s.indexOf(">"));
+  const toReplaceExists = svgParentString.indexOf(toReplace) > -1;
 
   if (toReplaceExists) {
-    let wIdx = s.indexOf(toReplace) + toReplace.length;
+    const wIdx = s.indexOf(toReplace) + toReplace.length;
     // split the string into two substrings, to replace the width
     let wSubString = s.substring(0, wIdx);
-    let wRest = s.substring(wIdx);
+    const wRest = s.substring(wIdx);
     // find the closing " of the width="..."
-    let wClosingIdx = wRest.indexOf(`"`);
-    let finalWSub = wRest.substring(wClosingIdx);
+    const wClosingIdx = wRest.indexOf(`"`);
+    const finalWSub = wRest.substring(wClosingIdx);
     // add the width 100%
-    wSubString += `100%` + finalWSub;
+    wSubString += `100%${finalWSub}`;
     // find the next "
     return wSubString;
-  } else {
-    // Insert property into <svg toReplace >
-    // split the string into two substrings, to replace the width
-    let initString = s.substring(0, 4);
-    let restString = s.substring(4);
-    if (toReplace.indexOf("width") !== -1) {
-      return initString + ` width="100%" ` + restString;
-    }
-    return initString + ` height="100%" ` + restString;
   }
+  // Insert property into <svg toReplace >
+  // split the string into two substrings, to replace the width
+  const initString = s.substring(0, 4);
+  const restString = s.substring(4);
+  if (toReplace.indexOf("width") !== -1) {
+    return `${initString} width="100%" ${restString}`;
+  }
+  return `${initString} height="100%" ${restString}`;
 };
 
 /**
@@ -293,10 +283,14 @@ const getStringMatches = (s: string, expr = "linear") => {
   let regexp = /<linearGradient id=/g;
   if (expr === "image") regexp = /<image id=/g;
   if (expr === "pattern") regexp = /<pattern id=/g;
-  let match,
-    matches = [];
+  let match;
+  const matches = [];
 
-  while ((match = regexp.exec(s)) != null) {
+  while (true) {
+    match = regexp.exec(s);
+    if (match === null) {
+      break;
+    }
     matches.push(match.index);
   }
   return matches;
@@ -310,7 +304,7 @@ const getStringMatches = (s: string, expr = "linear") => {
  */
 const replaceClsClasses = (s: string, toFind: string) => {
   // replace all occurrences
-  s = s.replaceAll(toFind, "class-" + uuid());
+  s = s.replaceAll(toFind, `class-${uuid()}`);
 
   return s;
 };
@@ -340,19 +334,19 @@ const cleanSvgString = (s: string) => {
  * @returns
  */
 const replaceLinearGradients = (s: string, toFind: string, expr = "linear") => {
-  let matches = getStringMatches(s, expr);
+  const matches = getStringMatches(s, expr);
   // console.log(matches);
   // For each linear gradient, replace the id with a unique identifier
   matches.forEach((_, idx) => {
     // We need to do this for every occurrence, because each time we change the id, the
     // next indexes change
-    let moreMatches = getStringMatches(s, expr);
-    let matchIdx = moreMatches[idx];
-    let subStr = s.substring(matchIdx + toFind.length);
+    const moreMatches = getStringMatches(s, expr);
+    const matchIdx = moreMatches[idx];
+    const subStr = s.substring(matchIdx + toFind.length);
 
     // Get the linear gradient Id
-    let closureIdx = subStr.indexOf(`"`);
-    let linearid = subStr.substring(0, closureIdx);
+    const closureIdx = subStr.indexOf(`"`);
+    const linearid = subStr.substring(0, closureIdx);
     // replace all linearId occurrences in svg, with a unique identifier
     s = s.replaceAll(linearid, uuid());
   });
@@ -367,8 +361,9 @@ const replaceLinearGradients = (s: string, toFind: string, expr = "linear") => {
 const buildSafeUrl = (url: string) => {
   if (url.indexOf("http://") !== -1) {
     return url.replace("http://", "https://");
-  } else if (url.indexOf("https://") === -1) {
-    return "https://" + url;
+  }
+  if (url.indexOf("https://") === -1) {
+    return `https://${url}`;
   }
   return url;
 };
@@ -379,31 +374,30 @@ const buildSafeUrl = (url: string) => {
  */
 const dateToString = (d: Date | number, withHours = false) => {
   if (d instanceof Date) {
-    let day = ("0" + d.getDate()).slice(-2);
-    let month = ("0" + String(d.getMonth() + 1)).slice(-2);
-    let year = d.getFullYear().toString();
+    const day = `0${d.getDate()}`.slice(-2);
+    const month = `0${String(d.getMonth() + 1)}`.slice(-2);
+    const year = d.getFullYear().toString();
     let dateString = `${day}/${month}/${year}`;
     if (withHours) {
       dateString += " ";
-      dateString += ("0" + d.getHours()).slice(-2);
+      dateString += `0${d.getHours()}`.slice(-2);
       dateString += "h";
-      dateString += ("0" + d.getMinutes()).slice(-2);
-    }
-    return dateString;
-  } else {
-    let newD = new Date(d);
-    let day = ("0" + newD.getDate()).slice(-2);
-    let month = ("0" + String(newD.getMonth() + 1)).slice(-2);
-    let year = newD.getFullYear().toString();
-    let dateString = `${day}/${month}/${year}`;
-    if (withHours) {
-      dateString += " ";
-      dateString += ("0" + newD.getHours()).slice(-2);
-      dateString += "h";
-      dateString += ("0" + newD.getMinutes()).slice(-2);
+      dateString += `0${d.getMinutes()}`.slice(-2);
     }
     return dateString;
   }
+  const newD = new Date(d);
+  const day = `0${newD.getDate()}`.slice(-2);
+  const month = `0${String(newD.getMonth() + 1)}`.slice(-2);
+  const year = newD.getFullYear().toString();
+  let dateString = `${day}/${month}/${year}`;
+  if (withHours) {
+    dateString += " ";
+    dateString += `0${newD.getHours()}`.slice(-2);
+    dateString += "h";
+    dateString += `0${newD.getMinutes()}`.slice(-2);
+  }
+  return dateString;
 };
 
 /**
@@ -415,7 +409,7 @@ const dateToString = (d: Date | number, withHours = false) => {
 const handleSelectInput = (
   option: any,
   key: string,
-  setInfo: Dispatch<SetStateAction<RecruitmentFormInfo>>
+  setInfo: Dispatch<SetStateAction<RecruitmentFormInfo>>,
 ) => {
   setInfo((info: RecruitmentFormInfo) => ({ ...info, [key]: option.value }));
 };
@@ -428,7 +422,7 @@ const handleSelectInput = (
 const handleTextInput = (
   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   key: string,
-  setInfo: Dispatch<SetStateAction<RecruitmentFormInfo>>
+  setInfo: Dispatch<SetStateAction<RecruitmentFormInfo>>,
 ) => {
   let value = e.target.value;
   if (key === "email" || key === "confirmEmail") {
@@ -446,9 +440,9 @@ const handleTextInput = (
 const handleInputMask = (
   value: NumberFormatValues,
   key: string,
-  setInfo: Dispatch<SetStateAction<RecruitmentFormInfo>>
+  setInfo: Dispatch<SetStateAction<RecruitmentFormInfo>>,
 ) => {
-  let str = value.formattedValue.replaceAll("_", "");
+  const str = value.formattedValue.replaceAll("_", "");
   setInfo((info: RecruitmentFormInfo) => ({ ...info, [key]: str }));
 };
 
@@ -461,18 +455,16 @@ const handleInputMask = (
 const handleCheckbox = (
   e: ChangeEvent<HTMLInputElement>,
   key: string,
-  setInfo: Dispatch<SetStateAction<RecruitmentDepartmentsForm>>
+  setInfo: Dispatch<SetStateAction<RecruitmentDepartmentsForm>>,
 ) => {
-  let isChecked = e.target.checked;
+  const isChecked = e.target.checked;
   setInfo((info: RecruitmentDepartmentsForm) => ({
     ...info,
     [key]: isChecked,
   }));
 };
 
-const getRecruitmentInfo = (
-  setDepartments: Dispatch<SetStateAction<Departments>>
-) => {
+const getRecruitmentInfo = (setDepartments: Dispatch<SetStateAction<Departments>>) => {
   get(ref(db, "public/recruitment/openDepartments")).then((snapshot) => {
     const departments: Departments = snapshot.val();
 
@@ -481,9 +473,7 @@ const getRecruitmentInfo = (
   });
 };
 
-const getRecruitmentTable = (
-  setActiveTable: Dispatch<SetStateAction<string>>
-) => {
+const getRecruitmentTable = (setActiveTable: Dispatch<SetStateAction<string>>) => {
   get(ref(db, "public/recruitment/activeTable")).then((snapshot) => {
     const activeTable: string = snapshot.val();
     if (!activeTable) return;
@@ -493,27 +483,24 @@ const getRecruitmentTable = (
 };
 
 const getAge = (dateString: string) => {
-  let today = new Date();
-  let birthDate = inputToDate(dateString);
+  const today = new Date();
+  const birthDate = inputToDate(dateString);
   let age = today.getFullYear() - birthDate.getFullYear();
-  let m = today.getMonth() - birthDate.getMonth();
+  const m = today.getMonth() - birthDate.getMonth();
   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
     age--;
   }
   return age;
 };
 
-const getProfileJoinedInInfo = (
-  joinedIn: string,
-  leftIn: string | undefined
-) => {
+const getProfileJoinedInInfo = (joinedIn: string, leftIn: string | undefined) => {
   if (joinedIn && leftIn) {
     return `I joined Técnico Solar Boat in ${joinedIn} and left with great sorrow in ${leftIn}`;
-  } else if (joinedIn) {
-    return `I joined Técnico Solar Boat in ${joinedIn} and it has been the greatest experience of my life 😁!`;
-  } else {
-    return `I've joined Técnico Solar Boat in a while, but I cannot recall when. This is my life now! 🤩'`;
   }
+  if (joinedIn) {
+    return `I joined Técnico Solar Boat in ${joinedIn} and it has been the greatest experience of my life 😁!`;
+  }
+  return `I've joined Técnico Solar Boat in a while, but I cannot recall when. This is my life now! 🤩'`;
 };
 
 /**
@@ -529,15 +516,11 @@ const imageLoader: ImageLoader = ({ src }: ImageLoaderProps) => {
   return src;
 };
 
-const getFooterTheme = (
-  theme: 0 | 1 | "white" | "black",
-  switchTheme = false
-) => {
+const getFooterTheme = (theme: 0 | 1 | "white" | "black", switchTheme = false) => {
   if (switchTheme) {
     return theme === "white" || theme === 0 ? "black" : "white";
-  } else {
-    return theme;
   }
+  return theme;
 };
 
 export {

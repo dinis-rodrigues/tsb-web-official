@@ -47,15 +47,11 @@ const SP01 = () => {
           <div className="col-lg-10 z-inf">
             <h4 className="index-header f-700 text-white">SÃO PEDRO 01</h4>
             <hr className="divider" />
-            <p className="f-medium text-white">
-              The autonomous solar powered boat
-            </p>
+            <p className="f-medium text-white">The autonomous solar powered boat</p>
 
             <ClapButton
               count={countButtons.likeCount}
-              onClick={() =>
-                addCountToButton(countButtons.likeCount, "likeCount", "sp01")
-              }
+              onClick={() => addCountToButton(countButtons.likeCount, "likeCount", "sp01")}
             />
           </div>
         </div>
@@ -66,25 +62,22 @@ const SP01 = () => {
                 <IoBulbOutline className="icon-lg" />
                 {/* <SiAtom className="icon-lg" /> */}
               </div>
-              <h5 className="text-white mt-2 text-shadow">
-                Electrical Systems
-              </h5>
+              <h5 className="text-white mt-2 text-shadow">Electrical Systems</h5>
 
               <ul className="opensource-list">
                 <li className="onsource-list-item">Electrical Schematic</li>
-                <li className="onsource-list-item">
-                  Printed Circuit Boards (PCBs)
-                </li>
+                <li className="onsource-list-item">Printed Circuit Boards (PCBs)</li>
                 {/* <li className="onsource-list-item">Source Code</li> */}
               </ul>
               <button
+                type="button"
                 className="btnd btnd-info mt-2"
                 onClick={() =>
                   downloadMaterial(
                     countButtons.esDownloadCount,
                     "esDownloadCount",
                     "sp01",
-                    "https://gitlab.com/tecnico.solar.boat/2023/SP01"
+                    "https://gitlab.com/tecnico.solar.boat/2023/SP01",
                   )
                 }
               >
@@ -103,22 +96,21 @@ const SP01 = () => {
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                 <GiAnchor className="icon-lg" />
               </div>
-              <h5 className="text-white mt-2 text-shadow">
-                Design and Composites
-              </h5>
+              <h5 className="text-white mt-2 text-shadow">Design and Composites</h5>
               <ul className="opensource-list">
                 <li className="onsource-list-item">{"Technical Designs"}</li>
                 <li className="onsource-list-item">{"Lamination Guides"}</li>
                 <li className="onsource-list-item">{"Molds"}</li>
               </ul>
               <button
+                type="button"
                 className="btnd btnd-info mt-2"
                 onClick={() =>
                   downloadMaterial(
                     countButtons.dcDownloadCount,
                     "dcDownloadCount",
                     "sp01",
-                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SP01/DC/DC-SP01.zip"
+                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SP01/DC/DC-SP01.zip",
                   )
                 }
               >

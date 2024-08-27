@@ -1,5 +1,3 @@
-import React from "react";
-
 const GalleryHeader = () => {
   return (
     <section className="gallery gallery-section bg-dark video-sec gallery-slider p-0">

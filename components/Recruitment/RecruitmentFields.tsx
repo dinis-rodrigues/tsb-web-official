@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import LightGallery from "lightgallery/react";
 
-// import plugins if you need
-import lgThumbnail from "lightgallery/plugins/thumbnail";
-import lgZoom from "lightgallery/plugins/zoom";
 import lgAutoplay from "lightgallery/plugins/autoplay";
 import lgFullscreen from "lightgallery/plugins/fullscreen";
 import lgRotate from "lightgallery/plugins/rotate";
+// import plugins if you need
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
 import { Departments } from "../../interfaces";
 
 interface Props {
@@ -15,26 +15,11 @@ interface Props {
 
 const RecruitmentFields = ({ openDepartments }: Props) => {
   console.log(openDepartments);
-  const isDcRecruitmentOpen = Object.prototype.hasOwnProperty.call(
-    openDepartments,
-    "dc"
-  );
-  const isMmRecruitmentOpen = Object.prototype.hasOwnProperty.call(
-    openDepartments,
-    "mm"
-  );
-  const isSeRecruitmentOpen = Object.prototype.hasOwnProperty.call(
-    openDepartments,
-    "es"
-  );
-  const isSmRecruitmentOpen = Object.prototype.hasOwnProperty.call(
-    openDepartments,
-    "sm"
-  );
-  const isHpRecruitmentOpen = Object.prototype.hasOwnProperty.call(
-    openDepartments,
-    "hp"
-  );
+  const isDcRecruitmentOpen = Object.prototype.hasOwnProperty.call(openDepartments, "dc");
+  const isMmRecruitmentOpen = Object.prototype.hasOwnProperty.call(openDepartments, "mm");
+  const isSeRecruitmentOpen = Object.prototype.hasOwnProperty.call(openDepartments, "es");
+  const isSmRecruitmentOpen = Object.prototype.hasOwnProperty.call(openDepartments, "sm");
+  const isHpRecruitmentOpen = Object.prototype.hasOwnProperty.call(openDepartments, "hp");
   return (
     <div className="row fields-wrapper ">
       <h2 className="recruitment-heading mb-3">OPEN DEPARTMENTS</h2>
@@ -90,10 +75,7 @@ const RecruitmentFields = ({ openDepartments }: Props) => {
             href={`${process.env.BASE_PATH}/assets/images/recruitment/SM.jpeg`}
           >
             <div className="field cursor-pointer">
-              <img
-                src={`${process.env.BASE_PATH}/assets/images/recruitment/SM.jpeg`}
-                alt=""
-              />
+              <img src={`${process.env.BASE_PATH}/assets/images/recruitment/SM.jpeg`} alt="" />
             </div>
           </a>
         ) : null}
@@ -103,10 +85,7 @@ const RecruitmentFields = ({ openDepartments }: Props) => {
             href={`${process.env.BASE_PATH}/assets/images/recruitment/PH.jpeg`}
           >
             <div className="field cursor-pointer">
-              <img
-                src={`${process.env.BASE_PATH}/assets/images/recruitment/PH.jpeg`}
-                alt=""
-              />
+              <img src={`${process.env.BASE_PATH}/assets/images/recruitment/PH.jpeg`} alt="" />
             </div>
           </a>
         ) : null}
