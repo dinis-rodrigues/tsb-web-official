@@ -6,7 +6,6 @@
     "dev": "pnpm lint && next dev -p 8500",
     "build": "next build",
     "start": "next start",
-    "export": "next export",
     "lint": "pnpm biome check . && pnpm tsc",
     "fix": "pnpm biome check --fix .",
     "fix-unsafe": "pnpm biome check --fix --unsafe .",
@@ -16,12 +15,6 @@
     "re-build": "rm -rf node_modules .next out dist build && pnpm install && pnpm build",
     "install-all": "pnpm ci && cd public/api && composer install",
     "preinstall": "npx only-allow pnpm"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
