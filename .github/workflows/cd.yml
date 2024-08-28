@@ -40,12 +40,12 @@ jobs:
         run: pnpm i
       # Install dependencies using composer.json in public/api
       - name: Install PHP Packages
-        uses: "ramsey/composer-install@v2"
+        uses: "ramsey/composer-install@v3"
         with:
           working-directory: "public/api"
       # Add Firebase API keys to environment variables
       - name: Add environment variables
-        uses: SpicyPizza/create-envfile@v1
+        uses: SpicyPizza/create-envfile@v2
         with:
           envkey_NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           envkey_NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
