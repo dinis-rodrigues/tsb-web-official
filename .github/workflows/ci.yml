@@ -39,7 +39,7 @@ jobs:
         run: pnpm install
 
       - name: Run linters
-        run: pnpm biome ci ./src
+        run: pnpm biome ci .
       # Install dependencies using composer.json in public/api
       - name: Install PHP Packages
         uses: "ramsey/composer-install@v2"
