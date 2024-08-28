@@ -38,7 +38,7 @@ const AutonomousSection = ({ playVideo = false }: Props) => {
         }}
       >
         <video
-          src={`${process.env.BASE_PATH}/assets/images/index/about/ai.mov`}
+          src={`/assets/images/index/about/ai.mov`}
           className="video-bg"
           ref={vidRef}
           autoPlay

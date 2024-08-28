@@ -1,7 +1,7 @@
-import { Rank, Tensor } from "@tensorflow/tfjs";
 import * as tf from "@tensorflow/tfjs";
+import { Rank, Tensor } from "@tensorflow/tfjs";
 import { Sequential } from "@tensorflow/tfjs-layers";
-import { ReactSketchCanvas } from "react-sketch-canvas";
+import { ReactSketchCanvasRef } from "react-sketch-canvas";
 import { ChartValue, Predictions } from "../../interfaces";
 import { MnistData } from "./data";
 
@@ -428,14 +428,14 @@ const load = (url: string): Promise<HTMLImageElement> => {
  * @returns
  */
 const predict = async (
-  cvx: ReactSketchCanvas | null,
+  cvx: ReactSketchCanvasRef | null,
   myModel: Sequential | null,
   setPredictions: Function,
 ) => {
   if (!cvx || !myModel) return;
   const imgPath = await cvx.exportImage("png");
   const image = await load(imgPath);
-  // const nimage = tf.browser.fromPixels(image);
+
   const gray = tf.browser
     .fromPixels(image)
     .resizeBilinear([28, 28])
@@ -467,4 +467,4 @@ const predict = async (
   setPredictions(predictionsObj);
 };
 
-export { startTrain, stopTraining, predictionsValues, getAndTrainModel, showExamples, predict };
+export { getAndTrainModel, predict, predictionsValues, showExamples, startTrain, stopTraining };

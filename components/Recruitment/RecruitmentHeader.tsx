@@ -14,7 +14,7 @@ const RecruitmentHeader = () => {
         }}
       >
         <video
-          src={`${process.env.BASE_PATH}/assets/video/waves.mp4`}
+          src={`/assets/video/waves.mp4`}
           className="video-bg"
           data-keepplaying
           autoPlay

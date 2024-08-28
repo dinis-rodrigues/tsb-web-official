@@ -40,7 +40,7 @@ const SR02 = () => {
         <div
           className={cx("section-bg active")}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/opensource/sr02_opensource.jpeg")`,
+            backgroundImage: `url("/assets/images/opensource/sr02_opensource.jpeg")`,
           }}
         ></div>
       </div>

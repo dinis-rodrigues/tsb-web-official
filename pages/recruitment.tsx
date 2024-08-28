@@ -39,6 +39,7 @@ const Recruitment = () => {
 
       {Object.entries(openDepartments).length > 0 && (
         <ReactFullpage
+          credits={{ enabled: false }}
           lockAnchors={true}
           autoScrolling={true}
           scrollOverflow

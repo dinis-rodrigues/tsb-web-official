@@ -13,6 +13,7 @@ const Custom404 = () => {
       </Head>
 
       <ReactFullpage
+        credits={{ enabled: false }}
         scrollOverflow
         fitToSection={true}
         navigation={false}
@@ -33,11 +34,9 @@ const Custom404 = () => {
                         Because The Page Does Not Exist Or Has Been Moved.
                       </h5>
                       <Link passHref href={"/"}>
-                        <a>
-                          <button type="button" className="btnd btnd-info">
-                            Go Home
-                          </button>
-                        </a>
+                        <button type="button" className="btnd btnd-info">
+                          Go Home
+                        </button>
                       </Link>
                     </div>
                   </div>

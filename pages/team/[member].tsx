@@ -24,6 +24,7 @@ const Member = ({ userInfo, userId }: Props) => {
       <Navbar theme={"white"} />
 
       <ReactFullpage
+        credits={{ enabled: false }}
         lockAnchors={true}
         autoScrolling={true}
         scrollOverflow

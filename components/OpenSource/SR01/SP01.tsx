@@ -38,7 +38,7 @@ const SP01 = () => {
         <div
           className={cx("section-bg active")}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/opensource/sp01_opensource.jpg")`,
+            backgroundImage: `url("/assets/images/opensource/sp01_opensource.jpg")`,
           }}
         ></div>
       </div>

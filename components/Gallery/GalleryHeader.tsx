@@ -8,10 +8,7 @@ const GalleryHeader = () => {
       >
         <div className="gallery-video-container ">
           <video className="gallery-video-header" autoPlay loop muted>
-            <source
-              src={`${process.env.BASE_PATH}/assets/video/tsbGalleryLoop.mp4`}
-              type="video/mp4"
-            />
+            <source src={`/assets/video/tsbGalleryLoop.mp4`} type="video/mp4" />
           </video>
         </div>
       </div>

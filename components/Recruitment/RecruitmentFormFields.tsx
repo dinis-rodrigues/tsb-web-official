@@ -4,7 +4,7 @@ import { AiOutlineFieldNumber, AiOutlineMail } from "react-icons/ai";
 import { BiMessage, BiWorld } from "react-icons/bi";
 import { BsLink45Deg, BsPerson, BsPhone } from "react-icons/bs";
 import { FaUniversity } from "react-icons/fa";
-import NumberFormat from "react-number-format";
+import { PatternFormat } from "react-number-format";
 
 import cx from "classnames";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -131,7 +131,7 @@ const RecruitmentFormFields = ({
                   <BsPhone />
                 </span>
               </div>
-              <NumberFormat
+              <PatternFormat
                 value={info.phoneNumber && info.phoneNumber}
                 onValueChange={(e) => handleInputMask(e, "phoneNumber", setInfo)}
                 className="form-control-r text-center"

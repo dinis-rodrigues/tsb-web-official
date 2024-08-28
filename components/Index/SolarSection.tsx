@@ -1,8 +1,7 @@
 import cx from "classnames";
 import { useEffect } from "react";
 import { FaSolarPanel } from "react-icons/fa";
-import { GiSpeedometer } from "react-icons/gi";
-import { GiElectric, GiSandsOfTime } from "react-icons/gi";
+import { GiElectric, GiSandsOfTime, GiSpeedometer } from "react-icons/gi";
 import { RiBattery2ChargeLine } from "react-icons/ri";
 
 import CountUp from "react-countup";
@@ -91,7 +90,7 @@ const SolarSection = ({ startCount = false }: Props) => {
   useEffect(() => {
     startCount && play(true);
     startCount && playGroup(true);
-  }, [play, playGroup, startCount]);
+  }, [startCount]);
 
   return (
     <div
@@ -105,7 +104,7 @@ const SolarSection = ({ startCount = false }: Props) => {
         <div
           className={cx("section-bg", { active: startCount })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/mm.jpg")`,
+            backgroundImage: `url("/assets/images/index/about/mm.jpg")`,
             opacity: "0.8",
           }}
         ></div>

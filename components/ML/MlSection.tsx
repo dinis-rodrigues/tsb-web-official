@@ -1,6 +1,6 @@
 import cx from "classnames";
 import { useRef, useState } from "react";
-import { ReactSketchCanvas } from "react-sketch-canvas";
+import { ReactSketchCanvas, ReactSketchCanvasRef } from "react-sketch-canvas";
 import { predict, predictionsValues, startTrain, stopTraining } from "./mlUtils";
 
 import { Sequential } from "@tensorflow/tfjs-layers";
@@ -27,7 +27,7 @@ const MlSection = ({ setToggleMl }: Props) => {
   const [firstTrain, setFirstTrain] = useState(false);
   const [chartSteps, setChartSteps] = useState(400);
 
-  const cvx = useRef<ReactSketchCanvas>(null);
+  const cvx = useRef<ReactSketchCanvasRef>(null);
   return (
     <>
       <div className="row mt-3 hide-mobile">
@@ -92,9 +92,13 @@ const MlSection = ({ setToggleMl }: Props) => {
                     <div
                       className={"canvas-container"}
                       onMouseEnter={() => {
+                        if (!cvx.current) return;
                         cvx.current?.resetCanvas();
                       }}
-                      onMouseUp={() => predict(cvx.current, myModel, setPredictions)}
+                      onMouseUp={() => {
+                        if (!cvx.current) return;
+                        predict(cvx.current, myModel, setPredictions);
+                      }}
                       style={{ height: "100px", width: "100px" }}
                     >
                       <ReactSketchCanvas

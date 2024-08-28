@@ -68,7 +68,7 @@ const HydrogenSection = ({ startCount = false }: Props) => {
   useEffect(() => {
     startCount && play(true);
     startCount && playGroup(true);
-  }, [play, playGroup, startCount]);
+  }, [startCount]);
   return (
     <div
       className="section fp-noscroll"
@@ -81,7 +81,7 @@ const HydrogenSection = ({ startCount = false }: Props) => {
         <div
           className={cx("section-bg", { active: startCount })}
           style={{
-            backgroundImage: `radial-gradient(transparent, black),url("${process.env.BASE_PATH}/assets/images/index/about/SM01_2023.jpg")`,
+            backgroundImage: `radial-gradient(transparent, black),url("/assets/images/index/about/SM01_2023.jpg")`,
             opacity: "0.7",
             // backgroundPosition: "center 10%",
           }}

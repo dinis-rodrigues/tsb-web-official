@@ -46,6 +46,7 @@ const Home: NextPage = () => {
         fullPageApi={fullPageApi}
       />
       <ReactFullpage
+        credits={{ enabled: false }}
         lockAnchors={true}
         scrollOverflow
         navigation

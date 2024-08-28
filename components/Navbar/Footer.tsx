@@ -20,30 +20,26 @@ const Footer = ({ hide, theme }: Props) => {
         <ul className="social-icons mr-auto mr-lg-0 d-none d-sm-block list-none">
           <li>
             <Link href={"https://www.facebook.com/tecnico.solarboat/"} passHref>
-              <a target={"_blank"} className="ion-icon">
-                <IoLogoFacebook />
-              </a>
+              <IoLogoFacebook />
             </Link>
           </li>
           <li>
-            <Link href={"https://www.youtube.com/c/tecnicosolarboat/null"} passHref>
-              <a target={"_blank"} className="ion-icon">
-                <IoLogoYoutube />
-              </a>
+            <Link href={"https://www.youtube.com/c/tecnicosolarboat/null"} passHref target="_blank">
+              <IoLogoYoutube />
             </Link>
           </li>
           <li>
-            <Link href={"https://linkedin.com/company/t%C3%A9cnico-solar-boat"} passHref>
-              <a target={"_blank"} className="ion-icon">
-                <IoLogoLinkedin />
-              </a>
+            <Link
+              href={"https://linkedin.com/company/t%C3%A9cnico-solar-boat"}
+              passHref
+              target={"_blank"}
+            >
+              <IoLogoLinkedin />
             </Link>
           </li>
           <li>
-            <Link href={"https://www.instagram.com/tecnico.solar.boat/"} passHref>
-              <a target={"_blank"} className="ion-icon">
-                <IoLogoInstagram />
-              </a>
+            <Link href={"https://www.instagram.com/tecnico.solar.boat/"} passHref target={"_blank"}>
+              <IoLogoInstagram />
             </Link>
           </li>
         </ul>

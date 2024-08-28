@@ -1,10 +1,10 @@
 import cx from "classnames";
 import { useEffect, useState } from "react";
+import { DiAtom } from "react-icons/di";
 import { FaCogs } from "react-icons/fa";
 import { GiAnchor } from "react-icons/gi";
 import { HiOutlinePresentationChartBar } from "react-icons/hi";
 import { IoBulbOutline } from "react-icons/io5";
-import { SiAtom } from "react-icons/si";
 // import { GiChart } from "react-icons/hi";
 type Props = {
   startZoom: boolean;
@@ -34,13 +34,13 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
         <div
           className={cx("section-bg", { active: activeDep === "es" })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/es2023.jpg")`,
+            backgroundImage: `url("/assets/images/index/about/es2023.jpg")`,
           }}
         ></div>
         <div
           className={cx("section-bg", { active: activeDep === "ms" })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/ms2023.jpg")`,
+            backgroundImage: `url("/assets/images/index/about/ms2023.jpg")`,
           }}
         ></div>
         <div
@@ -49,19 +49,19 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
             "zoom-eff": initialZoom === "dc",
           })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/dc2023.jpg")`,
+            backgroundImage: `url("/assets/images/index/about/dc2023.jpg")`,
           }}
         ></div>
         <div
           className={cx("section-bg", { active: activeDep === "mm" })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/mm2023.jpg")`,
+            backgroundImage: `url("/assets/images/index/about/mm2023.jpg")`,
           }}
         ></div>
         <div
           className={cx("section-bg", { active: activeDep === "hp" })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/hp2023.jpg")`,
+            backgroundImage: `url("/assets/images/index/about/hp2023.jpg")`,
           }}
         ></div>
       </div>
@@ -130,7 +130,7 @@ const About = ({ initialDepartment = "dc", startZoom }: Props) => {
           <div className="col-lg-4">
             <div className="item-card p-3" onMouseOver={() => setActiveDep("hp")}>
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
-                <SiAtom className="icon-lg" />
+                <DiAtom className="icon-lg" />
               </div>
               <h5 className="text-white mt-2 text-shadow index-subheader">
                 Hydrogen and Fuel Cell

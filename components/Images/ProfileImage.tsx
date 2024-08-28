@@ -22,9 +22,7 @@ const ProfileImage = ({ src }: Props) => {
           <img
             src={srcUrl}
             alt=""
-            onError={() =>
-              setSrcUrl(`${process.env.BASE_PATH}/assets/images/index/placeholder.png`)
-            }
+            onError={() => setSrcUrl(`/assets/images/index/placeholder.png`)}
             width="100%"
           />
         }

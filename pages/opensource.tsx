@@ -17,6 +17,7 @@ const OpenSource = () => {
       </Head>
       <Navbar theme={"white"} />
       <ReactFullpage
+        credits={{ enabled: false }}
         lockAnchors={true}
         scrollOverflow
         navigation

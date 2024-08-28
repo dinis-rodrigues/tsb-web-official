@@ -44,7 +44,7 @@ const Team = ({ onBottomScroll }: Props) => {
         <div
           className={cx("section-bg active overlay")}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/teamPhoto.jpg")`,
+            backgroundImage: `url("/assets/images/index/teamPhoto.jpg")`,
             opacity: "0.2",
           }}
         ></div>

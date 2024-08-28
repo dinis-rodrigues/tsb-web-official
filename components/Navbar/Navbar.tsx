@@ -103,7 +103,7 @@ const Navbar = ({
             <NavItem
               name={"Sponsors"}
               fullPageApi={fullPageApi}
-              link={`${process.env.BASE_PATH}/#sponsors`}
+              link={`/#sponsors`}
               anchorName={"sponsors"}
               mobileClickAction={() => setMenuIsOpen(false)}
             />

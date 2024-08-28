@@ -18,7 +18,7 @@ const RecruitmentIntro = () => {
         <div
           className={cx("section-bg active")}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/textures/black.jpg")`,
+            backgroundImage: `url("/assets/images/textures/black.jpg")`,
             opacity: "0.4",
           }}
         ></div>

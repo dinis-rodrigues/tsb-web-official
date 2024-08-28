@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import cx from "classnames";
 
+import { DiAtom } from "react-icons/di";
 import { GiAnchor } from "react-icons/gi";
 import { IoBulbOutline } from "react-icons/io5";
-import { SiAtom } from "react-icons/si";
 import { SM01Count } from "../../../interfaces";
 import ClapButton from "../../Buttons/ClapButton";
 import {
@@ -40,7 +40,7 @@ const SM01 = () => {
         <div
           className={cx("section-bg active")}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/opensource/sm01_opensource.jpeg")`,
+            backgroundImage: `url("/assets/images/opensource/sm01_opensource.jpeg")`,
           }}
         ></div>
       </div>
@@ -99,7 +99,7 @@ const SM01 = () => {
           <div className="col">
             <div className="item-card p-3">
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info ">
-                <SiAtom className="icon-lg" />
+                <DiAtom className="icon-lg" />
               </div>
               <h5 className="text-white mt-2 text-shadow">{"FC & Hydrogen"}</h5>
               <ul className="opensource-list">

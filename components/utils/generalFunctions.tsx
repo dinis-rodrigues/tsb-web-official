@@ -219,15 +219,13 @@ const returnSortedByPositionTeam = (teamToDisplay: PublicTeam) => {
   return usersList.map(([userId, user]) => {
     return (
       <div className="col mb-2 d-flex justify-content-center" key={userId}>
-        <Link href={getUserProfileLink(user.info.userName)} passHref>
-          <a style={{ color: "white" }}>
-            <TeamImage
-              src={getUserImgUrl(userId)}
-              name={user.info.name}
-              department={user.info.department}
-              position={user.info.position}
-            />
-          </a>
+        <Link href={getUserProfileLink(user.info.userName)} passHref style={{ color: "white" }}>
+          <TeamImage
+            src={getUserImgUrl(userId)}
+            name={user.info.name}
+            department={user.info.department}
+            position={user.info.position}
+          />
         </Link>
       </div>
     );
@@ -524,26 +522,26 @@ const getFooterTheme = (theme: 0 | 1 | "white" | "black", switchTheme = false) =
 };
 
 export {
-  getUserImgUrl,
-  getTeamToDisplay,
-  toggleActiveDepartment,
-  returnSortedByPositionTeam,
-  inputToDate,
-  replaceSVGWidthAndHeight,
-  replaceLinearGradients,
   buildSafeUrl,
+  cleanSvgString,
   dateToString,
-  handleSelectInput,
-  handleTextInput,
-  handleInputMask,
+  getAge,
+  getFooterTheme,
+  getProfileJoinedInInfo,
   getRecruitmentInfo,
   getRecruitmentTable,
-  handleCheckbox,
-  getAge,
-  getProfileJoinedInInfo,
+  getTeamToDisplay,
+  getUserImgUrl,
   getUserProfileLink,
+  handleCheckbox,
+  handleInputMask,
+  handleSelectInput,
+  handleTextInput,
   imageLoader,
-  getFooterTheme,
+  inputToDate,
   replaceClsClasses,
-  cleanSvgString,
+  replaceLinearGradients,
+  replaceSVGWidthAndHeight,
+  returnSortedByPositionTeam,
+  toggleActiveDepartment,
 };
