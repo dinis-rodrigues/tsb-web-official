@@ -40,7 +40,7 @@ const SR03 = () => {
         <div
           className={cx("section-bg active")}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/opensource/sr03_opensource.jpeg")`,
+            backgroundImage: `url("/assets/images/opensource/sr03_opensource.jpeg")`,
           }}
         ></div>
       </div>
@@ -50,15 +50,13 @@ const SR03 = () => {
             <h4 className="index-header f-700 text-white">SÃO RAFAEL 03</h4>
             <hr className="divider" />
             <p className="f-medium text-white">
-              High quality hull, hydrofoils, in-house solar panels and much more
-              in this incredibly done Portuguese solar powered boat.
+              High quality hull, hydrofoils, in-house solar panels and much more in this incredibly
+              done Portuguese solar powered boat.
             </p>
 
             <ClapButton
               count={countButtons.likeCount}
-              onClick={() =>
-                addCountToButton(countButtons.likeCount, "likeCount", "sr03")
-              }
+              onClick={() => addCountToButton(countButtons.likeCount, "likeCount", "sr03")}
             />
           </div>
         </div>
@@ -69,29 +67,24 @@ const SR03 = () => {
                 <IoBulbOutline className="icon-lg" />
                 {/* <SiAtom className="icon-lg" /> */}
               </div>
-              <h5 className="text-white mt-2 text-shadow">
-                Electrical Systems
-              </h5>
+              <h5 className="text-white mt-2 text-shadow">Electrical Systems</h5>
 
               <ul className="opensource-list">
-                <li className="onsource-list-item">
-                  Battery Management System
-                </li>
+                <li className="onsource-list-item">Battery Management System</li>
                 <li className="onsource-list-item">Electrical Schematic</li>
                 <li className="onsource-list-item">Documentation</li>
-                <li className="onsource-list-item">
-                  Printed Circuit Boards (PCBs)
-                </li>
+                <li className="onsource-list-item">Printed Circuit Boards (PCBs)</li>
                 <li className="onsource-list-item">Source Code</li>
               </ul>
               <button
+                type="button"
                 className="btnd btnd-info mt-2"
                 onClick={() =>
                   downloadMaterial(
                     countButtons.esDownloadCount,
                     "esDownloadCount",
                     "sr03",
-                    "https://gitlab.com/tecnico.solar.boat/2023/SR03"
+                    "https://gitlab.com/tecnico.solar.boat/2023/SR03",
                   )
                 }
               >
@@ -110,26 +103,23 @@ const SR03 = () => {
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info ">
                 <FaCogs className="icon-lg" />
               </div>
-              <h5 className="text-white mt-2 text-shadow">
-                Mechanical Systems
-              </h5>
+              <h5 className="text-white mt-2 text-shadow">Mechanical Systems</h5>
               <ul className="opensource-list">
                 <li className="onsource-list-item">Hydrofoil Design</li>
                 <li className="onsource-list-item">Propeller Design</li>
                 <li className="onsource-list-item">Transmission System</li>
                 <li className="onsource-list-item">CAD Models</li>
-                <li className="onsource-list-item">
-                  Propulsion Column (coming soon)
-                </li>
+                <li className="onsource-list-item">Propulsion Column (coming soon)</li>
               </ul>
               <button
+                type="button"
                 className="btnd btnd-info mt-2"
                 onClick={() =>
                   downloadMaterial(
                     countButtons.msDownloadCount,
                     "msDownloadCount",
                     "sr03",
-                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SR03/SM/SM-SR03.zip"
+                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SR03/SM/SM-SR03.zip",
                   )
                 }
               >
@@ -148,26 +138,23 @@ const SR03 = () => {
               <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                 <GiAnchor className="icon-lg" />
               </div>
-              <h5 className="text-white mt-2 text-shadow">
-                Design and Composites
-              </h5>
+              <h5 className="text-white mt-2 text-shadow">Design and Composites</h5>
               <ul className="opensource-list">
                 <li className="onsource-list-item">Male Mold</li>
                 <li className="onsource-list-item">Hull Design</li>
                 <li className="onsource-list-item">Hull Female Mold</li>
-                <li className="onsource-list-item">
-                  {"Structure & Composite Assembly"}
-                </li>
+                <li className="onsource-list-item">{"Structure & Composite Assembly"}</li>
                 <li className="onsource-list-item">{"List of Materials"}</li>
               </ul>
               <button
+                type="button"
                 className="btnd btnd-info mt-2"
                 onClick={() =>
                   downloadMaterial(
                     countButtons.dcDownloadCount,
                     "dcDownloadCount",
                     "sr03",
-                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SR03/DC/DC-SR03.zip"
+                    "https://tecnicosolarboat.tecnico.ulisboa.pt/OpenSource/SR03/DC/DC-SR03.zip",
                   )
                 }
               >

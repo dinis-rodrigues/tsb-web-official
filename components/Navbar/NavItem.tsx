@@ -1,6 +1,5 @@
 import { fullpageApi } from "@fullpage/react-fullpage";
 import Link from "next/link";
-import { Fragment } from "react";
 
 type Props = {
   name: string;
@@ -22,7 +21,7 @@ const NavItem = ({
   // anchors
   // else, wewe use normal redirect links
   return fullPageApi ? (
-    <Fragment>
+    <>
       {anchorName ? (
         <span
           className="menu-item"
@@ -38,7 +37,7 @@ const NavItem = ({
           <span className="menu-item">{name}</span>
         </Link>
       )}
-    </Fragment>
+    </>
   ) : (
     <Link href={link} passHref scroll={scrollToTop}>
       <span className="menu-item">{name}</span>

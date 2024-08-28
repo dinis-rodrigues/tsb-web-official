@@ -34,21 +34,21 @@ const submitContact = async (
   message: string,
   recaptcha: string | null,
   setIsSubmitting: Dispatch<SetStateAction<boolean>>,
-  setSubmissionSuccess: Dispatch<SetStateAction<boolean>>
+  setSubmissionSuccess: Dispatch<SetStateAction<boolean>>,
 ) => {
   setIsSubmitting(true);
-  var myHeaders = new Headers();
+  const myHeaders = new Headers();
 
   // From postman, probably this isn't needed
   myHeaders.append("Cookie", "BACKENDID=backend_1OPQ1_omega03|Yg7Jk|Yg7Jh");
 
-  var formdata = new FormData();
+  const formdata = new FormData();
   formdata.append("name", name);
   formdata.append("email", email);
   formdata.append("message", message);
   formdata.append("recaptcha", recaptcha ? recaptcha : "");
 
-  var requestOptions = {
+  const requestOptions = {
     method: "POST",
     headers: myHeaders,
     body: formdata,
@@ -57,7 +57,7 @@ const submitContact = async (
   try {
     const res = await fetch(
       "https://tecnicosolarboat.tecnico.ulisboa.pt/api/contactForm.php",
-      requestOptions
+      requestOptions,
     );
     const resData: FormResponse = await res.json();
     console.log("Resdata", resData);

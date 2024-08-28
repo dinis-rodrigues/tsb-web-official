@@ -1,9 +1,9 @@
-import { FiChevronDown } from "react-icons/fi";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import { useState } from "react";
+import { FiChevronDown } from "react-icons/fi";
 
 const RecruitmentFaq = () => {
   const [expanded, setExpanded] = useState<string | false>(false);
@@ -13,8 +13,7 @@ const RecruitmentFaq = () => {
     borderRadius: "1rem 1rem 1rem 1rem",
     backgroundColor: "rgba(255, 255, 255, 0.2)",
     color: "white",
-    borderBottom:
-      expanded !== panel ? "1px solid rgba(255,255,255,.3)" : "none",
+    borderBottom: expanded !== panel ? "1px solid rgba(255,255,255,.3)" : "none",
   });
   const summaryStyle = {
     backgroundColor: "rgb(26,26,26)",
@@ -42,10 +41,9 @@ const RecruitmentFaq = () => {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            Yes! We are always looking for new students to join our team.
-            Although some theoretical background can be useful, it&apos;s not
-            required. If you are willing to learn, you can apply and give your
-            best.
+            Yes! We are always looking for new students to join our team. Although some theoretical
+            background can be useful, it&apos;s not required. If you are willing to learn, you can
+            apply and give your best.
           </AccordionDetails>
         </Accordion>
         <Accordion
@@ -58,14 +56,12 @@ const RecruitmentFaq = () => {
             id="panel2bh-header"
             sx={summaryStyle}
           >
-            <Typography className="f-medium">
-              Can I apply in the next semester ?
-            </Typography>
+            <Typography className="f-medium">Can I apply in the next semester ?</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            We usually open the recruitment in each semester. But it will depend
-            on the available opportunities within the team. We can&apos;t
-            promise that we will have the same opportunities in each department.
+            We usually open the recruitment in each semester. But it will depend on the available
+            opportunities within the team. We can&apos;t promise that we will have the same
+            opportunities in each department.
           </AccordionDetails>
         </Accordion>
         <Accordion
@@ -86,10 +82,9 @@ const RecruitmentFaq = () => {
             <ul className="list-none">
               <li>Short answer: Yes you can.</li>
               <li>
-                Long answer: Although we accept students from different
-                universities, we need to individually evaluate the situation.
-                This is, where is you university located and your availability
-                for example.
+                Long answer: Although we accept students from different universities, we need to
+                individually evaluate the situation. This is, where is you university located and
+                your availability for example.
               </li>
             </ul>
           </AccordionDetails>
@@ -109,10 +104,9 @@ const RecruitmentFaq = () => {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            This is one of the most asked questions we receive. We do not ask
-            for anyone to give X amount of hours to the project. We set goals
-            and objectives, it&apos;s up to you on how you organize your time to
-            finish your tasks.
+            This is one of the most asked questions we receive. We do not ask for anyone to give X
+            amount of hours to the project. We set goals and objectives, it&apos;s up to you on how
+            you organize your time to finish your tasks.
           </AccordionDetails>
         </Accordion>
       </div>

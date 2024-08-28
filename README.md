@@ -96,20 +96,50 @@ Back-end of the application was developed with:
 
 ## Getting Started
 
-This project follows the `create-next-app` file structure. If you would like to set up this project up and running locally for yourself, follow these steps.
+### Initial Setup
 
-### Prerequisites
+1. Setup `fnm` as NodeJS Manager -> [Install](https://github.com/Schniz/fnm)
+2. Install NodeJS v20
 
-Clone the repository
-
-```sh
-git clone https://github.com/dinis-rodrigues/tsb-web-official.git
+```bash
+fnm install 20 # Installs NodeJS version 20
 ```
 
-Install all project dependencies
+3. Setup `pnpm` as Package Manager -> [Install](https://pnpm.io/installation)
 
-```sh
-npm install
+```bash
+pnpm install # Installs all project dependencies
+```
+
+4. Setup Biome as Linter and formatter -> [Install](https://marketplace.visualstudio.com/items?itemName=biomejs.biome)
+
+5. Setup VS Code format on save
+
+`(Ctrl + Shift + P) / (Cmd + Shift + P)` Preferences: Open User Setting (JSON)
+
+```json
+"[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+"editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+```
+
+## Local Development
+
+1. To locally run the application
+
+```bash
+pnpm dev
+```
+
+1. To lint the code before creating a pull request
+
+```bash
+pnpm lint
 ```
 
 ### Firebase Setup
@@ -163,7 +193,7 @@ the original database (`your-application`) and export it to the development data
 Install `Firebase CLI` in your system:
 
 ```sh
-npm install -g firebase-tools
+pnpm add -g firebase-tools
 ```
 
 **You only have to do this once**. Retrieve and copy the firebase CLI token from the terminal and add it to the `.env`
@@ -204,7 +234,7 @@ composer install
 or by running our custom install script at the root directory level
 
 ```sh
-npm run install-all
+pnpm install-all
 ```
 
 There is one folder `protected` which we place at the root location of our server, which contains
@@ -219,13 +249,13 @@ If you followed all of the above steps, you can proceed to locally run the
 project with
 
 ```sh
-npm run dev
+pnpm dev
 ```
 
 If you would like to deploy the application to your own server, run
 
 ```sh
-npm run build
+pnpm build
 ```
 
 This will create a `out` folder. Just copy all of the contents of the folder

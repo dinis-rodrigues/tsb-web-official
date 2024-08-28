@@ -1,10 +1,8 @@
-import React from "react";
-
 import { BsGearFill } from "react-icons/bs";
-import { GiPartyPopper, GiMicroscope, GiDna1 } from "react-icons/gi";
-import { IoHammerSharp } from "react-icons/io5";
-import { HiSpeakerphone } from "react-icons/hi";
 import { CgCrown } from "react-icons/cg";
+import { GiDna1, GiMicroscope, GiPartyPopper } from "react-icons/gi";
+import { HiSpeakerphone } from "react-icons/hi";
+import { IoHammerSharp } from "react-icons/io5";
 import GlowingStars from "../Animations/GlowingStars";
 
 const RecruitmentIntro = () => {
@@ -20,7 +18,7 @@ const RecruitmentIntro = () => {
         <div
           className={cx("section-bg active")}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/textures/black.jpg")`,
+            backgroundImage: `url("/assets/images/textures/black.jpg")`,
             opacity: "0.4",
           }}
         ></div>
@@ -32,21 +30,18 @@ const RecruitmentIntro = () => {
               <div className="icon icon-lg icon-shape icon-shape-primary shadow rounded-circle mb-5">
                 {/* <AiFillHeart /> */}
               </div>
-              <h3 className="recruitment-heading mb-3">
-                AWESOME OPPORTUNITIES
-              </h3>
+              <h3 className="recruitment-heading mb-3">AWESOME OPPORTUNITIES</h3>
               <div className="recruitment-intro-p f-medium">
                 <p>
-                  In Técnico Solar Boat you will be encouraged to find your own
-                  path of success.
+                  In Técnico Solar Boat you will be encouraged to find your own path of success.
                 </p>
                 <p>
-                  We are looking for people who are passionate about the field
-                  of renewable energies and who are willing to learn and grow.
+                  We are looking for people who are passionate about the field of renewable energies
+                  and who are willing to learn and grow.
                 </p>
                 <p>
-                  Within you will find a wide range of opportunities that we are
-                  currently developing such as:
+                  Within you will find a wide range of opportunities that we are currently
+                  developing such as:
                 </p>
               </div>
               <ul className="list-unstyled mt-5">
@@ -96,12 +91,10 @@ const RecruitmentIntro = () => {
                   <div className="icon icon-shape bg-gradient-white shadow rounded-circle text-info hide-medium-screen">
                     <GiDna1 className="icon-md" />
                   </div>
-                  <h5 className="info-title text-white index-subheader">
-                    Technology
-                  </h5>
+                  <h5 className="info-title text-white index-subheader">Technology</h5>
                   <p className="description f-medium">
-                    We will be developing state-of-the art technologies and
-                    pushing the boundaries of the current industry.
+                    We will be developing state-of-the art technologies and pushing the boundaries
+                    of the current industry.
                   </p>
                 </div>
               </div>
@@ -110,12 +103,10 @@ const RecruitmentIntro = () => {
                   <div className="icon icon-shape bg-gradient-white shadow rounded-circle text-info hide-medium-screen">
                     <GiMicroscope className="icon-md" />
                   </div>
-                  <h5 className="info-title text-white index-subheader">
-                    Innovation
-                  </h5>
+                  <h5 className="info-title text-white index-subheader">Innovation</h5>
                   <p className="description f-medium">
-                    We endorse and employ a constructive environment. You will
-                    have the opportunity to share and work on your own ideas.
+                    We endorse and employ a constructive environment. You will have the opportunity
+                    to share and work on your own ideas.
                   </p>
                 </div>
               </div>
@@ -124,12 +115,10 @@ const RecruitmentIntro = () => {
                   <div className="icon icon-shape bg-gradient-white shadow rounded-circle text-info hide-medium-screen">
                     <CgCrown className="icon-md" />
                   </div>
-                  <h5 className="info-title text-white index-subheader">
-                    Quality
-                  </h5>
+                  <h5 className="info-title text-white index-subheader">Quality</h5>
                   <p className="description f-medium">
-                    We take pride on what we develop and showcase. We thrive to
-                    achieve the highest performance in our outcomes.
+                    We take pride on what we develop and showcase. We thrive to achieve the highest
+                    performance in our outcomes.
                   </p>
                 </div>
               </div>
@@ -140,13 +129,10 @@ const RecruitmentIntro = () => {
                   <div className="icon icon-shape bg-gradient-white shadow rounded-circle text-info hide-medium-screen">
                     <HiSpeakerphone className="icon-md" />
                   </div>
-                  <h5 className="info-title text-white index-subheader">
-                    Communication
-                  </h5>
+                  <h5 className="info-title text-white index-subheader">Communication</h5>
                   <p className="description f-medium">
-                    Develop self-awareness in you and others. By giving
-                    constructive, meaningful, and timely feedback, everyone can
-                    achieve and fulfil their full potential.
+                    Develop self-awareness in you and others. By giving constructive, meaningful,
+                    and timely feedback, everyone can achieve and fulfil their full potential.
                   </p>
                 </div>
               </div>
@@ -155,13 +141,10 @@ const RecruitmentIntro = () => {
                   <div className="icon icon-shape bg-gradient-white shadow rounded-circle text-info hide-medium-screen">
                     <IoHammerSharp className="icon-md" />
                   </div>
-                  <h5 className="info-title text-white index-subheader">
-                    Proactive
-                  </h5>
+                  <h5 className="info-title text-white index-subheader">Proactive</h5>
                   <p className="description f-medium">
-                    You will have the opportunity to share and work on your own
-                    ideas. Everyone has a say in the future and vision of the
-                    project.
+                    You will have the opportunity to share and work on your own ideas. Everyone has
+                    a say in the future and vision of the project.
                   </p>
                 </div>
               </div>
@@ -170,13 +153,10 @@ const RecruitmentIntro = () => {
                   <div className="icon icon-shape bg-gradient-white shadow rounded-circle text-info hide-medium-screen">
                     <GiPartyPopper className="icon-md" />
                   </div>
-                  <h5 className="info-title text-white index-subheader">
-                    Team Spirit
-                  </h5>
+                  <h5 className="info-title text-white index-subheader">Team Spirit</h5>
                   <p className="description f-medium">
-                    What matters is the people who make this team. You will
-                    encounter a great sense of accomplishment when you are
-                    working with us.
+                    What matters is the people who make this team. You will encounter a great sense
+                    of accomplishment when you are working with us.
                   </p>
                 </div>
               </div>

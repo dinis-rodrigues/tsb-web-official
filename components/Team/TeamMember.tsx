@@ -1,18 +1,14 @@
+import cx from "classnames";
+import { get, ref } from "firebase/database";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { PublicUserInfo } from "../../interfaces";
 import BottomWaves from "../Animations/BottomWaves";
 import GlowingStars from "../Animations/GlowingStars";
 import Universe from "../Animations/Universe";
-import ProfileImage from "../Images/ProfileImage";
-import cx from "classnames";
-import {
-  getAge,
-  getProfileJoinedInInfo,
-  getUserImgUrl,
-} from "../utils/generalFunctions";
-import { useEffect, useState } from "react";
-import { get, ref } from "firebase/database";
 import { db } from "../Contexts/Firebase";
+import ProfileImage from "../Images/ProfileImage";
+import { getAge, getProfileJoinedInInfo, getUserImgUrl } from "../utils/generalFunctions";
 
 type Props = {
   userInfo: PublicUserInfo;
@@ -23,13 +19,11 @@ const TeamMember = ({ userInfo, userId }: Props) => {
   const [userDbInfo, setUserDbInfo] = useState<PublicUserInfo>();
 
   useEffect(() => {
-    get(ref(db, `/public/officialWebsite/team/${userId}/info`)).then(
-      (snapshot) => {
-        const userData: PublicUserInfo = snapshot.val();
-        if (!userData) return;
-        setUserDbInfo(userData);
-      }
-    );
+    get(ref(db, `/public/officialWebsite/team/${userId}/info`)).then((snapshot) => {
+      const userData: PublicUserInfo = snapshot.val();
+      if (!userData) return;
+      setUserDbInfo(userData);
+    });
   }, [userId]);
   return (
     <div
@@ -52,39 +46,29 @@ const TeamMember = ({ userInfo, userId }: Props) => {
                 <div className="header-text">
                   <h2>{"Hi, I'm"}</h2>
                   <h1>
-                    <span className="text-info">
-                      {userDbInfo && userDbInfo.name}
-                    </span>
+                    <span className="text-info">{userDbInfo && userDbInfo.name}</span>
                   </h1>
                 </div>
                 <div className="header-sub-text">
                   <h4 className="font-secondary text-secundary">
                     {userDbInfo && userDbInfo.position}
                     {" · "}
-                    <span className="text-info">
-                      {userDbInfo && userDbInfo.department}
-                    </span>
+                    <span className="text-info">{userDbInfo && userDbInfo.department}</span>
                     {" · "}
-                    {getAge(
-                      userDbInfo && userDbInfo.birth ? userDbInfo.birth : ""
-                    )}
+                    {getAge(userDbInfo && userDbInfo.birth ? userDbInfo.birth : "")}
                     yo
                   </h4>
                   <h5>
                     {getProfileJoinedInInfo(
-                      userDbInfo && userDbInfo.joinedIn
-                        ? userDbInfo.joinedIn
-                        : "",
-                      userDbInfo && userDbInfo.leftIn
+                      userDbInfo && userDbInfo.joinedIn ? userDbInfo.joinedIn : "",
+                      userDbInfo && userDbInfo.leftIn,
                     )}
                   </h5>
                 </div>
                 {userDbInfo && userDbInfo.description && (
                   <div className="header-sub-text">
                     <div className="header-sub-text">
-                      <h5 className="text-hash text-uppercase text-secondary">
-                        # Description
-                      </h5>
+                      <h5 className="text-hash text-uppercase text-secondary"># Description</h5>
                       <span style={{ fontSize: "1rem" }}>
                         {userDbInfo && userDbInfo.description}
                       </span>
@@ -96,6 +80,7 @@ const TeamMember = ({ userInfo, userId }: Props) => {
                   {userDbInfo && userDbInfo.linkedin && (
                     <Link href={userDbInfo && userDbInfo.linkedin} passHref>
                       <button
+                        type="button"
                         className="btnd btnd-info"
                         style={{ marginRight: "1rem" }}
                       >
@@ -104,7 +89,9 @@ const TeamMember = ({ userInfo, userId }: Props) => {
                     </Link>
                   )}
                   <Link href={"/#team"} passHref>
-                    <button className="btnd btnd-dark">Go back to Team</button>
+                    <button type="button" className="btnd btnd-dark">
+                      Go back to Team
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -121,18 +108,14 @@ const TeamMember = ({ userInfo, userId }: Props) => {
             <div className="header-text">
               <h2>{"Hi, I'm"}</h2>
               <h1>
-                <span className="text-info">
-                  {userDbInfo && userDbInfo.name}
-                </span>
+                <span className="text-info">{userDbInfo && userDbInfo.name}</span>
               </h1>
             </div>
             <div className="header-sub-text">
               <h4 className="font-secondary text-secundary">
                 {userDbInfo && userDbInfo.position}
                 {" · "}
-                <span className="text-info">
-                  {userDbInfo && userDbInfo.department}
-                </span>
+                <span className="text-info">{userDbInfo && userDbInfo.department}</span>
                 {" · "}
                 {getAge(userDbInfo && userDbInfo.birth ? userDbInfo.birth : "")}
                 yo
@@ -140,16 +123,14 @@ const TeamMember = ({ userInfo, userId }: Props) => {
               <h5>
                 {getProfileJoinedInInfo(
                   userDbInfo?.joinedIn ? userDbInfo?.joinedIn : "",
-                  userDbInfo?.leftIn ? userDbInfo?.leftIn : ""
+                  userDbInfo?.leftIn ? userDbInfo?.leftIn : "",
                 )}
               </h5>
             </div>
             {userInfo.description && (
               <div className="header-sub-text">
                 <div className="header-sub-text">
-                  <h5 className="text-hash text-uppercase text-dark">
-                    # Description
-                  </h5>
+                  <h5 className="text-hash text-uppercase text-dark"># Description</h5>
                   {userDbInfo?.description}
                 </div>
                 <p className="font-secondary font-large"></p>
@@ -158,16 +139,15 @@ const TeamMember = ({ userInfo, userId }: Props) => {
             <div className="link-horizontal">
               {userDbInfo && userDbInfo.linkedin && (
                 <Link href={userDbInfo && userDbInfo.linkedin} passHref>
-                  <button
-                    className="btnd btnd-info"
-                    style={{ marginRight: "1rem" }}
-                  >
+                  <button type="button" className="btnd btnd-info" style={{ marginRight: "1rem" }}>
                     Linkedin
                   </button>
                 </Link>
               )}
               <Link href={"/#team"} passHref>
-                <button className="btnd btnd-dark">Go back to Team</button>
+                <button type="button" className="btnd btnd-dark">
+                  Go back to Team
+                </button>
               </Link>
             </div>
           </div>

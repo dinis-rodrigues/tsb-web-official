@@ -1,4 +1,4 @@
-import { get, ref } from "@firebase/database";
+import { get, ref } from "firebase/database";
 import { Dispatch, SetStateAction } from "react";
 import { SponsorBracketPublic, SponsorBracketsPublic } from "../../interfaces";
 import { db } from "../Contexts/Firebase";
@@ -10,15 +10,12 @@ import { cleanSvgString } from "./generalFunctions";
  * @param setSvgString
  * @returns
  */
-const getSvgStringFromPath = async (
-  svgPath: string | undefined,
-  setSvgString: Function
-) => {
+const getSvgStringFromPath = async (svgPath: string | undefined, setSvgString: Function) => {
   if (!svgPath) return "";
 
-  var myHeaders = new Headers();
+  const myHeaders = new Headers();
 
-  var requestOptions = {
+  const requestOptions = {
     method: "GET",
     dataType: "html",
     headers: myHeaders,
@@ -28,7 +25,7 @@ const getSvgStringFromPath = async (
     .then(async (response) => ({ ok: response.ok, txt: await response.text() }))
     .then((result) => {
       if (result.ok) {
-        let s = cleanSvgString(result.txt);
+        const s = cleanSvgString(result.txt);
         setSvgString(s);
       } else {
         setSvgString(" ");
@@ -44,8 +41,8 @@ const getSvgStringFromPath = async (
  */
 const sortSponsorBrackets = (sponsorBrackets: SponsorBracketsPublic) => {
   return Object.entries(sponsorBrackets).sort((a, b) => {
-    let bracketA = a[1];
-    let bracketB = b[1];
+    const bracketA = a[1];
+    const bracketB = b[1];
 
     if (bracketA.topMargin > bracketB.topMargin) return -1;
     if (bracketA.topMargin < bracketB.topMargin) return 1;
@@ -57,7 +54,7 @@ const sortSponsorBrackets = (sponsorBrackets: SponsorBracketsPublic) => {
  * @param setSponsorBrackets
  */
 const getSponsorsFromDatabase = (
-  setSponsorBrackets: Dispatch<SetStateAction<[string, SponsorBracketPublic][]>>
+  setSponsorBrackets: Dispatch<SetStateAction<[string, SponsorBracketPublic][]>>,
 ) => {
   get(ref(db, "public/officialWebsite/sponsors/brackets")).then((snapshot) => {
     const sponsorBrackets: SponsorBracketsPublic = snapshot.val();

@@ -20,12 +20,7 @@ const Team = ({ onBottomScroll }: Props) => {
 
   const listInnerRef = useRef(null);
   useEffect(() => {
-    getTeamToDisplay(
-      setPublicTeam,
-      setTeamToDisplay,
-      setDepartmentTabs,
-      setTeamNumber
-    );
+    getTeamToDisplay(setPublicTeam, setTeamToDisplay, setDepartmentTabs, setTeamNumber);
   }, []);
 
   const onScroll = () => {
@@ -49,7 +44,7 @@ const Team = ({ onBottomScroll }: Props) => {
         <div
           className={cx("section-bg active overlay")}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/teamPhoto.jpg")`,
+            backgroundImage: `url("/assets/images/index/teamPhoto.jpg")`,
             opacity: "0.2",
           }}
         ></div>
@@ -60,9 +55,9 @@ const Team = ({ onBottomScroll }: Props) => {
           <div className="col-10">
             <h4 className="index-header f-700">OUR TEAM</h4>
             <p className="f-medium">
-              Only with strong, inspiring, and creative minds can we keep coming
-              up with new and inventive solutions. These are the {teamNumber}{" "}
-              incredible people that make all this possible.
+              Only with strong, inspiring, and creative minds can we keep coming up with new and
+              inventive solutions. These are the {teamNumber} incredible people that make all this
+              possible.
             </p>
             {departmentTabs?.map((dep, idx) => (
               <span
@@ -74,7 +69,7 @@ const Team = ({ onBottomScroll }: Props) => {
                     dep.name,
                     departmentTabs,
                     setDepartmentTabs,
-                    setTeamToDisplay
+                    setTeamToDisplay,
                   );
                 }}
               >

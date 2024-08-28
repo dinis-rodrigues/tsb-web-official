@@ -1,12 +1,6 @@
-import { off, onValue, ref, set } from "@firebase/database";
+import { off, onValue, ref, set } from "firebase/database";
 import { Dispatch, SetStateAction } from "react";
-import {
-  SM01Count,
-  SP01Count,
-  SR01Count,
-  SR02Count,
-  SR03Count,
-} from "../../interfaces";
+import { SM01Count, SP01Count, SR01Count, SR02Count, SR03Count } from "../../interfaces";
 import { db } from "../Contexts/Firebase";
 
 /**
@@ -16,17 +10,14 @@ import { db } from "../Contexts/Firebase";
  */
 const startButtonDBListeners = (
   boat: string,
-  setCountButtons: Dispatch<SetStateAction<SR01Count | SR02Count | SR03Count>>
+  setCountButtons: Dispatch<SetStateAction<SR01Count | SR02Count | SR03Count>>,
 ) => {
-  onValue(
-    ref(db, `public/officialWebsite/openSource/${boat}/buttonCount`),
-    (snapshot) => {
-      const allButtonCounts: SR01Count | SR02Count = snapshot.val();
-      if (!allButtonCounts) return;
-      // get all photos of album
-      setCountButtons(allButtonCounts);
-    }
-  );
+  onValue(ref(db, `public/officialWebsite/openSource/${boat}/buttonCount`), (snapshot) => {
+    const allButtonCounts: SR01Count | SR02Count = snapshot.val();
+    if (!allButtonCounts) return;
+    // get all photos of album
+    setCountButtons(allButtonCounts);
+  });
 };
 
 /**
@@ -36,17 +27,14 @@ const startButtonDBListeners = (
  */
 const startSMButtonDBListeners = (
   boat: string,
-  setCountButtons: Dispatch<SetStateAction<SM01Count>>
+  setCountButtons: Dispatch<SetStateAction<SM01Count>>,
 ) => {
-  onValue(
-    ref(db, `public/officialWebsite/openSource/${boat}/buttonCount`),
-    (snapshot) => {
-      const allButtonCounts: SM01Count = snapshot.val();
-      if (!allButtonCounts) return;
-      // get all photos of album
-      setCountButtons(allButtonCounts);
-    }
-  );
+  onValue(ref(db, `public/officialWebsite/openSource/${boat}/buttonCount`), (snapshot) => {
+    const allButtonCounts: SM01Count = snapshot.val();
+    if (!allButtonCounts) return;
+    // get all photos of album
+    setCountButtons(allButtonCounts);
+  });
 };
 
 /**
@@ -56,17 +44,14 @@ const startSMButtonDBListeners = (
  */
 const startSPButtonDBListeners = (
   boat: string,
-  setCountButtons: Dispatch<SetStateAction<SP01Count>>
+  setCountButtons: Dispatch<SetStateAction<SP01Count>>,
 ) => {
-  onValue(
-    ref(db, `public/officialWebsite/openSource/${boat}/buttonCount`),
-    (snapshot) => {
-      const allButtonCounts: SP01Count = snapshot.val();
-      if (!allButtonCounts) return;
-      // get all photos of album
-      setCountButtons(allButtonCounts);
-    }
-  );
+  onValue(ref(db, `public/officialWebsite/openSource/${boat}/buttonCount`), (snapshot) => {
+    const allButtonCounts: SP01Count = snapshot.val();
+    if (!allButtonCounts) return;
+    // get all photos of album
+    setCountButtons(allButtonCounts);
+  });
 };
 
 /**
@@ -83,18 +68,8 @@ const removeButtonDBListeners = (boat: string) => {
  * @param btnString
  * @param boat
  */
-const addCountToButton = (
-  currCount: number,
-  btnString: string,
-  boat: string
-) => {
-  set(
-    ref(
-      db,
-      `public/officialWebsite/openSource/${boat}/buttonCount/${btnString}`
-    ),
-    currCount + 1
-  );
+const addCountToButton = (currCount: number, btnString: string, boat: string) => {
+  set(ref(db, `public/officialWebsite/openSource/${boat}/buttonCount/${btnString}`), currCount + 1);
 };
 
 /**
@@ -104,12 +79,7 @@ const addCountToButton = (
  * @param boat
  * @param urlLink
  */
-const downloadMaterial = (
-  currCount: number,
-  btnString: string,
-  boat: string,
-  urlLink: string
-) => {
+const downloadMaterial = (currCount: number, btnString: string, boat: string, urlLink: string) => {
   // Add new count to button
   addCountToButton(currCount, btnString, boat);
 

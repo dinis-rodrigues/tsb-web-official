@@ -1,13 +1,12 @@
-import { Fragment } from "react";
 import {
-  LineChart,
+  Label,
+  Legend,
   Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  Label,
 } from "recharts";
 import { ChartValue } from "../../interfaces";
 
@@ -18,15 +17,9 @@ type Props = {
   valAcc: ChartValue | undefined;
   chartSteps: number;
 };
-const MlCharts = ({
-  trainLoss,
-  trainAcc,
-  valLoss,
-  valAcc,
-  chartSteps,
-}: Props) => {
+const MlCharts = ({ trainLoss, trainAcc, valLoss, valAcc, chartSteps }: Props) => {
   return (
-    <Fragment>
+    <>
       <div className="row d-flex justify-content-center">
         <div className="col-md-6">
           <ResponsiveContainer width="100%" height={200}>
@@ -49,21 +42,11 @@ const MlCharts = ({
                 allowDataOverflow
                 allowDuplicatedCategory={false}
               >
-                <Label
-                  value="Steps"
-                  offset={-5}
-                  position="insideBottom"
-                  fill="#FFFFFF"
-                />
+                <Label value="Steps" offset={-5} position="insideBottom" fill="#FFFFFF" />
               </XAxis>
 
               <YAxis domain={[0, 3]}>
-                <Label
-                  value="Loss"
-                  position="center"
-                  angle={-90}
-                  fill="#FFFFFF"
-                />
+                <Label value="Loss" position="center" angle={-90} fill="#FFFFFF" />
               </YAxis>
               {trainLoss && (
                 <Tooltip
@@ -76,12 +59,7 @@ const MlCharts = ({
                 />
               )}
               <Legend verticalAlign="top" />
-              <Line
-                dot={false}
-                dataKey="trainLoss"
-                data={trainLoss}
-                isAnimationActive={false}
-              />
+              <Line dot={false} dataKey="trainLoss" data={trainLoss} isAnimationActive={false} />
               <Line
                 dot={false}
                 dataKey="valLoss"
@@ -112,20 +90,10 @@ const MlCharts = ({
                 allowDataOverflow
                 allowDuplicatedCategory={false}
               >
-                <Label
-                  value="Steps"
-                  offset={-5}
-                  position="insideBottom"
-                  fill="#FFFFFF"
-                />
+                <Label value="Steps" offset={-5} position="insideBottom" fill="#FFFFFF" />
               </XAxis>
               <YAxis domain={[0, 1]}>
-                <Label
-                  value="Accuracy"
-                  position="center"
-                  angle={-90}
-                  fill="#FFFFFF"
-                />
+                <Label value="Accuracy" position="center" angle={-90} fill="#FFFFFF" />
               </YAxis>
               {trainAcc && (
                 <Tooltip
@@ -138,12 +106,7 @@ const MlCharts = ({
                 />
               )}
               <Legend verticalAlign="top" />
-              <Line
-                dot={false}
-                dataKey="trainAcc"
-                data={trainAcc}
-                isAnimationActive={false}
-              />
+              <Line dot={false} dataKey="trainAcc" data={trainAcc} isAnimationActive={false} />
               <Line
                 dot={false}
                 dataKey="valAcc"
@@ -155,7 +118,7 @@ const MlCharts = ({
           </ResponsiveContainer>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

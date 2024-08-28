@@ -7,12 +7,7 @@ declare module "@fullpage/react-fullpage" {
     isLast: boolean;
   };
 
-  type DragAndMove =
-    | boolean
-    | "vertical"
-    | "horizontal"
-    | "fingersonly"
-    | "mouseonly";
+  type DragAndMove = boolean | "vertical" | "horizontal" | "fingersonly" | "mouseonly";
   type FadingEffect = boolean | "sections" | "slides";
   type InterlockedSlides = boolean | Array<number>;
   type bigSectionsDestination = "top" | "bottom" | null;
@@ -88,19 +83,9 @@ declare module "@fullpage/react-fullpage" {
     afterResize?(width: number, height: number): void;
     afterReBuild?(): void;
     afterResponsive?(isResponsive: boolean): void;
-    afterSlideLoad?(
-      section: Item,
-      origin: Item,
-      destination: Item,
-      direction: string
-    ): void;
+    afterSlideLoad?(section: Item, origin: Item, destination: Item, direction: string): void;
     onLeave?(origin: Item, destination: Item, direction: string): void;
-    onSlideLeave?(
-      section: Item,
-      origin: Item,
-      destination: Item,
-      direction: string
-    ): void;
+    onSlideLeave?(section: Item, origin: Item, destination: Item, direction: string): void;
 
     /* keys for extensions */
     fadingEffectKey?: string;
@@ -148,10 +133,7 @@ declare module "@fullpage/react-fullpage" {
     setRecordHistory(value: boolean, type?: string): void;
     setResponsive(value: boolean): void;
     setScrollingSpeed(value: number, type?: string): void;
-    silentMoveTo(
-      sectionAnchor: string | number,
-      slideAnchor?: string | number
-    ): void;
+    silentMoveTo(sectionAnchor: string | number, slideAnchor?: string | number): void;
     shared: {
       afterRenderActions(): void;
     };

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import BottomWaves from "../Animations/BottomWaves";
 import ReCAPTCHA from "react-google-recaptcha";
+import BottomWaves from "../Animations/BottomWaves";
 import { submitContact } from "../utils/contactFormSubmission";
 
 const Contact = () => {
@@ -25,10 +25,7 @@ const Contact = () => {
             <h5 className="index-header">
               Want to keep up to date ?
               <p>
-                <span className="text-info">
-                  {" "}
-                  Subscribe to our newsletter !
-                </span>
+                <span className="text-info"> Subscribe to our newsletter !</span>
               </p>
             </h5>
             <div className="form-group mb-3">
@@ -64,16 +61,11 @@ const Contact = () => {
               <h3 className="index-header">
                 <span className="text-info">Headquarters</span>
               </h3>
-              <h5 className="contact-addr f-medium">
-                Av. Rovisco Pais 1, 1049-001 Lisboa
-              </h5>
+              <h5 className="contact-addr f-medium">Av. Rovisco Pais 1, 1049-001 Lisboa</h5>
               <h6 className="contact-addr f-medium">
-                IST - Taguspark, Room 1 - 4.16, Av. Prof. Dr. Cavaco Silva,
-                2744-016, Porto Salvo
+                IST - Taguspark, Room 1 - 4.16, Av. Prof. Dr. Cavaco Silva, 2744-016, Porto Salvo
               </h6>
-              <h6 className="contact-addr f-medium">
-                tecnico.solarboat@gmail.com
-              </h6>
+              <h6 className="contact-addr f-medium">tecnico.solarboat@gmail.com</h6>
               <p className="f-medium"></p>
             </div>
           </div>
@@ -128,6 +120,7 @@ const Contact = () => {
                     <div className="col d-flex justify-content-center align-items-center">
                       <div className="form-group" style={{ float: "right" }}>
                         <button
+                          type="button"
                           className="btnd btnd-outline-info"
                           onClick={() =>
                             !isSubmitting &&
@@ -137,15 +130,12 @@ const Contact = () => {
                               message,
                               recaptcha,
                               setIsSubmitting,
-                              setSubmissionSuccess
+                              setSubmissionSuccess,
                             )
                           }
                         >
                           {isSubmitting ? (
-                            <div
-                              role="status"
-                              className="spinner-border-sm spinner-border"
-                            >
+                            <div role="status" className="spinner-border-sm spinner-border">
                               <span className="sr-only">Loading...</span>
                             </div>
                           ) : (

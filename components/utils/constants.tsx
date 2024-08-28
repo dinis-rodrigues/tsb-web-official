@@ -500,7 +500,7 @@ const selectCustomStyle: StylesConfig = {
 };
 
 const inputFormStyle = (isValid: boolean) => {
-  return "input-group-alternative input-group" + (!isValid ? "has-error" : "");
+  return `input-group-alternative input-group${!isValid ? "has-error" : ""}`;
 };
 
 export {

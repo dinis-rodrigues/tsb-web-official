@@ -1,13 +1,13 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import BottomWaves from "../Animations/BottomWaves";
 import GlowingStars from "../Animations/GlowingStars";
 
 import "react-toastify/dist/ReactToastify.css";
 
+import { fullpageApi } from "@fullpage/react-fullpage";
 import { Departments, RecruitmentFormInfo } from "../../interfaces";
 import RecruitmentFormFields from "./RecruitmentFormFields";
-import { fullpageApi } from "@fullpage/react-fullpage";
 
 type Props = {
   departments: Departments;
@@ -58,27 +58,22 @@ const RecruitmentForm = ({ departments, activeTable, fullPageApi }: Props) => {
           <div className="col-md-8 mx-auto z-inf">
             <div id="contact-form" className="glass-morph p-3 card">
               {submissionSuccess ? (
-                <Fragment>
-                  <h1 className="text-info index-header">
-                    Application Submitted
-                  </h1>
+                <>
+                  <h1 className="text-info index-header">Application Submitted</h1>
                   <h2>
-                    Good Luck{" "}
-                    <span className="text-info">{info.firstName}</span>!
+                    Good Luck <span className="text-info">{info.firstName}</span>!
                   </h2>
                   <p>
                     You will receive a confirmation email at{" "}
-                    <span className="contact-addr">{info.email}</span> with
-                    further information on the process.
+                    <span className="contact-addr">{info.email}</span> with further information on
+                    the process.
                     <p>Please check your spam folder.</p>
                     <p>
                       If you don&apos;t receive it please contact us at{" "}
-                      <span className="contact-addr">
-                        tecnico.solarboat@gmail.com
-                      </span>
+                      <span className="contact-addr">tecnico.solarboat@gmail.com</span>
                     </p>
                   </p>
-                </Fragment>
+                </>
               ) : (
                 <RecruitmentFormFields
                   info={info}

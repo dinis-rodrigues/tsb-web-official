@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import cx from "classnames";
 import { fullpageApi } from "@fullpage/react-fullpage";
+import cx from "classnames";
 
 type Props = {
   theme: 0 | 1 | "white" | "black";
@@ -21,7 +21,7 @@ const NavLogo = ({ theme, fullPageApi }: Props) => {
         {
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={`${process.env.BASE_PATH}/assets/images/tsb/TSB_oficial_white.png`}
+            src={`/assets/images/tsb/TSB_oficial_white.png`}
             alt=""
             width="100px"
             height="50px"
@@ -35,49 +35,37 @@ const NavLogo = ({ theme, fullPageApi }: Props) => {
       >
         {
           // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/assets/images/tsb/TSB_oficial.png`} alt="" width="100px" height="50px" />
+        }
+      </div>
+    </span>
+  ) : (
+    <Link href="/" passHref>
+      <div
+        className={cx("navbar-brand h-100 logo-img", {
+          "active-img": theme === "white" || theme === 0,
+        })}
+      >
+        {
+          // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={`${process.env.BASE_PATH}/assets/images/tsb/TSB_oficial.png`}
+            src={`/assets/images/tsb/TSB_oficial_white.png`}
             alt=""
             width="100px"
             height="50px"
           />
         }
       </div>
-    </span>
-  ) : (
-    <Link href="/">
-      <a className={cx("navbar-brand h-100")}>
-        <div
-          className={cx("logo-img", {
-            "active-img": theme === "white" || theme === 0,
-          })}
-        >
-          {
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={`${process.env.BASE_PATH}/assets/images/tsb/TSB_oficial_white.png`}
-              alt=""
-              width="100px"
-              height="50px"
-            />
-          }
-        </div>
-        <div
-          className={cx("logo-img", {
-            "active-img": theme === "black" || theme === 1,
-          })}
-        >
-          {
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={`${process.env.BASE_PATH}/assets/images/tsb/TSB_oficial.png`}
-              alt=""
-              width="100px"
-              height="50px"
-            />
-          }
-        </div>
-      </a>
+      <div
+        className={cx("logo-img", {
+          "active-img": theme === "black" || theme === 1,
+        })}
+      >
+        {
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/assets/images/tsb/TSB_oficial.png`} alt="" width="100px" height="50px" />
+        }
+      </div>
     </Link>
   );
 };

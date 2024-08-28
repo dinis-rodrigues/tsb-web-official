@@ -1,4 +1,4 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import { Head, Html, Main, NextScript } from "next/document";
 import FaviconIcons from "../components/Head/FaviconIcons";
 
 import { GA_TRACKING_ID } from "../components/utils/gtag";
@@ -13,12 +13,10 @@ const Document = () => {
         {/* enable analytics script only for production */}
         {isProduction && (
           <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-            />
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
             <script
               // eslint-disable-next-line react/no-danger
+              // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
               dangerouslySetInnerHTML={{
                 __html: `
             window.dataLayer = window.dataLayer || [];

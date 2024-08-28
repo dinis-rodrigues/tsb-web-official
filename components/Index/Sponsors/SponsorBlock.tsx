@@ -1,8 +1,8 @@
-import parse from "html-react-parser";
 import cx from "classnames";
+import parse from "html-react-parser";
+import { useEffect, useState } from "react";
 import { buildSafeUrl } from "../../utils/generalFunctions";
 import { getSvgStringFromPath } from "../../utils/sponsorUtils";
-import { useEffect, useState } from "react";
 
 type Props = {
   name: string;

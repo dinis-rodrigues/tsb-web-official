@@ -27,10 +27,7 @@ const firebaseDevConfig = {
 };
 
 // Check if we are in development and if DEV api key exists
-if (
-  process.env.NODE_ENV === "development" &&
-  process.env.NEXT_PUBLIC_FIREBASE_API_KEY
-) {
+if (process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
   if (
     process.env.NEXT_PUBLIC_OVERRIDE_DEVELOPMENT &&
     process.env.NEXT_PUBLIC_OVERRIDE_DEVELOPMENT === "TRUE"

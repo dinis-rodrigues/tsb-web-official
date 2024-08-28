@@ -3,7 +3,7 @@ const CoverSection = () => {
     <div
       className="section fp-noscroll"
       style={{
-        backgroundImage: `url("${process.env.BASE_PATH}/assets/images/coverPhoto.jpg")`,
+        backgroundImage: `url("/assets/images/coverPhoto.jpg")`,
         backgroundColor: "black",
         backgroundSize: "cover",
         backgroundPosition: "center",

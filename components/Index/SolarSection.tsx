@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
 import cx from "classnames";
-import { RiBattery2ChargeLine } from "react-icons/ri";
-import { GiSpeedometer } from "react-icons/gi";
+import { useEffect } from "react";
 import { FaSolarPanel } from "react-icons/fa";
-import { GiElectric, GiSandsOfTime } from "react-icons/gi";
+import { GiElectric, GiSandsOfTime, GiSpeedometer } from "react-icons/gi";
+import { RiBattery2ChargeLine } from "react-icons/ri";
 
 import CountUp from "react-countup";
-import { UncontrolledTooltip } from "reactstrap";
 import { useAnimate, useAnimateGroup } from "react-simple-animate";
+import { UncontrolledTooltip } from "reactstrap";
 import { TooltipIconItems } from "../../interfaces";
 
 type Props = {
@@ -91,7 +90,7 @@ const SolarSection = ({ startCount = false }: Props) => {
   useEffect(() => {
     startCount && play(true);
     startCount && playGroup(true);
-  }, [play, playGroup, startCount]);
+  }, [startCount]);
 
   return (
     <div
@@ -105,7 +104,7 @@ const SolarSection = ({ startCount = false }: Props) => {
         <div
           className={cx("section-bg", { active: startCount })}
           style={{
-            backgroundImage: `url("${process.env.BASE_PATH}/assets/images/index/about/mm.jpg")`,
+            backgroundImage: `url("/assets/images/index/about/mm.jpg")`,
             opacity: "0.8",
           }}
         ></div>
@@ -119,24 +118,21 @@ const SolarSection = ({ startCount = false }: Props) => {
             <hr className="divider" />
             <div className="f-medium">
               <p>
-                Founded in 2015, when a small group of friends/students realized
-                they wanted to do more within the Naval engineering degree.
+                Founded in 2015, when a small group of friends/students realized they wanted to do
+                more within the Naval engineering degree.
               </p>
               <p>
-                Already counting on three built prototypes: SR01, SR02 and SR03 
-                with which we participated in five years of international 
-                competitions.
+                Already counting on three built prototypes: SR01, SR02 and SR03 with which we
+                participated in five years of international competitions.
               </p>{" "}
               <p>
-                We are currently a unique project in the Iberian Peninsula. In
-                July 2019 we earned the 2nd place of the Solar A class at the
-                Monaco Solar and Energy Boat Challenge.
+                We are currently a unique project in the Iberian Peninsula. In July 2019 we earned
+                the 2nd place of the Solar A class at the Monaco Solar and Energy Boat Challenge.
               </p>
               <p>
-                Our latest, SR03, features three autonomous controlled hydrofoils.
-                It&apos;s designed for fast and smooth cruising both at open sea 
-                and still water environments. In 2022, SR03 finished 3rd in the Solar 
-                class at Monaco Energy Boat Challenge.
+                Our latest, SR03, features three autonomous controlled hydrofoils. It&apos;s
+                designed for fast and smooth cruising both at open sea and still water environments.
+                In 2022, SR03 finished 3rd in the Solar class at Monaco Energy Boat Challenge.
               </p>
             </div>
           </div>
@@ -145,11 +141,7 @@ const SolarSection = ({ startCount = false }: Props) => {
           <div className="col-lg-4 d-flex align-items-center">
             <div className="row  justify-content-center">
               {tooltipItems.map((item, index) => (
-                <div
-                  className="col-6 col-md-4"
-                  key={index}
-                  style={stylesGroup[index]!}
-                >
+                <div className="col-6 col-md-4" key={index} style={stylesGroup[index]!}>
                   <div className="item-card p-3" id={item.tooltipTarget}>
                     <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                       {item.icon}
@@ -173,14 +165,9 @@ const SolarSection = ({ startCount = false }: Props) => {
                         }}
                       </CountUp>
                     ) : (
-                      <h5 className="text-white index-subheader mt-2 text-shadow">
-                        {item.title}
-                      </h5>
+                      <h5 className="text-white index-subheader mt-2 text-shadow">{item.title}</h5>
                     )}
-                    <UncontrolledTooltip
-                      placement={"top"}
-                      target={item.tooltipTarget}
-                    >
+                    <UncontrolledTooltip placement={"top"} target={item.tooltipTarget}>
                       {item.tooltip}
                     </UncontrolledTooltip>
                   </div>

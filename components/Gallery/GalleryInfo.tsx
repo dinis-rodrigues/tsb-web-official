@@ -12,9 +12,7 @@ const GalleryInfo = ({ galleryInfo }: Props) => {
         <div className="gallery-info f-medium">
           {galleryInfo ? galleryInfo.description : ""}
           <hr />
-          {galleryInfo?.timestamp && (
-            <p>Uploaded on {dateToString(galleryInfo.timestamp)}</p>
-          )}
+          {galleryInfo?.timestamp && <p>Uploaded on {dateToString(galleryInfo.timestamp)}</p>}
         </div>
       </div>
     </div>

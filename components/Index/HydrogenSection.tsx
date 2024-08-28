@@ -1,12 +1,12 @@
 import cx from "classnames";
-import { UncontrolledTooltip } from "reactstrap";
+import { useEffect } from "react";
+import CountUp from "react-countup";
 import { BsTrophy } from "react-icons/bs";
 import { GiSpeedometer } from "react-icons/gi";
-import { RiBattery2ChargeLine } from "react-icons/ri";
 import { IoLeaf } from "react-icons/io5";
-import CountUp from "react-countup";
+import { RiBattery2ChargeLine } from "react-icons/ri";
 import { useAnimate, useAnimateGroup } from "react-simple-animate";
-import { useEffect } from "react";
+import { UncontrolledTooltip } from "reactstrap";
 import { TooltipIconItems } from "../../interfaces";
 
 type Props = {
@@ -68,7 +68,7 @@ const HydrogenSection = ({ startCount = false }: Props) => {
   useEffect(() => {
     startCount && play(true);
     startCount && playGroup(true);
-  }, [play, playGroup, startCount]);
+  }, [startCount]);
   return (
     <div
       className="section fp-noscroll"
@@ -81,7 +81,7 @@ const HydrogenSection = ({ startCount = false }: Props) => {
         <div
           className={cx("section-bg", { active: startCount })}
           style={{
-            backgroundImage: `radial-gradient(transparent, black),url("${process.env.BASE_PATH}/assets/images/index/about/SM01_2023.jpg")`,
+            backgroundImage: `radial-gradient(transparent, black),url("/assets/images/index/about/SM01_2023.jpg")`,
             opacity: "0.7",
             // backgroundPosition: "center 10%",
           }}
@@ -92,11 +92,7 @@ const HydrogenSection = ({ startCount = false }: Props) => {
           <div className="col-lg-4 d-flex align-items-center justify-content-center">
             <div className="row ">
               {tooltipItems.map((item, index) => (
-                <div
-                  className="col-6 col-md"
-                  key={index}
-                  style={stylesGroup[index]!}
-                >
+                <div className="col-6 col-md" key={index} style={stylesGroup[index]!}>
                   <div className="item-card p-3" id={item.tooltipTarget}>
                     <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
                       {item.icon}
@@ -120,14 +116,9 @@ const HydrogenSection = ({ startCount = false }: Props) => {
                         }}
                       </CountUp>
                     ) : (
-                      <h5 className="text-white index-subheader mt-2 text-shadow">
-                        {item.title}
-                      </h5>
+                      <h5 className="text-white index-subheader mt-2 text-shadow">{item.title}</h5>
                     )}
-                    <UncontrolledTooltip
-                      placement={"top"}
-                      target={item.tooltipTarget}
-                    >
+                    <UncontrolledTooltip placement={"top"} target={item.tooltipTarget}>
                       {item.tooltip}
                     </UncontrolledTooltip>
                   </div>
@@ -142,20 +133,19 @@ const HydrogenSection = ({ startCount = false }: Props) => {
             </h4>
             <hr className="divider" />
             <p className="f-medium text-white">
-              Given recent advances in fuel cell technology, hydrogen has proven
-              itself as a viable clean source of energy.
+              Given recent advances in fuel cell technology, hydrogen has proven itself as a viable
+              clean source of energy.
             </p>
             <p className="f-medium text-white">
-              In 2019 we gave ourselves the challenge to start designing and
-              developing a hydrogen powered vessel. Additionally we designed our
-              own system for efficient hydrogen production through electrolysis.
+              In 2019 we gave ourselves the challenge to start designing and developing a hydrogen
+              powered vessel. Additionally we designed our own system for efficient hydrogen
+              production through electrolysis.
             </p>
             <p className="f-medium text-white">
-              In 2020 we won the innovation prize from Monaco Solar and Energy
-              Boat Challenge for our hydrogen setup, and in 2021 our first
-              catamaran prototype was completed featuring a 5 kW fuel cell with
-              flax fibre cabin. In 2022, we were awarded the Innovation Prize at
-              Monaco Energy Boat Challenge for our improvements to the hydrogen systems.
+              In 2020 we won the innovation prize from Monaco Solar and Energy Boat Challenge for
+              our hydrogen setup, and in 2021 our first catamaran prototype was completed featuring
+              a 5 kW fuel cell with flax fibre cabin. In 2022, we were awarded the Innovation Prize
+              at Monaco Energy Boat Challenge for our improvements to the hydrogen systems.
             </p>
           </div>
         </div>

@@ -32,15 +32,14 @@ const DynamicSponsors = ({ sponsorBrackets, fullPageApi }: Props) => {
             <hr className="divider" />
             <div className="f-medium">
               <p className="text-black">
-                Great ideas and inspiring words are not sufficient alone to
-                change the world. Trust and credibility are fundamentally key to
-                achieve success. From beginning we have been pushing efforts to
-                build strong relations with companies, entities and
+                Great ideas and inspiring words are not sufficient alone to change the world. Trust
+                and credibility are fundamentally key to achieve success. From beginning we have
+                been pushing efforts to build strong relations with companies, entities and
                 organizations from all over the world.
               </p>
               <p className="text-black">
-                Our final word goes to our incredible sponsors, we want to thank
-                each and everyone who understands and believes in what we do.
+                Our final word goes to our incredible sponsors, we want to thank each and everyone
+                who understands and believes in what we do.
               </p>
             </div>
           </div>
@@ -49,13 +48,7 @@ const DynamicSponsors = ({ sponsorBrackets, fullPageApi }: Props) => {
           <div className="col-2"></div>
           <div className="col">
             {sponsorBrackets.map(([bracketId, bracket], idx) => {
-              return (
-                <SponsorBracket
-                  key={bracketId}
-                  bracket={bracket}
-                  bracketNum={idx}
-                />
-              );
+              return <SponsorBracket key={bracketId} bracket={bracket} bracketNum={idx} />;
             })}
           </div>
           <div className="col-2"></div>

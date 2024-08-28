@@ -13,6 +13,7 @@ const Custom500 = () => {
       </Head>
 
       <ReactFullpage
+        credits={{ enabled: false }}
         scrollOverflow
         fitToSection={true}
         navigation={false}
@@ -29,13 +30,13 @@ const Custom500 = () => {
                       <h1 className="very-large-font">500</h1>
                       <h2>{"An error occurred on our side 😖"}</h2>
                       <h5>
-                        Something went wrong when we were fueling up the
-                        information. Please try again later.
+                        Something went wrong when we were fueling up the information. Please try
+                        again later.
                       </h5>
                       <Link passHref href={"/"}>
-                        <a>
-                          <button className="btnd btnd-info">Go Home</button>
-                        </a>
+                        <button type="button" className="btnd btnd-info">
+                          Go Home
+                        </button>
                       </Link>
                     </div>
                   </div>
