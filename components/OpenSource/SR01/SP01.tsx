@@ -77,7 +77,7 @@ const SP01 = () => {
                     countButtons.esDownloadCount,
                     "esDownloadCount",
                     "sp01",
-                    "https://gitlab.com/tecnico.solar.boat/2023/SP01",
+                    "https://gitlab.com/tecnico.solar.boat/2024/SP01",
                   )
                 }
               >

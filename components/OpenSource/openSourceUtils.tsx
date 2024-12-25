@@ -1,6 +1,6 @@
 import { off, onValue, ref, set } from "firebase/database";
 import { Dispatch, SetStateAction } from "react";
-import { SM01Count, SP01Count, SR01Count, SR02Count, SR03Count } from "../../interfaces";
+import { SM01Count, SM02Count, SP01Count, SR01Count, SR02Count, SR03Count } from "../../interfaces";
 import { db } from "../Contexts/Firebase";
 
 /**
@@ -31,6 +31,18 @@ const startSMButtonDBListeners = (
 ) => {
   onValue(ref(db, `public/officialWebsite/openSource/${boat}/buttonCount`), (snapshot) => {
     const allButtonCounts: SM01Count = snapshot.val();
+    if (!allButtonCounts) return;
+    // get all photos of album
+    setCountButtons(allButtonCounts);
+  });
+};
+
+const startSM02ButtonDBListeners = (
+  boat: string,
+  setCountButtons: Dispatch<SetStateAction<SM02Count>>,
+) => {
+  onValue(ref(db, `public/officialWebsite/openSource/${boat}/buttonCount`), (snapshot) => {
+    const allButtonCounts: SM02Count = snapshot.val();
     if (!allButtonCounts) return;
     // get all photos of album
     setCountButtons(allButtonCounts);
@@ -93,5 +105,6 @@ export {
   removeButtonDBListeners,
   startButtonDBListeners,
   startSMButtonDBListeners,
+  startSM02ButtonDBListeners,
   startSPButtonDBListeners,
 };
